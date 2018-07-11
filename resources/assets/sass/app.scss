@@ -7,3 +7,12 @@
 
 // Bulma
 @import "./node_modules/bulma/bulma";
+
+.is-horizontal-center {
+  justify-content: center;
+}
+
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+}
