@@ -47,10 +47,10 @@
                             </a>
 
                             <div class="navbar-dropdown is-right">
-                                <a class="navbar-item">
+                                <a href="{{ route('profile.index', ['user' => auth()->user()]) }}" class="navbar-item">
                                     Profile
                                 </a>
-                                <a class="navbar-item">
+                                <a href="{{ route('profile.edit') }}" class="navbar-item">
                                     Settings
                                 </a>
                                 <a class="navbar-item">
@@ -85,5 +85,6 @@
         </section>
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
+    @stack('scripts')
 </body>
 </html>

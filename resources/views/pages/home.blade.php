@@ -5,7 +5,12 @@
     <div class="hero-body">
         <div class="container">
             <h1 class="subtitle">
-                You're logged in, {{ auth()->user()->name }}!
+                @auth
+                    You're logged in, {{ auth()->user()->name }}!
+                @endauth
+                @guest
+                    Please <a href="{{ route('register') }}">register</a> or <a href="{{ route('login') }}">log in</a> to use our website.
+                @endguest
             </h1>
             @if (session('status'))
                 <article class="message is-success">
