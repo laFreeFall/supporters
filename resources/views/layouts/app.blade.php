@@ -16,10 +16,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar is-info" role="navigation">
+        <nav class="navbar is-light" role="navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="https://bulma.io">
-                    <span class="icon has-text-white">
+                    <span class="icon">
                         <i class="fas fa-hands-helping"></i>
                     </span>
                     <span class="is-size-5">
@@ -35,8 +35,11 @@
 
             <div id="navbarBurger" class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item" href="{{ route('home') }}">
-                        Home
+                    <a class="navbar-item" href="{{ route('campaign.index') }}">
+                        Campaigns
+                    </a>
+                    <a class="navbar-item" href="{{ route('campaign.create') }}">
+                        Run a Campaign
                     </a>
                 </div>
                 <div class="navbar-end">
@@ -78,11 +81,7 @@
                 </div>
             </div>
         </nav>
-        <section class="section">
-            <div class="container is-fluid is-marginless">
-                @yield('content')
-            </div>
-        </section>
+        @yield('content')
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
     @stack('scripts')
