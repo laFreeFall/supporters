@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="has-navbar-fixed-top">
     <div id="app">
-        <nav class="navbar is-light" role="navigation">
+        <nav class="navbar is-light is-fixed-top" role="navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="https://bulma.io">
                     <span class="icon">
