@@ -10,11 +10,11 @@
                         @slot('form')
                             <form method="POST" action="{{ route('profile.update', ['profile' => auth()->user()->profile]) }}" enctype="multipart/form-data">
                                 {!! method_field('patch') !!}
-                                @endslot
-                                @slot('submit')
-                                    <div class="control">
-                                        <button type="submit" class="button is-link">Save profile</button>
-                                    </div>
+                        @endslot
+                        @slot('submit')
+                            <div class="control">
+                                <button type="submit" class="button is-link">Save profile</button>
+                            </div>
                         @endslot
                     @endcomponent
                 </div>

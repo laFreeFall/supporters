@@ -58,12 +58,7 @@
         </div>
     </div>
 
-    <pre>{{ $profile->avatar_path }}</pre>
-<hr>
-    <pre>{{ $errors->has('avatar') ? json_decode($errors->first('avatar')) : null }}</pre>
-
-    <profile-form-avatar avatar="{{ json_decode($profile->avatar_path) }}" errors="{{ $errors->has('avatar') ? json_decode($errors->first('avatar')) : null }}"></profile-form-avatar>
-{{--    <profile-form-avatar :avatar="{{ json_decode($profile->avatar_path) }}" :errors="{{ $errors->has('avatar') ? json_decode($errors->first('avatar')) : null }}"></profile-form-avatar>--}}
+    <profile-form-avatar avatar="{{ $profile->avatar ? $profile->avatar_path : '' }}" errors="{{ $errors->has('avatar') ? $errors->first('avatar') : '' }}"></profile-form-avatar>
 
     <div class="field is-horizontal is-grouped">
         <div class="field-label"></div>

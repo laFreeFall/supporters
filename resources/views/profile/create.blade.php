@@ -9,11 +9,11 @@
                     @component('profile._form', ['profile' => $blankProfile])
                         @slot('form')
                             <form method="POST" action="{{ route('profile.store') }}" enctype="multipart/form-data">
-                                @endslot
-                                @slot('submit')
-                                    <div class="control">
-                                        <button type="submit" class="button is-link">Save profile</button>
-                                    </div>
+                        @endslot
+                        @slot('submit')
+                            <div class="control">
+                                <button type="submit" class="button is-link">Save profile</button>
+                            </div>
                         @endslot
                     @endcomponent
                 </div>
