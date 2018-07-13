@@ -5,7 +5,7 @@
         </div>
         <div class="field-body">
             <div class="field">
-                <div class="file has-name">
+                <div class="file has-name is-fullwidth">
                     <label class="file-label">
                         <input class="file-input" type="file" name="avatar" id="avatar" accept="image/*" @change="onChange">
                         <span class="file-cta">
@@ -16,11 +16,11 @@
                                 Choose a file…
                             </span>
                         </span>
-                        <span class="file-name" id="avatar-name">{{ avatar ? 'Avatar is set' : 'Avatar hasn\'t been chosen yet' }}</span>
+                        <span class="file-name" id="avatar-name">{{ currentAvatar ? 'Avatar is set' : 'Avatar hasn\'t been chosen yet' }}</span>
                     </label>
                 </div>
                 <figure class="image is-64x64">
-                    <img :src="avatar"/>
+                    <img :src="currentAvatar"/>
                 </figure>
                 <p class="help is-danger has-text-weight-bold" v-if="validationError">{{ validationError }}</p>
             </div>
@@ -32,14 +32,20 @@
     export default {
         props: {
             avatar: {
-                type: String,
-                default: ''
+                type: String
             },
             validationError: {
                 type: String,
                 default: ''
             }
         },
+
+        data() {
+            return {
+                currentAvatar: ''
+            }
+        },
+
         methods: {
             onChange(e) {
                 if (! e.target.files.length) {
@@ -49,8 +55,13 @@
                 const reader = new FileReader()
                 reader.readAsDataURL(file)
 
-                reader.onload = e => { this.avatar = e.target.result }
+                reader.onload = e => { this.currentAvatar = e.target.result }
             }
+        },
+
+        created () {
+            console.log(this.avatar)
+            this.currentAvatar = this.avatar
         }
     }
 </script>
