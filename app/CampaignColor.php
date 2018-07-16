@@ -19,4 +19,12 @@ class CampaignColor extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * Get the campaigns associated with the color.
+     */
+    public function campaigns()
+    {
+        return $this->hasMany(Campaign::class, 'color_id');
+    }
 }

@@ -10,7 +10,7 @@ use App\CampaignPledge;
 class CampaignsPledgesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the campaign`s pledges.
      *
      * @param  Campaign $campaign
      * @return \Illuminate\Http\Response
@@ -23,7 +23,7 @@ class CampaignsPledgesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new campaign`s pledge.
      *
      * @param  Campaign $campaign
      * @return \Illuminate\Http\Response
@@ -36,7 +36,7 @@ class CampaignsPledgesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created campaign`s pledge in storage.
      *
      * @param  Campaign $campaign
      * @param  StoreCampaignPledgeRequest $request
@@ -50,7 +50,7 @@ class CampaignsPledgesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified campaign`s pledge.
      *
      * @param  Campaign $campaign
      * @param  CampaignPledge $pledge
@@ -62,7 +62,7 @@ class CampaignsPledgesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified campaign`s pledge in storage.
      *
      * @param  Campaign $campaign
      * @param  CampaignPledge $pledge
@@ -77,7 +77,7 @@ class CampaignsPledgesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified campaign`s pledge from storage.
      *
      * @param  Campaign $campaign
      * @param  CampaignPledge $pledge

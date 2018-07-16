@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class CampaignsGoalsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the campaign`s goals.
      *
      * @param  Campaign $campaign
      * @return \Illuminate\Http\Response
@@ -23,7 +23,7 @@ class CampaignsGoalsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new campaign`s goal.
      *
      * @param  Campaign $campaign
      * @return \Illuminate\Http\Response
@@ -36,7 +36,7 @@ class CampaignsGoalsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created campaign`s goal in storage.
      *
      * @param  Campaign $campaign
      * @param  StoreCampaignGoalRequest $request
@@ -50,7 +50,7 @@ class CampaignsGoalsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified campaign`s goal.
      *
      * @param  Campaign $campaign
      * @param  CampaignGoal $goal
@@ -62,7 +62,7 @@ class CampaignsGoalsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified campaign`s goal in storage.
      *
      * @param  Campaign $campaign
      * @param  CampaignGoal $goal
@@ -77,7 +77,7 @@ class CampaignsGoalsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified campaign`s goal from storage.
      *
      * @param  Campaign $campaign
      * @param  CampaignGoal $goal

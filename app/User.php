@@ -37,11 +37,17 @@ class User extends Authenticatable
         return 'name';
     }
 
+    /**
+     * Get the user profile.
+     */
     public function profile()
     {
         return $this->hasOne(Profile::class);
     }
 
+    /**
+     * Get the campaigns that user has run.
+     */
     public function campaigns()
     {
         return $this->hasMany(Campaign::class);

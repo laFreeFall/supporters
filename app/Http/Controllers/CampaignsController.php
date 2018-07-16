@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class CampaignsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the campaigns.
      *
      * @return \Illuminate\Http\Response
      */
@@ -24,7 +24,7 @@ class CampaignsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new campaign.
      *
      * @return \Illuminate\Http\Response
      */
@@ -38,9 +38,9 @@ class CampaignsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created campaign in storage.
      *
-     * @param StoreCampaignRequest $request
+     * @param  StoreCampaignRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCampaignRequest $request)
@@ -60,11 +60,10 @@ class CampaignsController extends Controller
         ]);
 
         return redirect(route('campaign.preview', $campaign));
-//        return view('campaign.preview', compact('campaign'));
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified campaign.
      *
      * @param  \App\Campaign  $campaign
      * @return \Illuminate\Http\Response
@@ -77,7 +76,7 @@ class CampaignsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified campaign.
      *
      * @param  \App\Campaign  $campaign
      * @return \Illuminate\Http\Response
@@ -91,13 +90,13 @@ class CampaignsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified campaign in storage.
      *
-     * @param StoreCampaignRequest $request
      * @param  \App\Campaign $campaign
-     * @return void
+     * @param  StoreCampaignRequest $request
+     * @return \Illuminate\Http\Response
      */
-    public function update(StoreCampaignRequest $request, Campaign $campaign)
+    public function update(Campaign $campaign, StoreCampaignRequest $request)
     {
         $avatarPath = $request->has('avatar') ? $request->file('avatar')->store('images/campaigns/previews','public') : null;
 
@@ -112,19 +111,30 @@ class CampaignsController extends Controller
             'avatar' => $avatarPath,
             'active' => true
         ]);
+
+        return redirect(route('campaign.show', ['campaign' => $campaign]));
     }
 
     /**
-     * Softly remove the specified resource from storage.
+     * Softly remove the specified campaign from storage.
      *
-     * @param  \App\Campaign  $campaign
+     * @param  \App\Campaign $campaign
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Campaign $campaign)
     {
-        //
+        $campaign->delete();
+
+        return redirect('campaign.index');
     }
 
+    /**
+     * Hide the specified campaign from the active ones.
+     *
+     * @param  \App\Campaign $campaign
+     * @return \Illuminate\Http\Response
+     */
     public function archive(Campaign $campaign)
     {
         $campaign->active = false;
@@ -134,7 +144,7 @@ class CampaignsController extends Controller
     }
 
     /**
-     * Restores the specified resource from storage.
+     * Make the specified campaign active.
      *
      * @param  \App\Campaign  $campaign
      * @return \Illuminate\Http\Response
@@ -147,6 +157,12 @@ class CampaignsController extends Controller
         return redirect(route('campaign.show', $campaign));
     }
 
+    /**
+     * Show the preview of the specified campaign after its creating.
+     *
+     * @param  \App\Campaign $campaign
+     * @return \Illuminate\Http\Response
+     */
     public function preview(Campaign $campaign)
     {
         return view('campaign.preview', compact('campaign'));

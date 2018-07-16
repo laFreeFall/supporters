@@ -20,16 +20,28 @@ class CampaignGoal extends Model
      */
     protected $guarded = [];
 
+    /**
+     * The accessors that always loads as any other DB field.
+     *
+     * @var array
+     */
     protected $appends = ['progress'];
 
-    public function campaign()
-    {
-        return $this->belongsTo(Campaign::class);
-    }
-
+    /**
+     * Get the progress percent of the goal.
+     *
+     * @return integer
+     */
     public function getProgressAttribute()
     {
         return $this->campaign->earnings > $this->amount ? 100 : $this->campaign->earnings / $this->amount * 100;
     }
 
+    /**
+     * Get the campaign associated with the goal.
+     */
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
 }
