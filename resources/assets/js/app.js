@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('profile-form-avatar', require('./components/ProfileFormAvatar.vue'));
+Vue.component('campaign-goals', require('./components/CampaignGoals.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -13,6 +13,8 @@ class Campaign extends Model
      */
     protected $guarded = [];
 
+    protected $with = ['category', 'colors'];
+
     /**
      * Get the route key for the model.
      *
@@ -33,9 +35,14 @@ class Campaign extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function color()
+    public function colors()
     {
         return $this->belongsTo(CampaignColor::class, 'color_id');
+    }
+
+    public function goals()
+    {
+        return $this->hasMany(CampaignGoal::class)->orderBy('amount');
     }
 
     public function getAvatarPathAttribute()

@@ -20,7 +20,8 @@ class CampaignsTableSeeder extends Seeder
                 'slug' => 'microsoft',
                 'activity' => 'creating software',
                 'description' => 'Nothing to say more...',
-                'holder' => false
+                'holder' => false,
+                'earnings' => 2500
             ],
             [
                 'user_id' => 1,
@@ -30,7 +31,8 @@ class CampaignsTableSeeder extends Seeder
                 'slug' => 'github',
                 'activity' => 'hosting opensource',
                 'description' => 'Nothing to say more...',
-                'holder' => false
+                'holder' => false,
+                'earnings' => 2500
             ],
             [
                 'user_id' => 2,
@@ -40,7 +42,8 @@ class CampaignsTableSeeder extends Seeder
                 'slug' => 'youtube',
                 'activity' => 'hosting video',
                 'description' => 'Nothing to say more...',
-                'holder' => false
+                'holder' => false,
+                'earnings' => 2500
             ],
             [
                 'user_id' => 2,
@@ -50,7 +53,8 @@ class CampaignsTableSeeder extends Seeder
                 'slug' => 'hp',
                 'activity' => 'creating laptops',
                 'description' => 'Nothing to say more...',
-                'holder' => false
+                'holder' => false,
+                'earnings' => 2500
             ],
             [
                 'user_id' => 3,
@@ -60,7 +64,8 @@ class CampaignsTableSeeder extends Seeder
                 'slug' => 'dawkins',
                 'activity' => 'writing books',
                 'description' => 'Nothing to say more...',
-                'holder' => true
+                'holder' => true,
+                'earnings' => 2500
             ]
         ]);
     }
