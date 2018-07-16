@@ -45,7 +45,7 @@ class Campaign extends Model
      */
     public function category()
     {
-        return $this->belongsTo(CampaignCategory::class, 'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     /**
@@ -61,7 +61,7 @@ class Campaign extends Model
      */
     public function colors()
     {
-        return $this->belongsTo(CampaignColor::class, 'color_id');
+        return $this->belongsTo(Color::class, 'color_id');
     }
 
     /**
@@ -69,7 +69,7 @@ class Campaign extends Model
      */
     public function goals()
     {
-        return $this->hasMany(CampaignGoal::class)->orderBy('amount');
+        return $this->hasMany(Goal::class)->orderBy('amount');
     }
 
     /**
@@ -77,6 +77,6 @@ class Campaign extends Model
      */
     public function pledges()
     {
-        return $this->hasMany(CampaignPledge::class)->orderBy('amount');
+        return $this->hasMany(Pledge::class)->orderBy('amount');
     }
 }

@@ -10,30 +10,6 @@
 
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label" for="name">Login</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control has-icons-left {{ $errors->has('name') ? ' has-icons-right' : '' }}">
-                            <input class="input {{ $errors->has('name') ? ' is-danger' : '' }}" value="{{ old('name') }}" name="name" id="name" type="text" placeholder="Enter login" required autofocus>
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-user"></i>
-                            </span>
-                            @if ($errors->has('name'))
-                                <span class="icon is-small is-right">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                </span>
-                            @endif
-                        </div>
-                        @if ($errors->has('name'))
-                            <p class="help is-danger has-text-weight-bold">{{ $errors->first('name') }}</p>
-                        @endif
-                    </div>
-                </div>
-            </div>
-
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
                     <label class="label" for="email">Email</label>
                 </div>
                 <div class="field-body">

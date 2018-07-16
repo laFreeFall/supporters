@@ -14,19 +14,16 @@ class UsersTableSeeder extends Seeder
         $timestamp = \Carbon\Carbon::now();
         DB::table('users')->insert([
             [
-                'name' => 'admin',
                 'email' => 'admin@mail.com',
                 'password' => bcrypt('password'),
                 'created_at' => $timestamp
             ],
             [
-                'name' => 'test',
                 'email' => 'test@mail.com',
                 'password' => bcrypt('password'),
                 'created_at' => $timestamp
             ],
             [
-                'name' => 'user',
                 'email' => 'user@mail.com',
                 'password' => bcrypt('password'),
                 'created_at' => $timestamp
@@ -35,16 +32,19 @@ class UsersTableSeeder extends Seeder
 
         DB::table('profiles')->insert([
             [
+                'username' => 'admin',
                 'user_id' => 1,
                 'first_name' => 'Admin',
                 'last_name' => 'Adminovich'
             ],
             [
+                'username' => 'test',
                 'user_id' => 2,
                 'first_name' => 'Test',
                 'last_name' => 'Testovich'
             ],
             [
+                'username' => 'user',
                 'user_id' => 3,
                 'first_name' => 'User',
                 'last_name' => 'Userovich'

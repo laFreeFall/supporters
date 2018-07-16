@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProfileRequest extends FormRequest
+class StorePledgeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,9 @@ class StoreProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|string|min:2',
-            'first_name' => 'required|string|min:2',
-            'last_name' => 'required|string|min:2',
-            'bio' => 'nullable|string|min:2',
-            'avatar' => 'nullable|image'
+            'title' => 'required|string|min:2',
+            'privileges' => 'required|string|min:3',
+            'amount' => 'required|integer|min:0|unique:campaigns_pledges'
         ];
     }
 }

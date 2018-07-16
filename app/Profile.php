@@ -14,6 +14,16 @@ class Profile extends Model
     protected $guarded = [];
 
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
+    /**
      * Get the avatar path of the profile.
      *
      * @return string
