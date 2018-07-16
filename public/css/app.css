@@ -11863,3 +11863,14 @@ label.panel-block:hover {
   text-decoration: none !important;
 }
 
+progress::-webkit-progress-value {
+  -webkit-transition: width .3s ease-in-out;
+  transition: width .3s ease-in-out;
+}
+
+.space-between {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+

@@ -23,3 +23,11 @@ Route::patch('campaign/{campaign}', 'CampaignsController@update')->name('campaig
 Route::delete('campaign/{campaign}', 'CampaignsController@delete')->name('campaign.delete');
 Route::get('campaign/{campaign}/preview', 'CampaignsController@preview')->name('campaign.preview');
 Route::post('campaign/{campaign}/restore', 'CampaignsController@restore')->name('campaign.restore');
+
+// campaigns goals
+Route::get('campaign/{campaign}/goals', 'CampaignsGoalsController@index')->name('campaign.goal.index');
+Route::get('campaign/{campaign}/goals/create', 'CampaignsGoalsController@create')->name('campaign.goal.create');
+Route::post('campaign/{campaign}/goals', 'CampaignsGoalsController@store')->name('campaign.goal.store');
+Route::get('campaign/{campaign}/goal/{goal}/edit', 'CampaignsGoalsController@edit')->name('campaign.goal.edit');
+Route::patch('campaign/{campaign}/goal/{goal}', 'CampaignsGoalsController@update')->name('campaign.goal.update');
+Route::delete('campaign/{campaign}/goal/{goal}', 'CampaignsGoalsController@destroy')->name('campaign.goal.delete');

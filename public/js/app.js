@@ -1631,6 +1631,147 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/CampaignGoals.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        goals: {
+            type: Array,
+            required: false,
+            default: []
+        },
+        colors: {
+            type: Object,
+            required: true
+        },
+        campaignSlug: {
+            type: String,
+            required: true
+        }
+    },
+
+    data: function data() {
+        return {
+            currentGoal: {},
+            currentIndex: 0
+        };
+    },
+
+
+    methods: {
+        next: function next() {
+            if (this.nextAvailable) {
+                this.currentIndex++;
+                this.currentGoal = this.goals[this.currentIndex - 1];
+            }
+        },
+        prev: function prev() {
+            if (this.prevAvailable) {
+                this.currentIndex--;
+                this.currentGoal = this.goals[this.currentIndex - 1];
+            }
+        }
+    },
+
+    computed: {
+        goalsAmount: function goalsAmount() {
+            return this.goals.length;
+        },
+        prevAvailable: function prevAvailable() {
+            return this.currentIndex > 1;
+        },
+        nextAvailable: function nextAvailable() {
+            return this.currentIndex < this.goalsAmount;
+        }
+    },
+
+    created: function created() {
+        if (this.goals.length) {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.goals.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var _ref = _step.value;
+
+                    var _ref2 = _slicedToArray(_ref, 2);
+
+                    var index = _ref2[0];
+                    var goal = _ref2[1];
+
+                    if (goal.progress < 100) {
+                        this.currentGoal = goal;
+                        this.currentIndex = index + 1;
+                        break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/ProfileFormAvatar.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -19418,6 +19559,120 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2e62b2ae\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/CampaignGoals.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-header" }, [
+      _c("div", { staticClass: "card-header-title space-between" }, [
+        _c(
+          "a",
+          {
+            staticClass: "is-pulled-left",
+            attrs: { href: "/campaign/" + _vm.campaignSlug + "/goals" }
+          },
+          [_vm._v("\n                Goals\n            ")]
+        ),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(_vm._s(_vm.currentIndex) + " of " + _vm._s(_vm.goalsAmount))
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "buttons has-addons" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { disabled: !_vm.prevAvailable },
+              on: { click: _vm.prev }
+            },
+            [_vm._m(0)]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { disabled: !_vm.nextAvailable },
+              on: { click: _vm.next }
+            },
+            [_vm._m(1)]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-content" }, [
+      _c("div", { staticClass: "content" }, [
+        _c("p", [
+          _c("span", { staticClass: "is-pulled-left" }, [
+            _vm._v(
+              "\n                    $" +
+                _vm._s(_vm.currentGoal.amount) +
+                " per month\n                "
+            )
+          ]),
+          _vm._v(" "),
+          _vm.currentGoal.progress === 100
+            ? _c("span", { staticClass: "is-pulled-right has-text-grey" }, [
+                _vm._v("\n                    reached\n                ")
+              ])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c(
+          "progress",
+          {
+            staticClass: "progress",
+            class: _vm.colors.color_class,
+            attrs: { max: "100" },
+            domProps: { value: _vm.currentGoal.progress }
+          },
+          [_vm._v(_vm._s(_vm.currentGoal.progress) + "%")]
+        ),
+        _vm._v(" "),
+        _c("p", { staticClass: "has-text-weight-bold" }, [
+          _vm._v(_vm._s(_vm.currentGoal.title))
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.currentGoal.description))])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small" }, [
+      _c("i", { staticClass: "fas fa-caret-left" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small" }, [
+      _c("i", { staticClass: "fas fa-caret-right" })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2e62b2ae", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4e9f145f\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ProfileFormAvatar.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30558,6 +30813,7 @@ window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
  */
 
 Vue.component('profile-form-avatar', __webpack_require__("./resources/assets/js/components/ProfileFormAvatar.vue"));
+Vue.component('campaign-goals', __webpack_require__("./resources/assets/js/components/CampaignGoals.vue"));
 
 var app = new Vue({
   el: '#app'
@@ -30594,6 +30850,54 @@ if (token) {
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/CampaignGoals.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/CampaignGoals.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2e62b2ae\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/CampaignGoals.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\CampaignGoals.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2e62b2ae", Component.options)
+  } else {
+    hotAPI.reload("data-v-2e62b2ae", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 

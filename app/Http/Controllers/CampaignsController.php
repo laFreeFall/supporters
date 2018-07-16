@@ -17,7 +17,7 @@ class CampaignsController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::with('category', 'color')->get();
+        $campaigns = Campaign::all();
         $categories = CampaignCategory::select('id', 'title')->paginate(12);
 
         return view('campaign.index', compact('campaigns', 'categories'));
@@ -71,7 +71,7 @@ class CampaignsController extends Controller
      */
     public function show(Campaign $campaign)
     {
-        $campaign->load('user');
+        $campaign->load('user', 'goals.campaign');
 
         return view('campaign.show', compact('campaign'));
     }
@@ -149,8 +149,6 @@ class CampaignsController extends Controller
 
     public function preview(Campaign $campaign)
     {
-        $campaign->load('category', 'color');
-
         return view('campaign.preview', compact('campaign'));
     }
 }

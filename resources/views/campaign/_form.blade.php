@@ -151,7 +151,7 @@
                         <select name="color_id" id="color_id">
                             <option value="" selected disabled>Pick a color</option>
                             @foreach($colors as $color)
-                                <option value="{{ $color->id }}" class="{{ $color->background_class }} {{ $color->text_class }} select-campaign-color" {{ $color->id === old('color_id', $campaign->color_id?? null) ? 'selected' : '' }}>
+                                <option value="{{ $color->id }}" class="{{ $color->background_class }} {{ $color->text_class }} select-campaign-color" {{ $color->id === old('color_id', $campaign->colors->color_id ?? null) ? 'selected' : '' }}>
                                     {{ $color->title }}
                                 </option>
                             @endforeach

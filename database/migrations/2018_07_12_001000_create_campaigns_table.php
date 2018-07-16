@@ -25,6 +25,7 @@ class CreateCampaignsTable extends Migration
             $table->unsignedInteger('color_id');
             $table->string('avatar')->nullable();
             $table->boolean('active')->default(true);
+            $table->unsignedInteger('earnings');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
