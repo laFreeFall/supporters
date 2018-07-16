@@ -3,17 +3,18 @@
 Auth::routes();
 
 Route::get('/', 'PagesController@home')->name('home');
+Route::get('/test', 'HomeController@test')->name('text');
 
 Route::get('profile/create', 'ProfilesController@create')->name('profile.create');
 Route::post('profile/store', 'ProfilesController@store')->name('profile.store');
 Route::get('profile/settings', 'ProfilesController@edit')->name('profile.edit');
 Route::patch('profile/{profile}', 'ProfilesController@update')->name('profile.update');
-//Route::get('profile/{user}', 'ProfilesController@index')->name('profile.index');
-Route::get('@{user}', 'ProfilesController@index')->name('profile.index');
+Route::get('@{user}', 'ProfilesController@show')->name('profile.show');
 Route::get('profile', function() {
-    return redirect(route('profile.index', ['user' => auth()->user()]));
+    return redirect(route('profile.show', ['user' => auth()->user()]));
 });
 
+// Campaigns
 Route::get('campaigns', 'CampaignsController@index')->name('campaign.index');
 Route::get('{campaign}', 'CampaignsController@show')->name('campaign.show');
 Route::get('campaigns/create', 'CampaignsController@create')->name('campaign.create');
@@ -24,7 +25,7 @@ Route::delete('campaign/{campaign}', 'CampaignsController@delete')->name('campai
 Route::get('campaign/{campaign}/preview', 'CampaignsController@preview')->name('campaign.preview');
 Route::post('campaign/{campaign}/restore', 'CampaignsController@restore')->name('campaign.restore');
 
-// campaigns goals
+// Campaign Goals
 Route::get('campaign/{campaign}/goals', 'CampaignsGoalsController@index')->name('campaign.goal.index');
 Route::get('campaign/{campaign}/goals/create', 'CampaignsGoalsController@create')->name('campaign.goal.create');
 Route::post('campaign/{campaign}/goals', 'CampaignsGoalsController@store')->name('campaign.goal.store');
@@ -32,7 +33,7 @@ Route::get('campaign/{campaign}/goal/{goal}/edit', 'CampaignsGoalsController@edi
 Route::patch('campaign/{campaign}/goal/{goal}', 'CampaignsGoalsController@update')->name('campaign.goal.update');
 Route::delete('campaign/{campaign}/goal/{goal}', 'CampaignsGoalsController@destroy')->name('campaign.goal.delete');
 
-// campaigns pledges
+// Campaign Pledges
 Route::get('campaign/{campaign}/pledges', 'CampaignsPledgesController@index')->name('campaign.pledge.index');
 Route::get('campaign/{campaign}/pledges/create', 'CampaignsPledgesController@create')->name('campaign.pledge.create');
 Route::post('campaign/{campaign}/pledges', 'CampaignsPledgesController@store')->name('campaign.pledge.store');

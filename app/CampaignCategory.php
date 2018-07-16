@@ -19,4 +19,12 @@ class CampaignCategory extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * Get the campaigns associated with the category.
+     */
+    public function campaigns()
+    {
+        return $this->hasMany(Campaign::class, 'category_id');
+    }
 }

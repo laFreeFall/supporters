@@ -20,7 +20,9 @@ class CampaignPledge extends Model
      */
     protected $guarded = [];
 
-
+    /**
+     * Get the campaign associated with the pledge.
+     */
     public function campaign()
     {
         return $this->belongsTo(Campaign::class);

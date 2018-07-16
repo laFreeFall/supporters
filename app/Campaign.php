@@ -13,6 +13,11 @@ class Campaign extends Model
      */
     protected $guarded = [];
 
+    /**
+     * The relations that loads by default with the instance.
+     *
+     * @var array
+     */
     protected $with = ['category', 'colors'];
 
     /**
@@ -25,33 +30,53 @@ class Campaign extends Model
         return 'slug';
     }
 
+    /**
+     * Get the avatar path of the campaign.
+     *
+     * @return string
+     */
+    public function getAvatarPathAttribute()
+    {
+        return asset($this->avatar ? '/storage/' . $this->avatar : '/storage/' . 'images/avatars/no-avatar.png');
+    }
+
+    /**
+     * Get the category of the campaign.
+     */
     public function category()
     {
         return $this->belongsTo(CampaignCategory::class, 'category_id');
     }
 
+    /**
+     * Get the user who has run the campaign.
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Get the colors associated with the campaign.
+     */
     public function colors()
     {
         return $this->belongsTo(CampaignColor::class, 'color_id');
     }
 
+    /**
+     * Get the goals associated with the campaign.
+     */
     public function goals()
     {
         return $this->hasMany(CampaignGoal::class)->orderBy('amount');
     }
 
+    /**
+     * Get the pledges associated with the campaign.
+     */
     public function pledges()
     {
         return $this->hasMany(CampaignPledge::class)->orderBy('amount');
-    }
-
-    public function getAvatarPathAttribute()
-    {
-        return asset($this->avatar ? '/storage/' . $this->avatar : '/storage/' . 'images/avatars/no-avatar.png');
     }
 }

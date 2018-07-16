@@ -9,13 +9,11 @@ use Illuminate\Http\Request;
 
 class ProfilesController extends Controller
 {
-    public function index(User $user)
-    {
-        $user->load('profile');
-
-        return view('profile.index', compact('user'));
-    }
-
+    /**
+     * Show the form for creating a new user profile.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $blankProfile = new Profile();
@@ -23,6 +21,12 @@ class ProfilesController extends Controller
         return view('profile.create', compact('blankProfile'));
     }
 
+    /**
+     * Store a newly created user`s profile in storage.
+     *
+     * @param  StoreProfileRequest $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(StoreProfileRequest $request)
     {
         /* Decided not to use avatars name equal to users ids because browser caches images
@@ -45,11 +49,36 @@ class ProfilesController extends Controller
         return redirect(route('profile.index', ['user' => auth()->user()]));
     }
 
+    /**
+     * Display the specified user`s profile.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        $user->load('profile');
+
+        return view('profile.index', compact('user'));
+    }
+
+    /**
+     * Show the form for editing the authenticated user`s profile.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function edit()
     {
         return view('profile.edit');
     }
 
+    /**
+     * Update the authenticated user`s profile in storage.
+     *
+     * @param  Profile $profile
+     * @param  StoreProfileRequest $request
+     * @return \Illuminate\Http\Response
+     */
     public function update(Profile $profile, StoreProfileRequest $request)
     {
         /* Decided not to use avatars name equal to users ids because browser caches images
