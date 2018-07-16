@@ -45,6 +45,11 @@ class Campaign extends Model
         return $this->hasMany(CampaignGoal::class)->orderBy('amount');
     }
 
+    public function pledges()
+    {
+        return $this->hasMany(CampaignPledge::class)->orderBy('amount');
+    }
+
     public function getAvatarPathAttribute()
     {
         return asset($this->avatar ? '/storage/' . $this->avatar : '/storage/' . 'images/avatars/no-avatar.png');

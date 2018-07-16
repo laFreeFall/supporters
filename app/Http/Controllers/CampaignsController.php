@@ -71,7 +71,7 @@ class CampaignsController extends Controller
      */
     public function show(Campaign $campaign)
     {
-        $campaign->load('user', 'goals.campaign');
+        $campaign->load('user', 'goals.campaign', 'pledges');
 
         return view('campaign.show', compact('campaign'));
     }

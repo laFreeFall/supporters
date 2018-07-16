@@ -31,3 +31,11 @@ Route::post('campaign/{campaign}/goals', 'CampaignsGoalsController@store')->name
 Route::get('campaign/{campaign}/goal/{goal}/edit', 'CampaignsGoalsController@edit')->name('campaign.goal.edit');
 Route::patch('campaign/{campaign}/goal/{goal}', 'CampaignsGoalsController@update')->name('campaign.goal.update');
 Route::delete('campaign/{campaign}/goal/{goal}', 'CampaignsGoalsController@destroy')->name('campaign.goal.delete');
+
+// campaigns pledges
+Route::get('campaign/{campaign}/pledges', 'CampaignsPledgesController@index')->name('campaign.pledge.index');
+Route::get('campaign/{campaign}/pledges/create', 'CampaignsPledgesController@create')->name('campaign.pledge.create');
+Route::post('campaign/{campaign}/pledges', 'CampaignsPledgesController@store')->name('campaign.pledge.store');
+Route::get('campaign/{campaign}/pledge/{pledge}/edit', 'CampaignsPledgesController@edit')->name('campaign.pledge.edit');
+Route::patch('campaign/{campaign}/pledge/{pledge}', 'CampaignsPledgesController@update')->name('campaign.pledge.update');
+Route::delete('campaign/{campaign}/pledge/{pledge}', 'CampaignsPledgesController@destroy')->name('campaign.pledge.delete');
