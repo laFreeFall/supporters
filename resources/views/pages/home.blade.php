@@ -6,7 +6,7 @@
         <div class="container">
             <h1 class="subtitle">
                 @auth
-                    You're logged in, {{ auth()->user()->name }}!
+                    You're logged in, {{ auth()->user()->profile->username }}!
                 @endauth
                 @guest
                     Please <a href="{{ route('register') }}">register</a> or <a href="{{ route('login') }}">log in</a> to use our website.

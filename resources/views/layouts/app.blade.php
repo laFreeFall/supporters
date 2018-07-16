@@ -35,10 +35,10 @@
 
             <div id="navbarBurger" class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item" href="{{ route('campaign.index') }}">
+                    <a class="navbar-item" href="{{ route('campaigns.index') }}">
                         Campaigns
                     </a>
-                    <a class="navbar-item" href="{{ route('campaign.create') }}">
+                    <a class="navbar-item" href="{{ route('campaigns.create') }}">
                         Run a Campaign
                     </a>
                 </div>
@@ -46,27 +46,28 @@
                     @auth
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link">
-                                {{ auth()->user()->name }}
+                                {{ auth()->user()->profile ? auth()->user()->profile->username : 'You haven\'t sign up a profile yet' }}
                             </a>
-
-                            <div class="navbar-dropdown is-right">
-                                <a href="{{ route('profile.index', ['user' => auth()->user()]) }}" class="navbar-item">
-                                    Profile
-                                </a>
-                                <a href="{{ route('profile.edit') }}" class="navbar-item">
-                                    Settings
-                                </a>
-                                <a class="navbar-item">
-                                    Other stuff
-                                </a>
-                                <hr class="navbar-divider">
-                                <a class="navbar-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </div>
+                            @if(auth()->user()->profile)
+                                <div class="navbar-dropdown is-right">
+                                    <a href="{{ route('profiles.show', ['profile' => auth()->user()->profile]) }}" class="navbar-item">
+                                        Profile
+                                    </a>
+                                    <a href="{{ route('profiles.edit', ['profile' => auth()->user()->profile]) }}" class="navbar-item">
+                                        Settings
+                                    </a>
+                                    <a class="navbar-item">
+                                        Other stuff
+                                    </a>
+                                    <hr class="navbar-divider">
+                                    <a class="navbar-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </div>
+                            @endif
                         </div>
                     @endauth
                     @guest

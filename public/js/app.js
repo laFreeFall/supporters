@@ -19573,7 +19573,7 @@ var render = function() {
           "a",
           {
             staticClass: "is-pulled-left",
-            attrs: { href: "/campaign/" + _vm.campaignSlug + "/goals" }
+            attrs: { href: "/campaigns/" + _vm.campaignSlug + "/goals" }
           },
           [_vm._v("\n                Goals\n            ")]
         ),
