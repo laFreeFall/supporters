@@ -25,3 +25,7 @@ Route::resource('campaigns.pledges', 'PledgeController');
 
 // Campaign Posts
 Route::resource('campaigns.posts', 'PostController');
+
+Route::post('campaigns/{campaign}/users/{user}', 'FollowingController@store')->name('followings.store');
+Route::delete('campaigns/{campaign}/users/{user}', 'FollowingController@destroy')->name('followings.destroy');
+

@@ -42,4 +42,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Campaign::class);
     }
+
+    /**
+     * Get the campaigns followed by user.
+     */
+    public function followings()
+    {
+        return $this->belongsToMany(Campaign::class);
+    }
+
+    /**
+     * Get the result if user follows a campaign or not.
+     */
+    public function isFollowingCampaign($campaign)
+    {
+        return $this->followings->contains($campaign);
+    }
 }

@@ -21,6 +21,8 @@ class PageController extends Controller
      */
     public function test()
     {
+        $campaign = \App\Campaign::first();
+        return ($campaign->hasFollower(\App\User::find(2))) ? 'true' : 'false';
         return 'test';
     }
 }

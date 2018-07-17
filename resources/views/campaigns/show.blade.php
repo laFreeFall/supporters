@@ -41,12 +41,7 @@
                     <span>Support</span>
                 </a>
                 <p class="buttons space-between">
-                    <a href="#" class="button is-rounded is-outlined is-link">
-                        <span class="icon">
-                            <i class="fas fa-user-friends"></i>
-                        </span>
-                        <span>Follow</span>
-                    </a>
+                    <follow-button :is-followed="{{ json_encode($campaign->hasFollower(auth()->user())) }}" :request-url="{{ json_encode(route('followings.store', ['campaign' => $campaign, 'user' => auth()->user()])) }}"></follow-button>
                     <a href="#" class="button is-rounded is-outlined is-info">
                         <span class="icon">
                             <i class="fas fa-share-alt"></i>

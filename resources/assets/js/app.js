@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('profile-form-avatar', require('./components/ProfileFormAvatar.vue'));
 Vue.component('campaign-goals', require('./components/CampaignGoals.vue'));
+Vue.component('follow-button', require('./components/FollowButton.vue'));
 
 const app = new Vue({
     el: '#app'

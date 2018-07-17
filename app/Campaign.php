@@ -87,4 +87,20 @@ class Campaign extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    /**
+     * Get the users that are following the campaign.
+     */
+    public function followers()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    /**
+     * Get the result if campaign has a follower or not.
+     */
+    public function hasFollower($user)
+    {
+        return $this->followers->contains($user);
+    }
 }
