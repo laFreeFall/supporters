@@ -16,9 +16,11 @@
                         {{ $campaign->goals->count() }}
                     </span>
                     </h2>
-                    <a href="{{ route('campaigns.goals.create', ['campaign' => $campaign]) }}" class="button is-info m-b-lg">
-                        Create new goal
-                    </a>
+                    @can('create', $campaign)
+                        <a href="{{ route('campaigns.goals.create', ['campaign' => $campaign]) }}" class="button is-info m-b-lg">
+                            Create new goal
+                        </a>
+                    @endcan
                 </div>
                 <div class="columns is-centered is-multiline is-variable is-7">
                     @foreach($campaign->goals as $goal)
@@ -37,22 +39,26 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <a href="{{ route('campaigns.goals.edit', ['campaign' => $campaign, 'goal' => $goal]) }}" class="card-footer-item">
-                                        <span class="icon">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                        Edit
-                                    </a>
-                                    <a href="{{ route('campaigns.goals.destroy', ['campaign' => $campaign, 'goal' => $goal]) }}" onclick="event.preventDefault(); document.getElementById('destroy-goal-{{ $goal->id }}-form').submit();" class="card-footer-item">
-                                        <span class="icon">
-                                            <i class="fas fa-trash"></i>
-                                        </span>
-                                        Delete
-                                    </a>
-                                    <form id="destroy-goal-{{ $goal->id }}-form" action="{{ route('campaigns.goals.destroy', ['campaign' => $campaign, 'goal' => $goal]) }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                        {!! method_field('delete') !!}
-                                    </form>
+                                    @can('update', $campaign)
+                                        <a href="{{ route('campaigns.goals.edit', ['campaign' => $campaign, 'goal' => $goal]) }}" class="card-footer-item">
+                                            <span class="icon">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                            Edit
+                                        </a>
+                                    @endcan
+                                    @can('delete', $campaign)
+                                        <a href="{{ route('campaigns.goals.destroy', ['campaign' => $campaign, 'goal' => $goal]) }}" onclick="event.preventDefault(); document.getElementById('destroy-goal-{{ $goal->id }}-form').submit();" class="card-footer-item">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            Delete
+                                        </a>
+                                        <form id="destroy-goal-{{ $goal->id }}-form" action="{{ route('campaigns.goals.destroy', ['campaign' => $campaign, 'goal' => $goal]) }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                            {!! method_field('delete') !!}
+                                        </form>
+                                    @endcan
                                 </div>
                             </div>
 

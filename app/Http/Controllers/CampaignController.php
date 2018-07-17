@@ -77,11 +77,14 @@ class CampaignController extends Controller
     /**
      * Show the form for editing the specified campaign.
      *
-     * @param  \App\Campaign  $campaign
+     * @param  \App\Campaign $campaign
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Campaign $campaign)
     {
+        $this->authorize('update', $campaign);
+
         $categories = Category::select('id', 'title')->get();
         $colors = Color::all();
 
@@ -94,9 +97,12 @@ class CampaignController extends Controller
      * @param  \App\Campaign $campaign
      * @param  StoreCampaignRequest $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Campaign $campaign, StoreCampaignRequest $request)
     {
+        $this->authorize('update', $campaign);
+
         $avatarPath = $request->has('avatar') ? $request->file('avatar')->store('images/campaigns/previews','public') : null;
 
         $campaign->update([
@@ -123,6 +129,8 @@ class CampaignController extends Controller
      */
     public function destroy(Campaign $campaign)
     {
+        $this->authorize('delete', $campaign);
+
         $campaign->delete();
 
         return redirect('campaigns.index');
@@ -133,9 +141,12 @@ class CampaignController extends Controller
      *
      * @param  \App\Campaign $campaign
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function archive(Campaign $campaign)
     {
+        $this->authorize('update', $campaign);
+
         $campaign->active = false;
         $campaign->save();
 
@@ -145,11 +156,14 @@ class CampaignController extends Controller
     /**
      * Make the specified campaign active.
      *
-     * @param  \App\Campaign  $campaign
+     * @param  \App\Campaign $campaign
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function restore(Campaign $campaign)
     {
+        $this->authorize('delete', $campaign);
+
         $campaign->active = true;
         $campaign->save();
 
@@ -161,9 +175,12 @@ class CampaignController extends Controller
      *
      * @param  \App\Campaign $campaign
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function preview(Campaign $campaign)
     {
+        $this->authorize('preview', $campaign);
+
         return view('campaigns.preview', compact('campaign'));
     }
 }
