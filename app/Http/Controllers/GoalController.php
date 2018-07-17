@@ -26,9 +26,12 @@ class GoalController extends Controller
      *
      * @param  Campaign $campaign
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign)
     {
+        $this->authorize('create', $campaign);
+
         $goal = new Goal();
 
         return view('campaigns.goals.create', compact('campaign', 'goal'));
@@ -40,9 +43,12 @@ class GoalController extends Controller
      * @param  Campaign $campaign
      * @param  StoreGoalRequest $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Campaign $campaign, StoreGoalRequest $request)
     {
+        $this->authorize('create', $campaign);
+
         $campaign->goals()->create($request->validated());
 
         return redirect(route('campaigns.goals.index', ['campaign' => $campaign]));
@@ -54,9 +60,12 @@ class GoalController extends Controller
      * @param  Campaign $campaign
      * @param  Goal $goal
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Campaign $campaign, Goal $goal)
     {
+        $this->authorize('update', $campaign);
+
         return view('campaigns.goals.edit', compact('campaign', 'goal'));
     }
 
@@ -67,9 +76,12 @@ class GoalController extends Controller
      * @param  Goal $goal
      * @param  StoreGoalRequest $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Campaign $campaign, Goal $goal, StoreGoalRequest $request)
     {
+        $this->authorize('update', $campaign);
+
         $goal->update($request->validated());
 
         return redirect(route('campaigns.goals.index', ['campaign' => $campaign]));
@@ -85,6 +97,8 @@ class GoalController extends Controller
      */
     public function destroy(Campaign $campaign, Goal $goal)
     {
+        $this->authorize('delete', $campaign);
+
         $goal->delete();
 
         return redirect(route('campaigns.goals.index', ['campaign' => $campaign]));

@@ -16,9 +16,11 @@
                         {{ $campaign->pledges->count() }}
                     </span>
                     </h2>
-                    <a href="{{ route('campaigns.pledges.create', ['campaign' => $campaign]) }}" class="button is-info m-b-lg">
-                        Create new pledge
-                    </a>
+                    @can('create', $campaign)
+                        <a href="{{ route('campaigns.pledges.create', ['campaign' => $campaign]) }}" class="button is-info m-b-lg">
+                            Create new pledge
+                        </a>
+                    @endcan
                 </div>
                 <div class="columns is-centered is-multiline is-variable is-7">
                     @foreach($campaign->pledges as $pledge)
@@ -36,22 +38,28 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <a href="{{ route('campaigns.pledges.edit', ['campaign' => $campaign, 'pledge' => $pledge]) }}" class="card-footer-item">
-                                        <span class="icon">
-                                            <i class="fas fa-edit"></i>
-                                        </span>
-                                        Edit
-                                    </a>
-                                    <a href="{{ route('campaigns.pledges.destroy', ['campaign' => $campaign, 'pledge' => $pledge]) }}" onclick="event.preventDefault(); document.getElementById('destroy-pledge-{{ $pledge->id }}-form').submit();" class="card-footer-item">
-                                        <span class="icon">
-                                            <i class="fas fa-trash"></i>
-                                        </span>
-                                        Delete
-                                    </a>
-                                    <form id="destroy-pledge-{{ $pledge->id }}-form" action="{{ route('campaigns.pledges.destroy', ['campaign' => $campaign, 'pledge' => $pledge]) }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                        {!! method_field('delete') !!}
-                                    </form>
+                                    @can('update', $campaign)
+                                        <a href="{{ route('campaigns.pledges.edit', ['campaign' => $campaign, 'pledge' => $pledge]) }}" class="card-footer-item">
+                                            <span class="icon">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                            Edit
+                                        </a>
+                                    @else
+                                        <a href="#" class="card-footer-item">Support for ${{ $pledge->amount }}</a>
+                                    @endcan
+                                    @can('delete', $campaign)
+                                        <a href="{{ route('campaigns.pledges.destroy', ['campaign' => $campaign, 'pledge' => $pledge]) }}" onclick="event.preventDefault(); document.getElementById('destroy-pledge-{{ $pledge->id }}-form').submit();" class="card-footer-item">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            Delete
+                                        </a>
+                                        <form id="destroy-pledge-{{ $pledge->id }}-form" action="{{ route('campaigns.pledges.destroy', ['campaign' => $campaign, 'pledge' => $pledge]) }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                            {!! method_field('delete') !!}
+                                        </form>
+                                    @endcan
                                 </div>
                             </div>
 

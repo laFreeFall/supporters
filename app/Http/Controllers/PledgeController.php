@@ -26,9 +26,12 @@ class PledgeController extends Controller
      *
      * @param  Campaign $campaign
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign)
     {
+        $this->authorize('create', $campaign);
+
         $pledge = new Pledge();
 
         return view('campaigns.pledges.create', compact('campaign', 'pledge'));
@@ -40,9 +43,12 @@ class PledgeController extends Controller
      * @param  Campaign $campaign
      * @param  StorePledgeRequest $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Campaign $campaign, StorePledgeRequest $request)
     {
+        $this->authorize('create', $campaign);
+
         $campaign->pledges()->create($request->validated());
 
         return redirect(route('campaigns.pledges.index', ['campaign' => $campaign]));
@@ -54,9 +60,12 @@ class PledgeController extends Controller
      * @param  Campaign $campaign
      * @param  Pledge $pledge
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Campaign $campaign, Pledge $pledge)
     {
+        $this->authorize('update', $campaign);
+
         return view('campaigns.pledges.edit', compact('campaign', 'pledge'));
     }
 
@@ -67,9 +76,12 @@ class PledgeController extends Controller
      * @param  Pledge $pledge
      * @param  StorePledgeRequest $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Campaign $campaign, Pledge $pledge, StorePledgeRequest $request)
     {
+        $this->authorize('update', $campaign);
+
         $pledge->update($request->validated());
 
         return redirect(route('campaigns.pledges.index', ['campaign' => $campaign]));
@@ -85,6 +97,8 @@ class PledgeController extends Controller
      */
     public function destroy(Campaign $campaign, Pledge $pledge)
     {
+        $this->authorize('delete', $campaign);
+
         $pledge->delete();
 
         return redirect(route('campaigns.pledges.index', ['campaign' => $campaign]));

@@ -13,9 +13,12 @@ class ProfileController extends Controller
      * Show the form for creating a new user profile.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
+        $this->authorize('create', Profile::class);
+
         $blankProfile = new Profile();
 
         return view('profiles.create', compact('blankProfile'));
@@ -26,9 +29,12 @@ class ProfileController extends Controller
      *
      * @param  StoreProfileRequest $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreProfileRequest $request)
     {
+        $this->authorize('create', Profile::class);
+
         /* Decided not to use avatars name equal to users ids because browser caches images
          * and if user changes his avatar, image name remains the same and browser displays
          * old cached one, only page reload with cache clearing as Ctrl+F5 solves the issue
@@ -68,9 +74,12 @@ class ProfileController extends Controller
      *
      * @param  Profile $profile
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Profile $profile)
     {
+        $this->authorize('update', $profile);
+
         return view('profiles.edit', compact('profile'));
     }
 
@@ -80,9 +89,12 @@ class ProfileController extends Controller
      * @param  Profile $profile
      * @param  StoreProfileRequest $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Profile $profile, StoreProfileRequest $request)
     {
+        $this->authorize('update', $profile);
+
         /* Decided not to use avatars name equal to users ids because browser caches images
          * and if user changes his avatar, image name remains the same and browser displays
          * old cached one, only page reload with cache clearing as Ctrl+F5 solves the issue
