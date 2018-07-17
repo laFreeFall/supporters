@@ -22,3 +22,6 @@ Route::resource('campaigns.goals', 'GoalController');
 
 // Campaign Pledges
 Route::resource('campaigns.pledges', 'PledgeController');
+
+// Campaign Posts
+Route::resource('campaigns.posts', 'PostController');

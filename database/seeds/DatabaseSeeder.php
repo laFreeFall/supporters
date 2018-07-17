@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CampaignsTableSeeder::class);
         $this->call(CampaignsGoalsTableSeeder::class);
         $this->call(CampaignsPledgesTableSeeder::class);
+        $this->call(CampaignsPostsPrivaciesTableSeeder::class);
     }
 }

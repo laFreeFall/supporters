@@ -2,9 +2,34 @@
 
 @section('content')
     <div class="container is-fluid is-marginless">
-        <div class="columns">
+        <div class="columns is-multiline">
             <div class="column is-12">
                 @include('campaigns._hero', ['campaign' => $campaign])
+            </div>
+            <div class="column is-12">
+                <div class="tabs is-medium is-centered">
+                    <ul>
+                        <li class="is-active">
+                            <a href="{{ route('campaigns.show', ['campaign' => $campaign]) }}">
+                                <span class="icon is-small"><i class="fas fa-address-book" aria-hidden="true"></i></span>
+                                <span>Bio</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('campaigns.posts.index', ['campaign' => $campaign]) }}">
+                                <span class="icon is-small"><i class="fas fa-comments" aria-hidden="true"></i></span>
+                                <span>Feed</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="icon is-small"><i class="fas fa-users" aria-hidden="true"></i></span>
+                                <span>Community</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </div>
         <div class="columns is-centered">
@@ -15,7 +40,6 @@
                     </span>
                     <span>Support</span>
                 </a>
-
                 <p class="buttons space-between">
                     <a href="#" class="button is-rounded is-outlined is-link">
                         <span class="icon">
@@ -32,6 +56,7 @@
                 </p>
                 @include('campaigns.goals._index', ['goals' => $campaign->goals, 'colors' => $campaign->colors, 'slug' => $campaign->slug])
             </div>
+
             <div class="column is-5">
                 <div class="level">
                     <div class="level-item has-text-centered">
@@ -57,6 +82,7 @@
                     {{ $campaign->description }}
                 </div>
             </div>
+
             <div class="column is-2">
                 <a href="#" class="button is-rounded is-medium is-fullwidth {{ $campaign->colors->color_class }} m-b-lg">
                     <span class="icon">
