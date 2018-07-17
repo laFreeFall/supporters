@@ -11,7 +11,7 @@ class GoalController extends Controller
     /**
      * Display a listing of the campaign`s goals.
      *
-     * @param  Campaign $campaign
+     * @param  Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
     public function index(Campaign $campaign)
@@ -24,7 +24,7 @@ class GoalController extends Controller
     /**
      * Show the form for creating a new campaign`s goal.
      *
-     * @param  Campaign $campaign
+     * @param  Campaign  $campaign
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -40,8 +40,8 @@ class GoalController extends Controller
     /**
      * Store a newly created campaign`s goal in storage.
      *
-     * @param  Campaign $campaign
-     * @param  StoreGoalRequest $request
+     * @param  Campaign  $campaign
+     * @param  StoreGoalRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -57,8 +57,8 @@ class GoalController extends Controller
     /**
      * Show the form for editing the specified campaign`s goal.
      *
-     * @param  Campaign $campaign
-     * @param  Goal $goal
+     * @param  Campaign  $campaign
+     * @param  Goal  $goal
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -72,9 +72,9 @@ class GoalController extends Controller
     /**
      * Update the specified campaign`s goal in storage.
      *
-     * @param  Campaign $campaign
-     * @param  Goal $goal
-     * @param  StoreGoalRequest $request
+     * @param  Campaign  $campaign
+     * @param  Goal  $goal
+     * @param  StoreGoalRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -90,8 +90,8 @@ class GoalController extends Controller
     /**
      * Remove the specified campaign`s goal from storage.
      *
-     * @param  Campaign $campaign
-     * @param  Goal $goal
+     * @param  Campaign  $campaign
+     * @param  Goal  $goal
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */

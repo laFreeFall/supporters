@@ -11,7 +11,7 @@ class PledgeController extends Controller
     /**
      * Display a listing of the campaign`s pledges.
      *
-     * @param  Campaign $campaign
+     * @param  Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
     public function index(Campaign $campaign)
@@ -24,7 +24,7 @@ class PledgeController extends Controller
     /**
      * Show the form for creating a new campaign`s pledge.
      *
-     * @param  Campaign $campaign
+     * @param  Campaign  $campaign
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -40,7 +40,7 @@ class PledgeController extends Controller
     /**
      * Store a newly created campaign`s pledge in storage.
      *
-     * @param  Campaign $campaign
+     * @param  Campaign  $campaign
      * @param  StorePledgeRequest $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -57,8 +57,8 @@ class PledgeController extends Controller
     /**
      * Show the form for editing the specified campaign`s pledge.
      *
-     * @param  Campaign $campaign
-     * @param  Pledge $pledge
+     * @param  Campaign  $campaign
+     * @param  Pledge  $pledge
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -72,9 +72,9 @@ class PledgeController extends Controller
     /**
      * Update the specified campaign`s pledge in storage.
      *
-     * @param  Campaign $campaign
-     * @param  Pledge $pledge
-     * @param  StorePledgeRequest $request
+     * @param  Campaign  $campaign
+     * @param  Pledge  $pledge
+     * @param  StorePledgeRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -90,8 +90,8 @@ class PledgeController extends Controller
     /**
      * Remove the specified campaign`s pledge from storage.
      *
-     * @param  Campaign $campaign
-     * @param  Pledge $pledge
+     * @param  Campaign  $campaign
+     * @param  Pledge  $pledge
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */

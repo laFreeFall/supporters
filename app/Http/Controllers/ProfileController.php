@@ -27,7 +27,7 @@ class ProfileController extends Controller
     /**
      * Store a newly created user`s profile in storage.
      *
-     * @param  StoreProfileRequest $request
+     * @param  StoreProfileRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -59,7 +59,7 @@ class ProfileController extends Controller
     /**
      * Display the specified user`s profile.
      *
-     * @param  Profile $profile
+     * @param  Profile  $profile
      * @return \Illuminate\Http\Response
      */
     public function show(Profile $profile)
@@ -72,7 +72,7 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the authenticated user`s profile.
      *
-     * @param  Profile $profile
+     * @param  Profile  $profile
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -86,8 +86,8 @@ class ProfileController extends Controller
     /**
      * Update the authenticated user`s profile in storage.
      *
-     * @param  Profile $profile
-     * @param  StoreProfileRequest $request
+     * @param  Profile  $profile
+     * @param  StoreProfileRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

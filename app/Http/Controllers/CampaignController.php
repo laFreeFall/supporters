@@ -39,7 +39,7 @@ class CampaignController extends Controller
     /**
      * Store a newly created campaign in storage.
      *
-     * @param  StoreCampaignRequest $request
+     * @param  StoreCampaignRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCampaignRequest $request)
@@ -77,7 +77,7 @@ class CampaignController extends Controller
     /**
      * Show the form for editing the specified campaign.
      *
-     * @param  \App\Campaign $campaign
+     * @param  \App\Campaign  $campaign
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -94,8 +94,8 @@ class CampaignController extends Controller
     /**
      * Update the specified campaign in storage.
      *
-     * @param  \App\Campaign $campaign
-     * @param  StoreCampaignRequest $request
+     * @param  \App\Campaign  $campaign
+     * @param  StoreCampaignRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -123,7 +123,7 @@ class CampaignController extends Controller
     /**
      * Softly remove the specified campaign from storage.
      *
-     * @param  \App\Campaign $campaign
+     * @param  \App\Campaign  $campaign
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
@@ -139,7 +139,7 @@ class CampaignController extends Controller
     /**
      * Hide the specified campaign from the active ones.
      *
-     * @param  \App\Campaign $campaign
+     * @param  \App\Campaign  $campaign
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -156,7 +156,7 @@ class CampaignController extends Controller
     /**
      * Make the specified campaign active.
      *
-     * @param  \App\Campaign $campaign
+     * @param  \App\Campaign  $campaign
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -173,7 +173,7 @@ class CampaignController extends Controller
     /**
      * Show the preview of the specified campaign after its creating.
      *
-     * @param  \App\Campaign $campaign
+     * @param  \App\Campaign  $campaign
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
