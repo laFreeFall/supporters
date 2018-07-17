@@ -13,10 +13,10 @@
                     <h2 class="is-size-3 m-b-md">
                         Campaign goals
                         <span class="tag is-medium">
-                        {{ $campaign->goals->count() }}
-                    </span>
+                            {{ $campaign->goals->count() }}
+                        </span>
                     </h2>
-                    @can('create', $campaign)
+                    @can('update', $campaign)
                         <a href="{{ route('campaigns.goals.create', ['campaign' => $campaign]) }}" class="button is-info m-b-lg">
                             Create new goal
                         </a>
@@ -47,7 +47,7 @@
                                             Edit
                                         </a>
                                     @endcan
-                                    @can('delete', $campaign)
+                                    @can('update', $campaign)
                                         <a href="{{ route('campaigns.goals.destroy', ['campaign' => $campaign, 'goal' => $goal]) }}" onclick="event.preventDefault(); document.getElementById('destroy-goal-{{ $goal->id }}-form').submit();" class="card-footer-item">
                                             <span class="icon">
                                                 <i class="fas fa-trash"></i>

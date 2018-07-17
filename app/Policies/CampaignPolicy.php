@@ -15,7 +15,7 @@ class CampaignPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Campaign  $campaign
-     * @return boolean
+     * @return bool
      */
     public function preview(User $user, Campaign $campaign)
     {
@@ -27,7 +27,7 @@ class CampaignPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Campaign  $campaign
-     * @return boolean
+     * @return bool
      */
     public function update(User $user, Campaign $campaign)
     {
@@ -39,7 +39,7 @@ class CampaignPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Campaign  $campaign
-     * @return boolean
+     * @return bool
      */
     public function delete(User $user, Campaign $campaign)
     {

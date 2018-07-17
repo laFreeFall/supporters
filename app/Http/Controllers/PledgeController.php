@@ -30,7 +30,7 @@ class PledgeController extends Controller
      */
     public function create(Campaign $campaign)
     {
-        $this->authorize('create', $campaign);
+        $this->authorize('update', $campaign);
 
         $pledge = new Pledge();
 
@@ -47,7 +47,7 @@ class PledgeController extends Controller
      */
     public function store(Campaign $campaign, StorePledgeRequest $request)
     {
-        $this->authorize('create', $campaign);
+        $this->authorize('update', $campaign);
 
         $campaign->pledges()->create($request->validated());
 
@@ -97,7 +97,7 @@ class PledgeController extends Controller
      */
     public function destroy(Campaign $campaign, Pledge $pledge)
     {
-        $this->authorize('delete', $campaign);
+        $this->authorize('update', $campaign);
 
         $pledge->delete();
 

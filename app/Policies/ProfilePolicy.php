@@ -14,7 +14,7 @@ class ProfilePolicy
      * Determine whether the user can create profiles.
      *
      * @param  \App\User  $user
-     * @return boolean
+     * @return bool
      */
     public function create(User $user)
     {
@@ -26,7 +26,7 @@ class ProfilePolicy
      *
      * @param  \App\User  $user
      * @param  \App\Profile  $profile
-     * @return boolean
+     * @return bool
      */
     public function update(User $user, Profile $profile)
     {
@@ -38,7 +38,7 @@ class ProfilePolicy
      *
      * @param  \App\User  $user
      * @param  \App\Profile  $profile
-     * @return boolean
+     * @return bool
      */
     public function delete(User $user, Profile $profile)
     {

@@ -16,7 +16,7 @@
                         {{ $campaign->pledges->count() }}
                     </span>
                     </h2>
-                    @can('create', $campaign)
+                    @can('update', $campaign)
                         <a href="{{ route('campaigns.pledges.create', ['campaign' => $campaign]) }}" class="button is-info m-b-lg">
                             Create new pledge
                         </a>
@@ -48,7 +48,7 @@
                                     @else
                                         <a href="#" class="card-footer-item">Support for ${{ $pledge->amount }}</a>
                                     @endcan
-                                    @can('delete', $campaign)
+                                    @can('update', $campaign)
                                         <a href="{{ route('campaigns.pledges.destroy', ['campaign' => $campaign, 'pledge' => $pledge]) }}" onclick="event.preventDefault(); document.getElementById('destroy-pledge-{{ $pledge->id }}-form').submit();" class="card-footer-item">
                                             <span class="icon">
                                                 <i class="fas fa-trash"></i>

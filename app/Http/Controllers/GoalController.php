@@ -30,7 +30,7 @@ class GoalController extends Controller
      */
     public function create(Campaign $campaign)
     {
-        $this->authorize('create', $campaign);
+        $this->authorize('update', $campaign);
 
         $goal = new Goal();
 
@@ -47,7 +47,7 @@ class GoalController extends Controller
      */
     public function store(Campaign $campaign, StoreGoalRequest $request)
     {
-        $this->authorize('create', $campaign);
+        $this->authorize('update', $campaign);
 
         $campaign->goals()->create($request->validated());
 
@@ -97,7 +97,7 @@ class GoalController extends Controller
      */
     public function destroy(Campaign $campaign, Goal $goal)
     {
-        $this->authorize('delete', $campaign);
+        $this->authorize('update', $campaign);
 
         $goal->delete();
 
