@@ -79,4 +79,12 @@ class Campaign extends Model
     {
         return $this->hasMany(Pledge::class)->orderBy('amount');
     }
+
+    /**
+     * Get the posts associated with the campaign.
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

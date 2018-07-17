@@ -46,8 +46,6 @@
                                             </span>
                                             Edit
                                         </a>
-                                    @endcan
-                                    @can('update', $campaign)
                                         <a href="{{ route('campaigns.goals.destroy', ['campaign' => $campaign, 'goal' => $goal]) }}" onclick="event.preventDefault(); document.getElementById('destroy-goal-{{ $goal->id }}-form').submit();" class="card-footer-item">
                                             <span class="icon">
                                                 <i class="fas fa-trash"></i>

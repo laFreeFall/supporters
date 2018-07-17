@@ -6,6 +6,8 @@ use App\Campaign;
 use App\Policies\CampaignPolicy;
 use App\Profile;
 use App\Policies\ProfilePolicy;
+use App\Post;
+use App\Policies\PostPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -18,7 +20,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Campaign::class => CampaignPolicy::class,
-        Profile::class => ProfilePolicy::class
+        Profile::class => ProfilePolicy::class,
+        Post::class => PostPolicy::class
     ];
 
     /**

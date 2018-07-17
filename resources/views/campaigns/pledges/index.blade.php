@@ -45,10 +45,6 @@
                                             </span>
                                             Edit
                                         </a>
-                                    @else
-                                        <a href="#" class="card-footer-item">Support for ${{ $pledge->amount }}</a>
-                                    @endcan
-                                    @can('update', $campaign)
                                         <a href="{{ route('campaigns.pledges.destroy', ['campaign' => $campaign, 'pledge' => $pledge]) }}" onclick="event.preventDefault(); document.getElementById('destroy-pledge-{{ $pledge->id }}-form').submit();" class="card-footer-item">
                                             <span class="icon">
                                                 <i class="fas fa-trash"></i>
@@ -59,6 +55,8 @@
                                             {{ csrf_field() }}
                                             {!! method_field('delete') !!}
                                         </form>
+                                    @else
+                                        <a href="#" class="card-footer-item">Support for ${{ $pledge->amount }}</a>
                                     @endcan
                                 </div>
                             </div>
