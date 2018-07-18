@@ -1849,6 +1849,130 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/LikeCommentButton.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        like: {
+            type: Boolean,
+            required: true
+        },
+        amount: {
+            type: Number,
+            required: true
+        },
+        requestUrl: {
+            type: String,
+            required: true
+        }
+    },
+
+    data: function data() {
+        return {
+            isLiked: false,
+            likesAmount: 0
+        };
+    },
+
+
+    methods: {
+        toggleLike: function toggleLike() {
+            var _this = this;
+
+            var requestType = this.isLiked ? 'delete' : 'post';
+            axios[requestType](this.requestUrl).then(function (response) {
+                flash(response.data.flash);
+                _this.isLiked = response.data.value;
+                _this.likesAmount = response.data.amount;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+
+    created: function created() {
+        this.isLiked = this.like;
+        this.likesAmount = this.amount;
+    }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/LikePostButton.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        like: {
+            type: Boolean,
+            required: true
+        },
+        amount: {
+            type: Number,
+            required: true
+        },
+        requestUrl: {
+            type: String,
+            required: true
+        }
+    },
+
+    data: function data() {
+        return {
+            isLiked: false,
+            likesAmount: 0
+        };
+    },
+
+
+    methods: {
+        toggleLike: function toggleLike() {
+            var _this = this;
+
+            var requestType = this.isLiked ? 'delete' : 'post';
+            axios[requestType](this.requestUrl).then(function (response) {
+                flash(response.data.flash);
+                _this.isLiked = response.data.value;
+                _this.likesAmount = response.data.amount;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+
+    created: function created() {
+        this.isLiked = this.like;
+        this.likesAmount = this.amount;
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/ProfileFormAvatar.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -19896,6 +20020,72 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7e91d5a0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/LikePostButton.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("a", { on: { click: _vm.toggleLike } }, [
+    _c("span", { staticClass: "icon", attrs: { title: "Likes amount" } }, [
+      _c("i", { class: _vm.isLiked ? "fas fa-heart" : "far fa-heart" })
+    ]),
+    _vm._v(" "),
+    _c("span", [
+      _vm._v(
+        "\n        " +
+          _vm._s(_vm._f("pluralize")("Like", _vm.likesAmount)) +
+          ": "
+      ),
+      _c("strong", [_vm._v(_vm._s(_vm.likesAmount) + " ")])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7e91d5a0", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a1944e9a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/LikeCommentButton.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("a", { staticClass: "level-item", on: { click: _vm.toggleLike } }, [
+    _c("span", { staticClass: "icon is-small" }, [
+      _c("i", { class: _vm.isLiked ? "fas fa-heart" : "far fa-heart" })
+    ]),
+    _vm._v(
+      "\n     " +
+        _vm._s(_vm.likesAmount) +
+        " " +
+        _vm._s(_vm._f("pluralize")("like", _vm.likesAmount)) +
+        "\n"
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a1944e9a", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-snotify/vue-snotify.esm.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -32396,6 +32586,12 @@ Vue.component('profile-form-avatar', __webpack_require__("./resources/assets/js/
 Vue.component('campaign-goals', __webpack_require__("./resources/assets/js/components/CampaignGoals.vue"));
 Vue.component('follow-button', __webpack_require__("./resources/assets/js/components/FollowButton.vue"));
 Vue.component('flash-notification', __webpack_require__("./resources/assets/js/components/FlashNotification.vue"));
+Vue.component('like-comment-button', __webpack_require__("./resources/assets/js/components/LikeCommentButton.vue"));
+Vue.component('like-post-button', __webpack_require__("./resources/assets/js/components/LikePostButton.vue"));
+
+Vue.filter('pluralize', function (word, amount) {
+    return amount > 1 || amount === 0 ? word + 's' : word;
+});
 
 var app = new Vue({
     el: '#app'
@@ -32568,6 +32764,102 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-289d4bba", Component.options)
   } else {
     hotAPI.reload("data-v-289d4bba", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/LikeCommentButton.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/LikeCommentButton.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a1944e9a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/LikeCommentButton.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\LikeCommentButton.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a1944e9a", Component.options)
+  } else {
+    hotAPI.reload("data-v-a1944e9a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/LikePostButton.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/LikePostButton.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7e91d5a0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/LikePostButton.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\LikePostButton.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7e91d5a0", Component.options)
+  } else {
+    hotAPI.reload("data-v-7e91d5a0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

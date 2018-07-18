@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -21,8 +23,9 @@ class PageController extends Controller
      */
     public function test()
     {
-        $campaign = \App\Campaign::first();
-        return ($campaign->hasFollower(\App\User::find(2))) ? 'true' : 'false';
+        $post = Post::first();
+        $user = User::first();
+        $post->likes()->create(['user_id' => $user->id]);
         return 'test';
     }
 }

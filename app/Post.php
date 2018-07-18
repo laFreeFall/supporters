@@ -51,10 +51,19 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function commentsCount()
+    /**
+     * Get all of the post's likes.
+     */
+    public function likes()
     {
-        return $this->comments()
-            ->selectRaw('post_id, count(*) as aggregate')
-            ->groupBy('post_id');
+        return $this->morphMany('App\Like', 'likeable');
+    }
+
+    /**
+     * Get the result is post liked by authenticated user or not.
+     */
+    public function isLiked()
+    {
+        return $this->likes()->where('user_id', auth()->id())->exists();
     }
 }

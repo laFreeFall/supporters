@@ -15,7 +15,7 @@ class PostPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Post  $post
-     * @return mixed
+     * @return bool
      */
     public function view(User $user, Post $post)
     {
@@ -24,5 +24,29 @@ class PostPolicy
         }
         return true;
         // check for existing of a record in a followings table for value === 'followers'
+    }
+
+    /**
+     * Determine whether the user can like the post.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Post  $post
+     * @return bool
+     */
+    public function like(User $user, Post $post)
+    {
+        return !$post->likes()->where('user_id', $user->id)->exists();
+    }
+
+    /**
+     * Determine whether the user can unlike the post.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Post  $post
+     * @return bool
+     */
+    public function unlike(User $user, Post $post)
+    {
+        return $post->likes()->where('user_id', $user->id)->exists();
     }
 }

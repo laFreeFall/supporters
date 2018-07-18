@@ -19,7 +19,7 @@ class FollowingController extends Controller
     {
         $campaign->followers()->attach($user);
 
-        return response('User has been followed the campaign', 200);
+        return response('User successfully followed the campaign', 200);
     }
 
     /**
@@ -34,6 +34,6 @@ class FollowingController extends Controller
     {
         $campaign->followers()->detach($user);
 
-        return response('User has been unfollowed the campaign', 200);
+        return response('User successfully unfollowed the campaign', 200);
     }
 }

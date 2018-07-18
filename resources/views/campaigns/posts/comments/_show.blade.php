@@ -14,10 +14,7 @@
         </div>
         <nav class="level is-mobile">
             <div class="level-left">
-                <a class="level-item">
-                    <span class="icon is-small"><i class="fas fa-heart"></i></span>
-                    &nbsp;0 Likes
-                </a>
+                <like-comment-button :like="{{ json_encode($comment->isLiked()) }}" :amount="{{ json_encode($comment->likes->count()) }}" :request-url="{{ json_encode(route('comments.likes.store', ['comment' => $comment]))  }}"></like-comment-button>
                 <a class="level-item">
                     <span class="icon is-small"><i class="fas fa-reply"></i></span>
                     &nbsp;Reply

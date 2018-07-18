@@ -11,11 +11,15 @@
             <div class="column is-6">
                 @include('campaigns.posts._show', ['campaign' => $campaign, 'post' => $post])
 
-                @forelse($post->comments as $comment)
-                    @include('campaigns.posts.comments._show', ['campaign' => $campaign, 'post' => $post, 'comment' => $comment])
-                @empty
-                    <p>there are no comments at the moment</p>
-                @endforelse
+                <div id="comments">
+                    @forelse($post->comments as $comment)
+                        @include('campaigns.posts.comments._show', ['campaign' => $campaign, 'post' => $post, 'comment' => $comment])
+                    @empty
+                        <div class="notification">
+                            There are no comments at the moment. Write first one below!
+                        </div>
+                    @endforelse
+                </div>
 
                 @include('campaigns.posts.comments._form', [
                     'action' => route('campaigns.posts.comments.store', ['campaign' => $campaign, 'post' => $post]),

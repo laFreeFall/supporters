@@ -35,4 +35,20 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    /**
+     * Get all of the post's likes.
+     */
+    public function likes()
+    {
+        return $this->morphMany('App\Like', 'likeable');
+    }
+
+    /**
+     * Get the result is comment liked by authenticated user or not.
+     */
+    public function isLiked()
+    {
+        return $this->likes()->where('user_id', auth()->id())->exists();
+    }
 }
