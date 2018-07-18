@@ -37,7 +37,7 @@ class Campaign extends Model
      */
     public function getAvatarPathAttribute()
     {
-        return asset($this->avatar ? '/storage/' . $this->avatar : '/storage/' . 'images/avatars/no-avatar.png');
+        return asset($this->avatar ? "/storage/{$this->avatar}" : '/storage/images/avatars/no-avatar.png');
     }
 
     /**

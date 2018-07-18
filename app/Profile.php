@@ -30,7 +30,7 @@ class Profile extends Model
      */
     public function getAvatarPathAttribute()
     {
-        return asset($this->avatar ? '/storage/' . $this->avatar : '/storage/' . 'images/avatars/no-avatar.png');
+        return asset($this->avatar ? "/storage/{$this->avatar}" : '/storage/images/avatars/no-avatar.png');
     }
 
     /**
@@ -40,7 +40,7 @@ class Profile extends Model
      */
     public function getFullNameAttribute()
     {
-        return $this->last_name . ' ' . $this->first_name;
+        return "{$this->last_name} {$this->first_name}";
     }
 
     /**
