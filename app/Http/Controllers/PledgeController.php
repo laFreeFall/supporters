@@ -9,6 +9,14 @@ use App\Pledge;
 class PledgeController extends Controller
 {
     /**
+     * Instantiate a new PledgeController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index']]);
+    }
+
+    /**
      * Display a listing of the campaign`s pledges.
      *
      * @param  Campaign  $campaign

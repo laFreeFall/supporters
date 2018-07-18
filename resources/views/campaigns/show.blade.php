@@ -29,7 +29,7 @@
                         </li>
                     </ul>
                 </div>
-                @if(auth()->user()->can('update', $campaign) && (!$campaign->goals->count() || !$campaign->pledges->count()))
+                @if(auth()->check() && auth()->user()->can('update', $campaign) && (!$campaign->goals->count() || !$campaign->pledges->count()))
                 <div class="column is-10 is-offset-1">
                     @if(!$campaign->goals->count())
                         <div class="notification">
@@ -56,7 +56,9 @@
                     <span>Support</span>
                 </a>
                 <p class="buttons space-between">
-                    <follow-button :is-followed="{{ json_encode($campaign->hasFollower(auth()->user())) }}" :request-url="{{ json_encode(route('followings.store', ['campaign' => $campaign, 'user' => auth()->user()])) }}"></follow-button>
+                    @auth
+                        <follow-button :is-followed="{{ json_encode($campaign->hasFollower(auth()->user())) }}" :request-url="{{ json_encode(route('followings.store', ['campaign' => $campaign, 'user' => auth()->user()])) }}"></follow-button>
+                    @endauth
                     <a href="#" class="button is-rounded is-outlined is-info">
                         <span class="icon">
                             <i class="fas fa-share-alt"></i>

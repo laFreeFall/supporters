@@ -9,6 +9,14 @@ use App\Http\Requests\StoreGoalRequest;
 class GoalController extends Controller
 {
     /**
+     * Instantiate a new GoalController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index']]);
+    }
+
+    /**
      * Display a listing of the campaign`s goals.
      *
      * @param  Campaign  $campaign

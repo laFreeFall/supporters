@@ -10,6 +10,14 @@ use App\Http\Requests\StoreCampaignRequest;
 class CampaignController extends Controller
 {
     /**
+     * Instantiate a new CampaignController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
+    /**
      * Display a listing of the campaigns.
      *
      * @return \Illuminate\Http\Response

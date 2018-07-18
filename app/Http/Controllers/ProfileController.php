@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     /**
+     * Instantiate a new ProfileController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
+    /**
      * Show the form for creating a new user profile.
      *
      * @return \Illuminate\Http\Response
