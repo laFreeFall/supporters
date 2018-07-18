@@ -51,7 +51,9 @@ class GoalController extends Controller
 
         $campaign->goals()->create($request->validated());
 
-        return redirect(route('campaigns.goals.index', ['campaign' => $campaign]));
+        return redirect(route('campaigns.goals.index', ['campaign' => $campaign]))->with(
+            'flash_body', 'Pledge has been successfully created'
+        );
     }
 
     /**
@@ -84,7 +86,9 @@ class GoalController extends Controller
 
         $goal->update($request->validated());
 
-        return redirect(route('campaigns.goals.index', ['campaign' => $campaign]));
+        return redirect(route('campaigns.goals.index', ['campaign' => $campaign]))->with(
+            'flash_body', 'Pledge has been successfully updated'
+        );
     }
 
     /**
@@ -101,6 +105,8 @@ class GoalController extends Controller
 
         $goal->delete();
 
-        return redirect(route('campaigns.goals.index', ['campaign' => $campaign]));
+        return redirect(route('campaigns.goals.index', ['campaign' => $campaign]))->with(
+            'flash_body', 'Pledge has been successfully deleted'
+        );
     }
 }

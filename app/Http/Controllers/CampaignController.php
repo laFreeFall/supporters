@@ -58,7 +58,9 @@ class CampaignController extends Controller
             'active' => false
         ]);
 
-        return redirect(route('campaigns.preview', $campaign));
+        return redirect(route('campaigns.preview', $campaign))->with(
+            'flash_body', 'Preview of the campaign has been successfully created'
+        );
     }
 
     /**
@@ -117,7 +119,9 @@ class CampaignController extends Controller
             'active' => true
         ]);
 
-        return redirect(route('campaigns.show', ['campaign' => $campaign]));
+        return redirect(route('campaigns.show', ['campaign' => $campaign]))->with(
+            'flash_body', 'Campaign has been successfully updated'
+        );
     }
 
     /**
@@ -133,7 +137,9 @@ class CampaignController extends Controller
 
         $campaign->delete();
 
-        return redirect('campaigns.index');
+        return redirect('campaigns.index')->with(
+            'flash_body', 'Campaign has been successfully deleted'
+        );
     }
 
     /**
@@ -150,13 +156,15 @@ class CampaignController extends Controller
         $campaign->active = false;
         $campaign->save();
 
-        return redirect(route('campaigns.show', $campaign));
+        return redirect(route('campaigns.show', $campaign))->with(
+            'flash_body', 'Campaign has been successfully archived'
+        );
     }
 
     /**
      * Make the specified campaign active.
      *
-     * @param  \App\Campaign  $campaign
+     * @param  \App\Campaign $campaign
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -167,13 +175,15 @@ class CampaignController extends Controller
         $campaign->active = true;
         $campaign->save();
 
-        return redirect(route('campaigns.show', $campaign));
+        return redirect(route('campaigns.show', $campaign))->with(
+            'flash_body', 'Campaign has been successfully restored'
+        );
     }
 
     /**
      * Show the preview of the specified campaign after its creating.
      *
-     * @param  \App\Campaign  $campaign
+     * @param  \App\Campaign $campaign
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

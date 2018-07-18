@@ -29,8 +29,10 @@
         methods: {
             toggleFollow () {
                 const requestType = this.isCampaignFollowed ? 'delete' : 'post'
+                const actionType = this.isCampaignFollowed ? 'unfollowed from the' : 'followed to the'
                 axios[requestType](this.requestUrl)
                     .then(response => {
+                        flash(`You have been ${actionType} campaign`)
                         this.isCampaignFollowed = !this.isCampaignFollowed
                     })
                     .catch(error => {
