@@ -11,6 +11,13 @@
 // Spacings
 @import "spacing";
 
+// Vue Snotify material styles
+
+@import "~vue-snotify/styles/material";
+.snotifyToast__body {
+  font-size: 1.1em;
+}
+
 .is-horizontal-center {
   justify-content: center;
 }

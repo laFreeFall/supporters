@@ -15,10 +15,25 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import Snotify, { SnotifyPosition } from 'vue-snotify'
+Vue.use(Snotify, {
+    toast: {
+        position: SnotifyPosition.rightTop,
+        bodyMaxLength: 256
+    }
+})
+
+window.events = new Vue()
+window.flash = function(type, body, title) {
+    window.events.$emit('flash', type, body, title)
+}
+
 Vue.component('profile-form-avatar', require('./components/ProfileFormAvatar.vue'));
 Vue.component('campaign-goals', require('./components/CampaignGoals.vue'));
 Vue.component('follow-button', require('./components/FollowButton.vue'));
+Vue.component('flash-notification', require('./components/FlashNotification.vue'));
 
 const app = new Vue({
     el: '#app'
 });
+

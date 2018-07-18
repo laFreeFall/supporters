@@ -53,7 +53,9 @@ class ProfileController extends Controller
             'avatar' => $avatarPath
         ]);
 
-        return redirect(route('profiles.show', ['profile' => $profile]));
+        return redirect(route('profiles.show', ['profile' => $profile]))->with(
+            'flash_body', 'Profile has been successfully created'
+        );
     }
 
     /**
@@ -113,6 +115,8 @@ class ProfileController extends Controller
             'avatar' => $avatarPath
         ]);
 
-        return redirect(route('profiles.show', ['profile' => $profile]));
+        return redirect(route('profiles.show', ['profile' => $profile]))->with(
+            'flash_body', 'Profile has been successfully updated'
+        );
     }
 }
