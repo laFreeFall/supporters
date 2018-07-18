@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Campaign;
+use App\Comment;
 use App\Post;
 use App\Http\Requests\StorePostRequest;
 use App\PostPrivacy;
@@ -54,6 +55,21 @@ class PostController extends Controller
         $campaign->posts()->create($request->validated());
 
         return redirect(route('campaigns.posts.index', ['campaign' => $campaign]));
+    }
+
+    /**
+     * Display the specified post.
+     *
+     * @param  Campaign  $campaign
+     * @param  Post $post
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Campaign $campaign, Post $post)
+    {
+        $post->load('comments.author.profile');
+        $emptyComment = new Comment();
+
+        return view('campaigns.posts.show', compact('campaign', 'post', 'emptyComment'));
     }
 
     /**
