@@ -7,43 +7,23 @@
                 @include('campaigns._hero', ['campaign' => $campaign])
             </div>
             <div class="column is-12">
-                <div class="tabs is-medium is-centered">
-                    <ul>
-                        <li class="is-active">
-                            <a href="{{ route('campaigns.show', ['campaign' => $campaign]) }}">
-                                <span class="icon is-small"><i class="fas fa-address-book" aria-hidden="true"></i></span>
-                                <span>Bio</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('campaigns.posts.index', ['campaign' => $campaign]) }}">
-                                <span class="icon is-small"><i class="fas fa-comments" aria-hidden="true"></i></span>
-                                <span>Feed</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <span class="icon is-small"><i class="fas fa-users" aria-hidden="true"></i></span>
-                                <span>Community</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                @include('campaigns._tabs', ['active' => 'bio'])
+
                 @if(auth()->check() && auth()->user()->can('update', $campaign) && (!$campaign->goals->count() || !$campaign->pledges->count()))
-                <div class="column is-10 is-offset-1">
-                    @if(!$campaign->goals->count())
-                        <div class="notification">
-                            <p>Currently you haven`t created any goal. Create few if you want more attention to your campaign</p>
-                            <a href="{{ route('campaigns.goals.create', ['campaign' => $campaign]) }}" class="button is-white">Create first goal</a>
-                        </div>
-                    @endif
-                    @if(!$campaign->pledges->count())
-                        <div class="notification">
-                            <p>Currently you haven`t created any pledge. Create few if you want more attention to your campaign</p>
-                            <a href="{{ route('campaigns.pledges.create', ['campaign' => $campaign]) }}" class="button is-white">Create first pledge</a>
-                        </div>
-                    @endif
-                </div>
+                    <div class="column is-10 is-offset-1">
+                        @if(!$campaign->goals->count())
+                            <div class="notification">
+                                <p>Currently you haven`t created any goal. Create few if you want more attention to your campaign</p>
+                                <a href="{{ route('campaigns.goals.create', ['campaign' => $campaign]) }}" class="button is-white">Create first goal</a>
+                            </div>
+                        @endif
+                        @if(!$campaign->pledges->count())
+                            <div class="notification">
+                                <p>Currently you haven`t created any pledge. Create few if you want more attention to your campaign</p>
+                                <a href="{{ route('campaigns.pledges.create', ['campaign' => $campaign]) }}" class="button is-white">Create first pledge</a>
+                            </div>
+                        @endif
+                    </div>
                 @endif
             </div>
         </div>

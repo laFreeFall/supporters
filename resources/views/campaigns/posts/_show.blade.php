@@ -31,20 +31,17 @@
             </span>
         </div>
         <div class="card-footer-item">
-            <span class="icon" title="Comments amount">
-                <i class="fas fa-comments"></i>
-            </span>
-            <span>
-                Comments: <strong>{{ $post->comments_count ?? $post->comments->count() }}</strong>
-            </span>
+            <a href="{{ route('campaigns.posts.show', ['campaign' => $campaign, 'post' => $post]) . '#comments' }}">
+                <span class="icon" title="Comments amount">
+                    <i class="fas fa-comments"></i>
+                </span>
+                    <span>
+                    Comments: <strong>{{ $post->comments_count ?? $post->comments->count() }}</strong>
+                </span>
+            </a>
         </div>
         <div class="card-footer-item">
-            <span class="icon" title="Likes amount">
-                <i class="fas fa-heart"></i>
-            </span>
-            <span>
-                Likes: <strong>0</strong>
-            </span>
+            <like-post-button :like="{{ json_encode($post->isLiked()) }}" :amount="{{ json_encode($post->likes->count()) }}" :request-url="{{ json_encode(route('posts.likes.store', ['post' => $post]))  }}"></like-post-button>
         </div>
     </div>
     <div class="card-footer">

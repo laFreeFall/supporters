@@ -2,9 +2,12 @@
 
 @section('content')
     <div class="container is-fluid is-marginless">
-        <div class="columns">
+        <div class="columns is-multiline">
             <div class="column is-12">
                 @include('campaigns._hero', ['campaign' => $campaign])
+            </div>
+            <div class="column is-12">
+                @include('campaigns._tabs', ['active' => 'feed'])
             </div>
         </div>
         <div class="columns is-centered">

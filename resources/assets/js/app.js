@@ -5,9 +5,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('./bootstrap')
 
-window.Vue = require('vue');
+window.Vue = require('vue')
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,12 +28,16 @@ window.flash = function(type, body, title) {
     window.events.$emit('flash', type, body, title)
 }
 
-Vue.component('profile-form-avatar', require('./components/ProfileFormAvatar.vue'));
-Vue.component('campaign-goals', require('./components/CampaignGoals.vue'));
-Vue.component('follow-button', require('./components/FollowButton.vue'));
-Vue.component('flash-notification', require('./components/FlashNotification.vue'));
+Vue.component('profile-form-avatar', require('./components/ProfileFormAvatar.vue'))
+Vue.component('campaign-goals', require('./components/CampaignGoals.vue'))
+Vue.component('follow-button', require('./components/FollowButton.vue'))
+Vue.component('flash-notification', require('./components/FlashNotification.vue'))
+Vue.component('like-comment-button', require('./components/LikeCommentButton.vue'))
+Vue.component('like-post-button', require('./components/LikePostButton.vue'))
+
+Vue.filter('pluralize', (word, amount) => (amount > 1 || amount === 0) ? `${word}s` : word)
 
 const app = new Vue({
     el: '#app'
-});
+})
 

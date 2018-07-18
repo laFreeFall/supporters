@@ -66,7 +66,7 @@ class PostController extends Controller
      */
     public function show(Campaign $campaign, Post $post)
     {
-        $post->load('comments.author.profile');
+        $post->load('comments.author.profile', 'comments.likes');
         $emptyComment = new Comment();
 
         return view('campaigns.posts.show', compact('campaign', 'post', 'emptyComment'));

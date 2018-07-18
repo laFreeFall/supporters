@@ -21,7 +21,7 @@ class CommentController extends Controller
     public function store(Campaign $campaign, Post $post, StoreCommentRequest $request)
     {
         $post->comments()->create([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'body' => $request->body
         ]);
 
@@ -82,6 +82,6 @@ class CommentController extends Controller
 
         return redirect(route('campaigns.posts.show', ['campaign' => $campaign, 'post' => $post]))->with(
             'flash_body', 'Comment has been successfully deleted'
-        );;
+        );
     }
 }
