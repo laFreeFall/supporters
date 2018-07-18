@@ -1,16 +1,18 @@
 <template>
     <button class="button is-rounded is-outlined is-link" @click="toggleFollow">
+    <!-- Removed dynamic 'is-loading' button bulma class because during ajax request spinner is not visible -->
+    <!--<button class="button is-rounded is-outlined is-link" :class="{ 'is-loading': isLoading }" @click="toggleFollow">-->
         <span class="icon">
-            <i class="fas" :class="isCampaignFollowed ? 'fa-user-times' : 'fa-user-check'"></i>
+            <i class="fas" :class="isFollowed ? 'fa-user-times' : 'fa-user-check'"></i>
         </span>
-        <span>{{ isCampaignFollowed ? 'Unfollow' : 'Follow' }}</span>
+        <span>{{ isFollowed ? 'Unfollow' : 'Follow' }}</span>
     </button>
 </template>
 
 <script>
     export default {
         props: {
-            isFollowed: {
+            follow: {
                 type: Boolean,
                 required: true
             },
@@ -22,27 +24,30 @@
 
         data () {
             return {
-                isCampaignFollowed: false
+                isFollowed: false,
+                isLoading: false
             }
         },
 
         methods: {
             toggleFollow () {
-                const requestType = this.isCampaignFollowed ? 'delete' : 'post'
-                const actionType = this.isCampaignFollowed ? 'unfollowed from the' : 'followed to the'
+                this.isLoading = true
+                const requestType = this.isFollowed ? 'delete' : 'post'
                 axios[requestType](this.requestUrl)
                     .then(response => {
-                        flash(`You have been ${actionType} campaign`)
-                        this.isCampaignFollowed = !this.isCampaignFollowed
+                        flash(response.data.flash)
+                        this.isFollowed = response.data.value
+                        this.isLoading = false
                     })
                     .catch(error => {
                         console.log(error)
+                        this.isLoading = false
                     })
             }
         },
 
         created () {
-            this.isCampaignFollowed = this.isFollowed
+            this.isFollowed = this.follow
         }
     }
 </script>

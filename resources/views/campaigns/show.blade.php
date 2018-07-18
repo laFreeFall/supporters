@@ -37,7 +37,7 @@
                 </a>
                 <p class="buttons space-between">
                     @auth
-                        <follow-button :is-followed="{{ json_encode($campaign->hasFollower(auth()->user())) }}" :request-url="{{ json_encode(route('followings.store', ['campaign' => $campaign, 'user' => auth()->user()])) }}"></follow-button>
+                        <follow-button :follow="{{ json_encode($campaign->hasFollower(auth()->user())) }}" :request-url="{{ json_encode(route('campaigns.follows.store', ['campaign' => $campaign, 'user' => auth()->user()])) }}"></follow-button>
                     @endauth
                     <a href="#" class="button is-rounded is-outlined is-info">
                         <span class="icon">

@@ -45,4 +45,28 @@ class CampaignPolicy
     {
         return $user->id === $campaign->user_id;
     }
+
+    /**
+     * Determine whether the user can follow the campaign.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Campaign  $campaign
+     * @return bool
+     */
+    public function follow(User $user, Campaign $campaign)
+    {
+        return !$campaign->followers()->where('user_id', $user->id)->exists();
+    }
+
+    /**
+     * Determine whether the user can unfollow the campaign.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Campaign  $campaign
+     * @return bool
+     */
+    public function unfollow(User $user, Campaign  $campaign)
+    {
+        return $campaign->followers()->where('user_id', $user->id)->exists();
+    }
 }

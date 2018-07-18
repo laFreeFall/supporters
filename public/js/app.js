@@ -1807,10 +1807,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        isFollowed: {
+        follow: {
             type: Boolean,
             required: true
         },
@@ -1822,7 +1824,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            isCampaignFollowed: false
+            isFollowed: false,
+            isLoading: false
         };
     },
 
@@ -1831,19 +1834,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         toggleFollow: function toggleFollow() {
             var _this = this;
 
-            var requestType = this.isCampaignFollowed ? 'delete' : 'post';
-            var actionType = this.isCampaignFollowed ? 'unfollowed from the' : 'followed to the';
+            this.isLoading = true;
+            var requestType = this.isFollowed ? 'delete' : 'post';
             axios[requestType](this.requestUrl).then(function (response) {
-                flash('You have been ' + actionType + ' campaign');
-                _this.isCampaignFollowed = !_this.isCampaignFollowed;
+                flash(response.data.flash);
+                _this.isFollowed = response.data.value;
+                _this.isLoading = false;
             }).catch(function (error) {
                 console.log(error);
+                _this.isLoading = false;
             });
         }
     },
 
     created: function created() {
-        this.isCampaignFollowed = this.isFollowed;
+        this.isFollowed = this.follow;
     }
 });
 
@@ -19798,13 +19803,11 @@ var render = function() {
       _c("span", { staticClass: "icon" }, [
         _c("i", {
           staticClass: "fas",
-          class: _vm.isCampaignFollowed ? "fa-user-times" : "fa-user-check"
+          class: _vm.isFollowed ? "fa-user-times" : "fa-user-check"
         })
       ]),
       _vm._v(" "),
-      _c("span", [
-        _vm._v(_vm._s(_vm.isCampaignFollowed ? "Unfollow" : "Follow"))
-      ])
+      _c("span", [_vm._v(_vm._s(_vm.isFollowed ? "Unfollow" : "Follow"))])
     ]
   )
 }
