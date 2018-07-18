@@ -6,17 +6,13 @@
             <div class="columns is-centered">
                 <div class="column is-4">
                     <h1 class="title has-text-centered">Editing your profile data</h1>
-                    @component('profiles._form', ['profile' => auth()->user()->profile])
-                        @slot('form')
-                            <form method="POST" action="{{ route('profiles.update', ['profile' => auth()->user()->profile]) }}" enctype="multipart/form-data">
-                                {!! method_field('patch') !!}
-                        @endslot
-                        @slot('submit')
-                            <div class="control">
-                                <button type="submit" class="button is-link">Save profile</button>
-                            </div>
-                        @endslot
-                    @endcomponent
+
+                    @include('profiles._form', [
+                        'action' => route('profiles.update', ['profile' => auth()->user()->profile]),
+                        'method' => 'patch',
+                        'button' => 'Update profile',
+                        'profile' => auth()->user()->profile
+                    ])
                 </div>
             </div>
         </div>

@@ -6,17 +6,15 @@
             <div class="columns is-centered">
                 <div class="column is-4">
                     <h1 class="title has-text-centered">Editing campaign</h1>
-                    @component('campaigns._form', compact('campaign', 'categories', 'colors'))
-                        @slot('form')
-                            <form method="POST" action="{{ route('campaigns.update', $campaign) }}" enctype="multipart/form-data">
-                            {!! method_field('patch') !!}
-                        @endslot
-                        @slot('submit')
-                            <div class="control">
-                                <button type="submit" class="button is-link">Save changes</button>
-                            </div>
-                        @endslot
-                    @endcomponent
+
+                    @include('campaigns._form', [
+                        'action' => route('campaigns.update', $campaign),
+                        'method' => 'patch',
+                        'button' => 'Save changes',
+                        'campaign' => $campaign,
+                        'categories' => $categories,
+                        'colors' => $colors
+                    ])
                 </div>
             </div>
         </div>

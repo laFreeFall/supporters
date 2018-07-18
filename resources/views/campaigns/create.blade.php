@@ -7,16 +7,14 @@
                 <div class="column is-4">
                     <h1 class="title has-text-centered">Running new campaign</h1>
 
-                    @component('campaigns._form', compact('campaign', 'categories', 'colors'))
-                        @slot('form')
-                            <form method="POST" action="{{ route('campaigns.store') }}" enctype="multipart/form-data">
-                                @endslot
-                                @slot('submit')
-                                    <div class="control">
-                                        <button type="submit" class="button is-link">Preview Campaign</button>
-                                    </div>
-                        @endslot
-                    @endcomponent
+                    @include('campaigns._form', [
+                        'action' => route('campaigns.store'),
+                        'method' => 'post',
+                        'button' => 'Preview Campaign',
+                        'campaign' => $campaign,
+                        'categories' => $categories,
+                        'colors' => $colors
+                    ])
                 </div>
             </div>
         </div>

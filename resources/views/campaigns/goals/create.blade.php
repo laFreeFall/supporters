@@ -7,16 +7,12 @@
                 <div class="column is-4">
                     <h1 class="title has-text-centered">Adding new goal</h1>
 
-                    @component('campaigns.goals._form', compact('goal'))
-                        @slot('form')
-                            <form method="POST" action="{{ route('campaigns.goals.store', ['campaign' => $campaign]) }}">
-                        @endslot
-                        @slot('submit')
-                            <div class="control">
-                                <button type="submit" class="button is-link">Create Goal</button>
-                            </div>
-                        @endslot
-                    @endcomponent
+                    @include('campaigns.goals._form', [
+                        'action' => route('campaigns.goals.store', ['campaign' => $campaign]),
+                        'method' => 'post',
+                        'button' => 'Create Goal',
+                        'goal' => $goal
+                    ])
                 </div>
             </div>
         </div>

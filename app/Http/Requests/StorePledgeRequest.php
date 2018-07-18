@@ -41,7 +41,7 @@ class StorePledgeRequest extends FormRequest
                 'required',
                 'integer',
                 'min:0',
-                Rule::unique('campaigns_pledges')->ignore($this->pledge->id)
+                Rule::unique('campaigns_pledges')->ignore($this->pledge ? $this->pledge->id : null)
             ]
         ];
     }

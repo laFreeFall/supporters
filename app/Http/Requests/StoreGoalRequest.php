@@ -41,7 +41,7 @@ class StoreGoalRequest extends FormRequest
                 'required',
                 'integer',
                 'min:0',
-                Rule::unique('campaigns_goals')->ignore($this->goal->id)
+                Rule::unique('campaigns_goals')->ignore($this->goal ? $this->goal->id : null)
             ]
         ];
     }

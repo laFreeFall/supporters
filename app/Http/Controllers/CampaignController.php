@@ -16,7 +16,7 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::all();
+        $campaigns = Campaign::where('active', true)->get();
         $categories = Category::select('id', 'title')->paginate(12);
 
         return view('campaigns.index', compact('campaigns', 'categories'));

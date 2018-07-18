@@ -6,16 +6,13 @@
             <div class="columns is-centered">
                 <div class="column is-4">
                     <h1 class="title has-text-centered">Setting up your profile data</h1>
-                    @component('profiles._form', ['profile' => $blankProfile])
-                        @slot('form')
-                            <form method="POST" action="{{ route('profiles.store') }}" enctype="multipart/form-data">
-                        @endslot
-                        @slot('submit')
-                            <div class="control">
-                                <button type="submit" class="button is-link">Save profile</button>
-                            </div>
-                        @endslot
-                    @endcomponent
+
+                    @include('profiles._form', [
+                        'action' => route('profiles.store'),
+                        'method' => 'post',
+                        'button' => 'Save profile',
+                        'profile' => $blankProfile
+                    ])
                 </div>
             </div>
         </div>

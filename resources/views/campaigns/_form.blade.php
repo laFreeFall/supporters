@@ -1,5 +1,8 @@
-{{ $form }}
+<form method="POST" action="{{ $action }}" enctype="multipart/form-data">
     {{ csrf_field() }}
+    @if($method !== 'post')
+        {!! method_field($method) !!}
+    @endif
     <div class="field is-horizontal">
         <div class="field-label is-normal">
             <label class="label" for="title">Title</label>
@@ -167,7 +170,9 @@
     <div class="field is-horizontal is-grouped">
         <div class="field-label"></div>
         <div class="field-body">
-            {{ $submit }}
+            <button type="submit" class="button is-link">
+                {{ $button }}
+            </button>
         </div>
     </div>
 </form>

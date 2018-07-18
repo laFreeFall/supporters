@@ -7,17 +7,12 @@
                 <div class="column is-4">
                     <h1 class="title has-text-centered">Editing pledge</h1>
 
-                    @component('campaigns.pledges._form', compact('pledge'))
-                        @slot('form')
-                            <form method="POST" action="{{ route('campaigns.pledges.update', ['campaign' => $campaign, 'pledge' => $pledge]) }}">
-                            {!! method_field('patch') !!}
-                        @endslot
-                        @slot('submit')
-                            <div class="control">
-                                <button type="submit" class="button is-link">Update Pledge</button>
-                            </div>
-                        @endslot
-                    @endcomponent
+                    @include('campaigns.pledges._form', [
+                        'action' => route('campaigns.pledges.update', ['campaign' => $campaign, 'pledge' => $pledge]),
+                        'method' => 'patch',
+                        'button' => 'Update Pledge',
+                        'pledge' => $pledge
+                    ])
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ class StoreProfileRequest extends FormRequest
                 'required',
                 'string',
                 'min:2',
-                Rule::unique('profiles')->ignore($this->profile->id)
+                Rule::unique('profiles')->ignore($this->profile ? $this->profile->id : null)
             ],
 
             'first_name' => [
