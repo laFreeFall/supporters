@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreProfileRequest extends FormRequest
 {
@@ -24,11 +25,37 @@ class StoreProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|string|min:2',
-            'first_name' => 'required|string|min:2',
-            'last_name' => 'required|string|min:2',
-            'bio' => 'nullable|string|min:2',
-            'avatar' => 'nullable|image'
+            'username' => [
+                'required',
+                'string',
+                'min:2',
+                Rule::unique('profiles')->ignore($this->profile->id)
+            ],
+
+            'first_name' => [
+                'required',
+                'string',
+                'min:2'
+            ],
+
+            'last_name' => [
+                'required',
+                'string',
+                'min:2'
+            ],
+
+            'bio' => [
+                'nullable',
+                'string',
+                'min:2'
+            ],
+
+            'avatar' => [
+                'nullable',
+                'image',
+                'dimensions:min_width:100,min_height:100',
+                'size:5000'
+            ]
         ];
     }
 }

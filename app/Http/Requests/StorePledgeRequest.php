@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StorePledgeRequest extends FormRequest
 {
@@ -24,9 +25,24 @@ class StorePledgeRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|min:2',
-            'privileges' => 'required|string|min:3',
-            'amount' => 'required|integer|min:0|unique:campaigns_pledges'
+            'title' => [
+                'required',
+                'string',
+                'min:2'
+            ],
+
+            'privileges' => [
+                'required',
+                'string',
+                'min:3'
+            ],
+
+            'amount' => [
+                'required',
+                'integer',
+                'min:0',
+                Rule::unique('campaigns_pledges')->ignore($this->pledge->id)
+            ]
         ];
     }
 }
