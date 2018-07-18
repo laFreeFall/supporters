@@ -89,11 +89,61 @@ class Campaign extends Model
     }
 
     /**
+     * Get count of the posts associated with the campaign.
+     */
+    public function postsCount()
+    {
+        return $this->hasOne(Post::class)
+            ->selectRaw('campaign_id, count(*) as count')
+            ->groupBy('campaign_id');
+    }
+
+    /**
+     * Get count of the posts associated with the campaign.
+     *
+     * @return int
+     */
+    public function getPostsCountAttribute()
+    {
+        if ( ! array_key_exists('postsCount', $this->relations))
+            $this->load('postsCount');
+
+        $related = $this->getRelation('postsCount');
+
+        return ($related) ? (int) $related->count : 0;
+    }
+
+    /**
      * Get the users that are following the campaign.
      */
     public function followers()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    /**
+     * Get count of the users following the campaign.
+     */
+    public function followersCount()
+    {
+        return $this->hasOne(Follow::class)
+            ->selectRaw('campaign_id, count(*) as count')
+            ->groupBy('campaign_id');
+    }
+
+    /**
+     * Get count of the users following the campaign.
+     *
+     * @return int
+     */
+    public function getFollowersCountAttribute()
+    {
+        if ( ! array_key_exists('followersCount', $this->relations))
+            $this->load('followersCount');
+
+        $related = $this->getRelation('followersCount');
+
+        return ($related) ? (int) $related->count : 0;
     }
 
     /**

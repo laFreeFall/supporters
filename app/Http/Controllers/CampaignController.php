@@ -24,7 +24,7 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::where('active', true)->get();
+        $campaigns = Campaign::where('active', true)->withCount('followers', 'posts')->get();
         $categories = Category::select('id', 'title')->paginate(12);
 
         return view('campaigns.index', compact('campaigns', 'categories'));
@@ -79,7 +79,7 @@ class CampaignController extends Controller
      */
     public function show(Campaign $campaign)
     {
-        $campaign->load('user', 'goals.campaign', 'pledges');
+        $campaign->load('user.profile', 'goals.campaign', 'pledges', 'postsCount', 'followersCount');
 
         return view('campaigns.show', compact('campaign'));
     }

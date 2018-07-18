@@ -39,8 +39,7 @@
                             <span class="icon">
                                 <i class="fas fa-user-friends"></i>
                             </span>
-                            0
-                            followers
+                            {{ $campaign->followers_count }} {{ str_plural('follower', $campaign->followers_count) }}
                         </span>
 
                         <span class="m-l-lg">
@@ -55,8 +54,7 @@
                             <span class="icon">
                                 <i class="fas fa-clipboard"></i>
                             </span>
-                            0
-                            posts
+                            {{ $campaign->posts_count }} {{ str_plural('post', $campaign->posts_count) }}
                         </span>
                     </h2>
                 </div>

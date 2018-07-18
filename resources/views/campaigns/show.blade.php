@@ -63,20 +63,28 @@
                 <div class="level">
                     <div class="level-item has-text-centered">
                         <div>
-                            <p class="heading">Followers</p>
-                            <p class="title">3,456</p>
+                            <p class="heading">
+                                {{ str_plural('Follower', $campaign->followersCount) }}
+                            </p>
+                            <p class="title">
+                                {{ $campaign->followersCount }}
+                            </p>
                         </div>
                     </div>
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Supporters</p>
-                            <p class="title">123</p>
+                            <p class="title">0</p>
                         </div>
                     </div>
                     <div class="level-item has-text-centered">
                         <div>
-                            <p class="heading">Posts</p>
-                            <p class="title">456K</p>
+                            <p class="heading">
+                                {{ str_plural('Post', $campaign->postsCount) }}
+                            </p>
+                            <p class="title">
+                                {{ $campaign->posts_count }}
+                            </p>
                         </div>
                     </div>
                 </div>

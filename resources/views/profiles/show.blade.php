@@ -9,10 +9,10 @@
                         <div class="level-left">
                             <div class="level-item">
                                 <figure class="image is-64x64 is-rounded">
-                                    <img src="{{ $profile->avatar_path }}" alt="{{ $profile->full_name }}" class="">
+                                    <img src="{{ $profile->avatar_path }}" alt="{{ $profile->fullName }}" class="">
                                 </figure>
                                 <span class="is-size-2">
-                            {{ $profile->full_name }}
+                            {{ $profile->fullName }}
                         </span>
                         <span class="is-size-3 has-text-grey-light">
                             ({{ '@' . $profile->username }})
@@ -29,14 +29,22 @@
                     <nav class="level">
                         <div class="level-item is-narrow has-text-centered">
                             <div>
-                                <p class="heading">Campaigns run</p>
-                                <p class="title">0</p>
+                                <p class="heading">
+                                    {{ str_plural('Campaign', $profile->user->campaignsCount) }} run
+                                </p>
+                                <p class="title">
+                                    {{ $profile->user->campaignsCount }}
+                                </p>
                             </div>
                         </div>
                         <div class="level-item is-narrow has-text-centered">
                             <div>
-                                <p class="heading">Campaigns followed</p>
-                                <p class="title">0</p>
+                                <p class="heading">
+                                    {{ str_plural('Campaign', $profile->user->followsCount) }} followed
+                                </p>
+                                <p class="title">
+                                    {{ $profile->user->followsCount }}
+                                </p>
                             </div>
                         </div>
                         <div class="level-item is-narrow has-text-centered">
@@ -47,14 +55,32 @@
                         </div>
                         <div class="level-item is-narrow has-text-centered">
                             <div>
-                                <p class="heading">Comments left</p>
-                                <p class="title">0</p>
+                                <p class="heading">
+                                    {{ str_plural('Post', $profile->user->postsCount) }} created
+                                </p>
+                                <p class="title">
+                                    {{ $profile->user->postsCount }}
+                                </p>
                             </div>
                         </div>
                         <div class="level-item is-narrow has-text-centered">
                             <div>
-                                <p class="heading">Posts liked</p>
-                                <p class="title">0</p>
+                                <p class="heading">
+                                    {{ str_plural('Comment', $profile->user->commentsCount) }} wrote
+                                </p>
+                                <p class="title">
+                                    {{ $profile->user->commentsCount }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="level-item is-narrow has-text-centered">
+                            <div>
+                                <p class="heading">
+                                    {{ str_plural('Record', $profile->user->likesCount) }} liked
+                                </p>
+                                <p class="title">
+                                    {{ $profile->user->likesCount }}
+                                </p>
                             </div>
                         </div>
                     </nav>

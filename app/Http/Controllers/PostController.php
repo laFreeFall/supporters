@@ -52,7 +52,12 @@ class PostController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        $campaign->posts()->create($request->validated());
+        $campaign->posts()->create([
+            'user_id' => auth()->id(),
+            'privacy_id' => $request->privacy_id,
+            'title' => $request->title,
+            'body' => $request->body
+        ]);
 
         return redirect(route('campaigns.posts.index', ['campaign' => $campaign]));
     }

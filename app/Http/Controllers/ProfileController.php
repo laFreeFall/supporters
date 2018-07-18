@@ -74,7 +74,7 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        $profile->load('user');
+        $profile->load('user.campaignsCount', 'user.followsCount', 'user.postsCount', 'user.commentsCount', 'user.likesCount');
 
         return view('profiles.show', compact('profile'));
     }
