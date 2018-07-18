@@ -6,18 +6,23 @@
     </figure>
     <div class="media-content">
         <form action="{{ $action }}" method="POST">
+
             {{ csrf_field() }}
 
-            {{ method_field($method) }}
+            @if($method !== 'post')
+                {!! method_field($method) !!}
+            @endif
 
             <div class="field">
                 <div class="control">
                     <textarea class="textarea {{ $errors->has('body') ? ' is-danger' : '' }}" name="body" placeholder="Post your comment...">{{ old('body', $comment->body ?? null) }}</textarea>
                 </div>
+
                 @if ($errors->has('body'))
                     <p class="help is-danger has-text-weight-bold">{{ $errors->first('body') }}</p>
                 @endif
             </div>
+
             <div class="field ">
                 <div class="control">
                     <button class="button is-link" type="submit">
@@ -25,6 +30,7 @@
                     </button>
                 </div>
             </div>
+
         </form>
     </div>
 </article>
