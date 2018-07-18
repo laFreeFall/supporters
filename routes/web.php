@@ -30,8 +30,8 @@ Route::resource('campaigns.posts', 'PostController');
 Route::resource('campaigns.posts.comments', 'CommentController');
 
 // Campaign Followings
-Route::post('campaigns/{campaign}/users/{user}', 'FollowingController@store')->name('followings.store');
-Route::delete('campaigns/{campaign}/users/{user}', 'FollowingController@destroy')->name('followings.destroy');
+Route::post('campaigns/{campaign}/users/{user}', 'CampaignFollowController@store')->name('campaigns.follows.store');
+Route::delete('campaigns/{campaign}/users/{user}', 'CampaignFollowController@destroy')->name('campaigns.follows.destroy');
 
 // Posts Likes
 Route::post('posts/{post}/like', 'PostLikeController@store')->name('posts.likes.store');
