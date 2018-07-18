@@ -29,7 +29,22 @@
                         </li>
                     </ul>
                 </div>
-
+                @if(auth()->user()->can('update', $campaign) && (!$campaign->goals->count() || !$campaign->pledges->count()))
+                <div class="column is-10 is-offset-1">
+                    @if(!$campaign->goals->count())
+                        <div class="notification">
+                            <p>Currently you haven`t created any goal. Create few if you want more attention to your campaign</p>
+                            <a href="{{ route('campaigns.goals.create', ['campaign' => $campaign]) }}" class="button is-white">Create first goal</a>
+                        </div>
+                    @endif
+                    @if(!$campaign->pledges->count())
+                        <div class="notification">
+                            <p>Currently you haven`t created any pledge. Create few if you want more attention to your campaign</p>
+                            <a href="{{ route('campaigns.pledges.create', ['campaign' => $campaign]) }}" class="button is-white">Create first pledge</a>
+                        </div>
+                    @endif
+                </div>
+                @endif
             </div>
         </div>
         <div class="columns is-centered">
@@ -49,7 +64,17 @@
                         <span>Share</span>
                     </a>
                 </p>
-                @include('campaigns.goals._index', ['goals' => $campaign->goals, 'colors' => $campaign->colors, 'slug' => $campaign->slug])
+                <p class="has-text-centered m-b-sm">
+                    <a href="{{ route('campaigns.goals.index', ['campaign' => $campaign]) }}" class="is-size-4">Goals</a>
+                </p>
+                @if($campaign->goals->count())
+                    <campaign-goals :goals="{{ json_encode($campaign->goals) }}" :colors="{{ json_encode($campaign->colors) }}"></campaign-goals>
+                @else
+                    <div class="notification">
+                        <p class="m-b-md">There are no goals at the moment</p>
+                        <a href="{{ route('campaigns.goals.create', ['campaign' => $campaign]) }}" class="button is-white is-fullwidth">Create first one</a>
+                    </div>
+                @endif
             </div>
 
             <div class="column is-5">
@@ -88,9 +113,14 @@
                 <p class="has-text-centered m-b-sm">
                     <a href="{{ route('campaigns.pledges.index', ['campaign' => $campaign]) }}" class="is-size-4">Pledges</a>
                 </p>
-                @foreach($campaign->pledges as $pledge)
+                @forelse($campaign->pledges as $pledge)
                     @include('campaigns.pledges._show', ['pledge' => $pledge, 'campaign' => $campaign, 'colors' => $campaign->colors])
-                @endforeach
+                @empty
+                    <div class="notification">
+                        <p class="m-b-md">There are no pledges at the moment</p>
+                        <a href="{{ route('campaigns.pledges.create', ['campaign' => $campaign]) }}" class="button is-white is-fullwidth">Create first one</a>
+                    </div>
+                @endforelse
             </div>
         </div>
     </div>

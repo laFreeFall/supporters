@@ -2,9 +2,6 @@
     <div class="card">
         <div class="card-header">
             <div class="card-header-title space-between">
-                <a class="is-pulled-left" :href="`/campaigns/${campaignSlug}/goals`">
-                    Goals
-                </a>
                 <p>{{ currentIndex }} of {{ goalsAmount }}</p>
                 <div class="buttons has-addons">
                     <button class="button" :disabled="!prevAvailable" @click="prev">
@@ -48,10 +45,6 @@
             },
             colors: {
                 type: Object,
-                required: true
-            },
-            campaignSlug: {
-                type: String,
                 required: true
             }
         },

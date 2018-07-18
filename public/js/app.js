@@ -1675,9 +1675,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -1688,10 +1685,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
         },
         colors: {
             type: Object,
-            required: true
-        },
-        campaignSlug: {
-            type: String,
             required: true
         }
     },
@@ -19672,10 +19665,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "a",
+    "button",
     {
       staticClass: "button is-rounded is-outlined is-link",
-      attrs: { href: "#" },
       on: { click: _vm.toggleFollow }
     },
     [
@@ -19714,15 +19706,6 @@ var render = function() {
   return _c("div", { staticClass: "card" }, [
     _c("div", { staticClass: "card-header" }, [
       _c("div", { staticClass: "card-header-title space-between" }, [
-        _c(
-          "a",
-          {
-            staticClass: "is-pulled-left",
-            attrs: { href: "/campaigns/" + _vm.campaignSlug + "/goals" }
-          },
-          [_vm._v("\n                Goals\n            ")]
-        ),
-        _vm._v(" "),
         _c("p", [
           _vm._v(_vm._s(_vm.currentIndex) + " of " + _vm._s(_vm.goalsAmount))
         ]),

@@ -1,10 +1,10 @@
 <template>
-    <a href="#" class="button is-rounded is-outlined is-link" @click="toggleFollow">
+    <button class="button is-rounded is-outlined is-link" @click="toggleFollow">
         <span class="icon">
             <i class="fas" :class="isCampaignFollowed ? 'fa-user-times' : 'fa-user-check'"></i>
         </span>
         <span>{{ isCampaignFollowed ? 'Unfollow' : 'Follow' }}</span>
-    </a>
+    </button>
 </template>
 
 <script>
