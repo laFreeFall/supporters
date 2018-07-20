@@ -16,10 +16,10 @@ class CreateCampaignsPledgesTable extends Migration
         Schema::create('campaigns_pledges', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('campaign_id');
-            $table->string('title');
+            $table->string('title')->unique();
             $table->string('privileges');
             $table->integer('limit')->nullable();
-            $table->unsignedInteger('amount');
+            $table->unsignedInteger('amount')->unique();
             $table->timestamps();
         });
     }

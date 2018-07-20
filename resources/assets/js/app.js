@@ -28,6 +28,9 @@ window.flash = function(type, body, title) {
     window.events.$emit('flash', type, body, title)
 }
 
+import InputTag from 'vue-input-tag'
+Vue.component('input-tag', InputTag)
+
 Vue.component('profile-form-avatar', require('./components/ProfileFormAvatar.vue'))
 Vue.component('campaign-goals', require('./components/CampaignGoals.vue'))
 Vue.component('follow-button', require('./components/FollowButton.vue'))

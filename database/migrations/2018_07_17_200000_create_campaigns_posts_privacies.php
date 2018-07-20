@@ -15,8 +15,8 @@ class CreateCampaignsPostsPrivacies extends Migration
     {
         Schema::create('campaigns_posts_privacies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('value');
-            $table->string('title');
+            $table->string('value')->unique();
+            $table->string('title')->unique();
             $table->string('icon');
             $table->timestamps();
         });

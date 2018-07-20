@@ -17,8 +17,8 @@ class CreateCampaignsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('category_id');
-            $table->string('title');
-            $table->string('slug');
+            $table->string('title')->unique();
+            $table->string('slug')->unique();
             $table->string('activity');
             $table->text('description')->nullable();
             $table->boolean('holder');
