@@ -45,6 +45,37 @@
 
     <div class="field is-horizontal">
         <div class="field-label is-normal">
+            <label for="tags" class="label">Tags</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <div class="select is-multiple is-fullwidth">
+                        <select name="tags[]" id="tags" multiple size="5">
+                            <option value="" selected disabled>Pick up some tags</option>
+                            @foreach($tags as $tag)
+{{--                                <option value="{{ $tag->id }}" {{ in_array($tag->id, old('tags', $post->$tags ?? [])) ? 'selected' : '' }}>--}}
+                                <option value="{{ $tag->id }}" {{ old('tags', $post->tags ?? collect([]))->contains('id', $tag->id) ? 'selected' : '' }}>
+                                    [{{ $tag->id }}] {{ $tag->name}}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <p class="help">To select multiple tags pick them with Ctrl button</p>
+                @if($post->tags)
+                    <p class="help">
+                        @foreach($post->tags as $tag)
+                            <span class="tag is-light">[{{ $tag->id }}] {{ $tag->name }}</span>
+                        @endforeach
+                    </p>
+                @endif
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
             <label class="label" for="privacy_id">Post Privacy</label>
         </div>
         <div class="field-body">

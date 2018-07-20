@@ -153,4 +153,12 @@ class Campaign extends Model
     {
         return $this->followers->contains($user);
     }
+
+    /**
+     * Get the tags registered by the campaign.
+     */
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
 }

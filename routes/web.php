@@ -40,3 +40,7 @@ Route::delete('posts/{post}/like', 'PostLikeController@destroy')->name('posts.li
 // Comments Likes
 Route::post('comments/{comment}/like', 'CommentLikeController@store')->name('comments.likes.store');
 Route::delete('comments/{comment}/like', 'CommentLikeController@destroy')->name('comments.likes.destroy');
+
+// Campaign Tags
+Route::post('campaign/{campaign}/tags', 'TagController@store')->name('campaigns.tags.store');
+Route::delete('campaign/{campaign}/tags/{tag}/', 'TagController@destroy')->name('campaigns.tags.destroy');

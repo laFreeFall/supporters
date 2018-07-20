@@ -8,8 +8,17 @@
         <div class="content">
             @can('view', $post)
                 <p>{{ $post->body}}</p>
+                <hr>
+                @if($post->tags->count())
+                    <strong>Tags</strong>:
+                    @foreach($post->tags as $tag)
+                        <span class="tag is-light">
+                            {{ $tag->name }}
+                        </span>
+                    @endforeach
+                @endif
             @else
-                <p>YOU ARE NOT ALLOWED TO READ THIS POST</p>
+                <div class="message is-warning">YOU ARE NOT ALLOWED TO READ THIS POST</div>
             @endcan
         </div>
     </div>

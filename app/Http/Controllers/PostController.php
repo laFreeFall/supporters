@@ -7,6 +7,7 @@ use App\Comment;
 use App\Post;
 use App\Http\Requests\StorePostRequest;
 use App\PostPrivacy;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -18,9 +19,11 @@ class PostController extends Controller
      */
     public function index(Campaign $campaign)
     {
-        $campaign->load('posts');
+        $campaign->load('posts.likes');
+        $tags = $campaign->tags()->withCount('posts')->orderBy('posts_count', 'desc')->get();
+        $emptyTag = new Tag();
 
-        return view('campaigns.posts.index', compact('campaign'));
+        return view('campaigns.posts.index', compact('campaign', 'tags', 'emptyTag'));
     }
 
     /**
@@ -36,8 +39,9 @@ class PostController extends Controller
 
         $post = new Post();
         $privacies = PostPrivacy::select('id', 'title')->get();
+        $tags = Tag::select('id', 'name')->get();
 
-        return view('campaigns.posts.create', compact('campaign', 'post', 'privacies'));
+        return view('campaigns.posts.create', compact('campaign', 'post', 'privacies', 'tags'));
     }
 
     /**
@@ -52,12 +56,14 @@ class PostController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        $campaign->posts()->create([
+        $post = $campaign->posts()->create([
             'user_id' => auth()->id(),
             'privacy_id' => $request->privacy_id,
             'title' => $request->title,
             'body' => $request->body
         ]);
+
+        $post->tags()->attach($request->tags);
 
         return redirect(route('campaigns.posts.index', ['campaign' => $campaign]));
     }
@@ -89,8 +95,9 @@ class PostController extends Controller
     {
         $this->authorize('update', $campaign);
         $privacies = PostPrivacy::select('id', 'title')->get();
+        $tags = Tag::select('id', 'name')->get();
 
-        return view('campaigns.posts.edit', compact('campaign', 'post', 'privacies'));
+        return view('campaigns.posts.edit', compact('campaign', 'post', 'privacies', 'tags'));
     }
 
     /**
@@ -106,9 +113,15 @@ class PostController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        $post->update($request->validated());
+        $post->update([
+            'privacy_id' => $request->privacy_id,
+            'title' => $request->title,
+            'body' => $request->body
+        ]);
 
-        return redirect(route('campaigns.posts.index', ['campaign' => $campaign]));
+        $post->tags()->sync($request->tags);
+
+        return redirect(route('campaigns.posts.show', ['campaign' => $campaign, 'post' => $post]));
     }
 
     /**

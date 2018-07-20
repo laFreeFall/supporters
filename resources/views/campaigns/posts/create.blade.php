@@ -12,7 +12,8 @@
                         'method' => 'post',
                         'button' => 'Create Post',
                         'post' => $post,
-                        'privacies' => $privacies
+                        'privacies' => $privacies,
+                        'tags' => $tags
                     ])
                 </div>
             </div>

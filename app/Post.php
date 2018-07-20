@@ -25,7 +25,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $with = ['privacy'];
+    protected $with = ['privacy', 'tags'];
 
     /**
      * Get the campaign associated with the post.
@@ -64,6 +64,14 @@ class Post extends Model
      */
     public function isLiked()
     {
-        return $this->likes()->where('user_id', auth()->id())->exists();
+        return $this->likes->where('user_id', auth()->id())->count();
+    }
+
+    /**
+     * Get the tags attached to the post.
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

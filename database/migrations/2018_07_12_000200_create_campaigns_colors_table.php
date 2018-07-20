@@ -15,7 +15,7 @@ class CreateCampaignsColorsTable extends Migration
     {
         Schema::create('campaigns_colors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('title')->unique();
             $table->string('color_class')->nullable();
             $table->string('background_class')->nullable();
             $table->string('text_class')->nullable();

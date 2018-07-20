@@ -12,7 +12,8 @@
                         'method' => 'patch',
                         'button' => 'Update Post',
                         'post' => $post,
-                        'privacies' => $privacies
+                        'privacies' => $privacies,
+                        'tags' => $tags
                     ])
                 </div>
             </div>

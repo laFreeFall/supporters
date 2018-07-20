@@ -16,9 +16,9 @@ class CreateCampaignsGoalsTable extends Migration
         Schema::create('campaigns_goals', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('campaign_id');
-            $table->string('title');
+            $table->string('title')->unique();
             $table->text('description');
-            $table->unsignedInteger('amount');
+            $table->unsignedInteger('amount')->unique();
             $table->timestamps();
 
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');

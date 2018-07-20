@@ -9,7 +9,7 @@
                         <div class="level-left">
                             <div class="level-item">
                                 <figure class="image is-64x64 is-rounded">
-                                    <img src="{{ $profile->avatar_path }}" alt="{{ $profile->fullName }}" class="">
+                                    <img src="{{ $profile->avatar_path }}" alt="{{ $profile->fullName }}" class="is-rounded">
                                 </figure>
                                 <span class="is-size-2">
                             {{ $profile->fullName }}
