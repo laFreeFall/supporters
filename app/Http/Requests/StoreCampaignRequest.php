@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCampaignRequest extends FormRequest
 {
@@ -24,14 +25,49 @@ class StoreCampaignRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|min:2|unique:campaigns',
-            'activity' => 'required|string|min:5',
-            'description' => 'string|min:5',
-            'category_id' => 'required|integer',
-            'slug' => 'required|string|min:2|unique:campaigns',
-            'holder' => 'required',
-            'color_id' => 'required|integer',
-            'avatar' => 'image'
+            'title' => [
+                'required',
+                'string',
+                'min:2',
+                Rule::unique('campaigns')->ignore($this->campaign ? $this->campaign->id : null)
+            ],
+
+            'activity' => [
+                'required','
+                string','
+                min:5'
+            ],
+
+            'description' => [
+                'nullable',
+                'string',
+                'min:5'
+            ],
+
+            'category_id' => [
+                'required',
+                'integer'
+            ],
+
+            'slug' => [
+                'required',
+                'string',
+                'min:2',
+                Rule::unique('campaigns')->ignore($this->campaign ? $this->campaign->id : null)
+            ],
+
+            'holder' => [
+                'required'
+            ],
+
+            'color_id' => [
+                'required',
+                'integer'
+            ],
+
+            'avatar' => [
+                'image'
+            ]
         ];
     }
 }

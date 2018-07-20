@@ -12838,3 +12838,7 @@ progress::-webkit-progress-value {
           justify-content: space-between;
 }
 
+.overflow-scroll {
+  overflow-y: scroll;
+}
+

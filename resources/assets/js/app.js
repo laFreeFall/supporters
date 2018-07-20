@@ -37,6 +37,7 @@ Vue.component('follow-button', require('./components/FollowButton.vue'))
 Vue.component('flash-notification', require('./components/FlashNotification.vue'))
 Vue.component('like-comment-button', require('./components/LikeCommentButton.vue'))
 Vue.component('like-post-button', require('./components/LikePostButton.vue'))
+Vue.component('markdown-textarea', require('./components/MarkdownTextarea.vue'))
 
 Vue.filter('pluralize', (word, amount) => (amount > 1 || amount === 0) ? `${word}s` : word)
 

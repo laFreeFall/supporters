@@ -107,21 +107,14 @@
         </div>
     </div>
 
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label" for="description">Campaign description</label>
-        </div>
-        <div class="field-body">
-            <div class="field">
-                <div class="control">
-                    <textarea class="textarea {{ $errors->has('description') ? ' is-danger' : '' }}" name="description" id="description" type="text" placeholder="A bit about your campaign (not required)">{{ old('description', $campaign->description ?? null) }}</textarea>
-                </div>
-                @if ($errors->has('description'))
-                    <p class="help is-danger has-text-weight-bold">{{ $errors->first('description') }}</p>
-                @endif
-            </div>
-        </div>
-    </div>
+    <markdown-textarea
+        label="Description"
+        name="description"
+        placeholder="Tell a bit about your company here..."
+        content="{{ old('description', $campaign->description ?? '') }}"
+        errors="{{ $errors->has('description') ? $errors->first('description') : '' }}"
+    >
+    </markdown-textarea>
 
     <div class="field is-horizontal">
         <div class="field-label is-normal">
@@ -157,7 +150,7 @@
                         <select name="color_id" id="color_id">
                             <option value="" selected disabled>Pick a color</option>
                             @foreach($colors as $color)
-                                <option value="{{ $color->id }}" class="{{ $color->background_class }} {{ $color->text_class }} select-campaign-color" {{ $color->id === old('color_id', $campaign->colors->color_id ?? null) ? 'selected' : '' }}>
+                                <option value="{{ $color->id }}" class="{{ $color->background_class }} {{ $color->text_class }} select-campaign-color" {{ $color->id === old('color_id', $campaign->color_id ?? null) ? 'selected' : '' }}>
                                     {{ $color->title }}
                                 </option>
                             @endforeach
@@ -168,7 +161,11 @@
         </div>
     </div>
 
-    <profile-form-avatar avatar="{{ $campaign->avatar ? $campaign->avatar_path : '' }}" errors="{{ $errors->has('avatar') ? $errors->first('avatar') : '' }}"></profile-form-avatar>
+    <profile-form-avatar
+        avatar="{{ $campaign->avatar ? $campaign->avatar_path : '' }}"
+        errors="{{ $errors->has('avatar') ? $errors->first('avatar') : '' }}"
+    >
+    </profile-form-avatar>
 
     <div class="field is-horizontal is-grouped">
         <div class="field-label"></div>

@@ -7,7 +7,7 @@
     <div class="card-content">
         <div class="content">
             @can('view', $post)
-                <p>{{ $post->body}}</p>
+                {!! Markdown::convertToHtml($post->body) !!}
                 <hr>
                 @if($post->tags->count())
                     <strong>Tags</strong>:

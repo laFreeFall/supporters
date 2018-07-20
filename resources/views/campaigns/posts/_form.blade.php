@@ -27,21 +27,15 @@
         </div>
     </div>
 
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label" for="body">Body</label>
-        </div>
-        <div class="field-body">
-            <div class="field">
-                <div class="control">
-                    <textarea class="textarea {{ $errors->has('body') ? ' is-danger' : '' }}" name="body" id="body" placeholder="Content of your post">{{ old('body', $post->body ?? null) }}</textarea>
-                </div>
-                @if ($errors->has('body'))
-                    <p class="help is-danger has-text-weight-bold">{{ $errors->first('body') }}</p>
-                @endif
-            </div>
-        </div>
-    </div>
+
+    <markdown-textarea
+        label="Body"
+        name="body"
+        placeholder="Write thoughts you want to share with your audience here..."
+        content="{{ old('body', $post->body?? '') }}"
+        errors="{{ $errors->has('body') ? $errors->first('body') : '' }}"
+    >
+    </markdown-textarea>
 
     <div class="field is-horizontal">
         <div class="field-label is-normal">

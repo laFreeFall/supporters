@@ -89,17 +89,19 @@
                     </div>
                 </div>
                 <div class="box">
-                    {{ $campaign->description }}
+                    {!! Markdown::convertToHtml($campaign->description) !!}
                 </div>
             </div>
 
             <div class="column is-2">
-                <a href="#" class="button is-rounded is-medium is-fullwidth {{ $campaign->colors->color_class }} m-b-lg">
-                    <span class="icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </span>
-                    <span>Support</span>
-                </a>
+                @can('update', $campaign)
+                    <a href="{{ route('campaigns.edit', compact('campaign')) }}" class="button is-rounded is-medium is-fullwidth is-light m-b-lg">
+                        <span class="icon">
+                            <i class="fas fa-cog"></i>
+                        </span>
+                        <span>Settings</span>
+                    </a>
+                @endcan
                 <p class="has-text-centered m-b-sm">
                     <a href="{{ route('campaigns.pledges.index', ['campaign' => $campaign]) }}" class="is-size-4">Pledges</a>
                 </p>

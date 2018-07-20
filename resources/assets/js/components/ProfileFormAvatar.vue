@@ -60,7 +60,6 @@
         },
 
         created () {
-            console.log(this.avatar)
             this.currentAvatar = this.avatar
         }
     }
