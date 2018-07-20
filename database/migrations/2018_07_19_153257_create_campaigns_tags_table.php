@@ -25,7 +25,6 @@ class CreateCampaignsTagsTable extends Migration
         Schema::create('post_tag', function (Blueprint $table) {
             $table->unsignedInteger('post_id');
             $table->unsignedInteger('tag_id');
-            $table->timestamps();
 
             $table->primary(['post_id', 'tag_id']);
 

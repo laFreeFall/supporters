@@ -64,7 +64,7 @@ class Post extends Model
      */
     public function isLiked()
     {
-        return $this->likes->where('user_id', auth()->id())->count();
+        return $this->likes->where('user_id', auth()->id())->count() > 0;
     }
 
     /**
@@ -73,5 +73,13 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    /**
+     * Filter query by applying filtering params
+     */
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
     }
 }

@@ -161,4 +161,16 @@ class Campaign extends Model
     {
         return $this->hasMany(Tag::class);
     }
+
+    /**
+     * Get the list of the months where posts were created
+     */
+    public static function archives()
+    {
+        return Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) amount')
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(created_at) desc')
+            ->get()
+            ->toArray();
+    }
 }

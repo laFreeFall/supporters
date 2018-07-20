@@ -26,7 +26,7 @@
 
     <div class="field is-horizontal is-grouped">
         <div class="field-body">
-            <button type="submit" class="button is-link is-fullwidth">
+            <button type="submit" class="button {{ $campaign->colors->color_class }} is-fullwidth">
                 {{ $button }}
             </button>
         </div>

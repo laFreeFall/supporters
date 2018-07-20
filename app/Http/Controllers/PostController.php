@@ -8,22 +8,28 @@ use App\Post;
 use App\Http\Requests\StorePostRequest;
 use App\PostPrivacy;
 use App\Tag;
+use App\Filters\PostFilters;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the campaign`s posts.
      *
-     * @param  Campaign  $campaign
+     * @param  Campaign $campaign
+     * @param  PostFilters $filters
      * @return \Illuminate\Http\Response
      */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign, PostFilters $filters)
     {
-        $campaign->load('posts.likes');
-        $tags = $campaign->tags()->withCount('posts')->orderBy('posts_count', 'desc')->get();
+        $posts = Post::where('campaign_id', $campaign->id)
+            ->filter($filters)
+            ->with('likes')
+            ->withCount('comments')
+            ->get();
+
         $emptyTag = new Tag();
 
-        return view('campaigns.posts.index', compact('campaign', 'tags', 'emptyTag'));
+        return view('campaigns.posts.index', compact('campaign', 'posts', 'emptyTag'));
     }
 
     /**
