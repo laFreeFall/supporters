@@ -21,11 +21,12 @@ class PostController extends Controller
      */
     public function index(Campaign $campaign, PostFilters $filters)
     {
-        $posts = Post::where('campaign_id', $campaign->id)
+        $posts = Post::latest()
+            ->where('campaign_id', $campaign->id)
             ->filter($filters)
             ->with('likes')
             ->withCount('comments')
-            ->get();
+            ->paginate(10);
 
         $emptyTag = new Tag();
 
@@ -83,10 +84,14 @@ class PostController extends Controller
      */
     public function show(Campaign $campaign, Post $post)
     {
-        $post->load('comments.author.profile', 'comments.likes');
+        $comments = Comment::latest()
+            ->where('post_id', $post->id)
+            ->with('author.profile', 'likes')
+            ->paginate(10);
+
         $emptyComment = new Comment();
 
-        return view('campaigns.posts.show', compact('campaign', 'post', 'emptyComment'));
+        return view('campaigns.posts.show', compact('campaign', 'post', 'comments', 'emptyComment'));
     }
 
     /**

@@ -31,6 +31,9 @@
                         @include('campaigns._preview', ['campaign' => $campaign, 'full' => false])
                     </div>
                 @endforeach
+                <div class="m-t-md">
+                    {{ $campaigns->links() }}
+                </div>
             </div>
         </div>
     </section>

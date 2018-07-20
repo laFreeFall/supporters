@@ -15,13 +15,16 @@
                 @include('campaigns.posts._show', ['campaign' => $campaign, 'post' => $post])
 
                 <div id="comments">
-                    @forelse($post->comments as $comment)
+                    @forelse($comments as $comment)
                         @include('campaigns.posts.comments._show', ['campaign' => $campaign, 'post' => $post, 'comment' => $comment])
                     @empty
                         <div class="notification">
                             There are no comments at the moment. Write first one below!
                         </div>
                     @endforelse
+                    <div class="m-t-md">
+                        {{ $comments->links() }}
+                    </div>
                 </div>
 
                 @include('campaigns.posts.comments._form', [

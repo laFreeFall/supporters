@@ -16,7 +16,7 @@
                     <h2 class="is-size-3 m-b-md">
                         Campaign posts
                         <span class="tag is-medium">
-                            {{ $posts->count() }}
+                            {{ $posts->total() }}
                         </span>
                     </h2>
                     @can('update', $campaign)
@@ -28,6 +28,9 @@
                 @foreach($posts as $post)
                     @include('campaigns.posts._show', ['campaign' => $campaign, 'post' => $post])
                 @endforeach
+                <div class="m-t-md">
+                    {{ $posts->links() }}
+                </div>
             </div>
             <div class="column is-2">
                 <div class="columns is-multiline">

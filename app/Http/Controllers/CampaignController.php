@@ -25,7 +25,7 @@ class CampaignController extends Controller
     public function index()
     {
         $campaigns = Campaign::where('active', true)->withCount('followers', 'posts')->get();
-        $categories = Category::select('id', 'title')->paginate(12);
+        $categories = Category::select('id', 'title')->paginate(9);
 
         return view('campaigns.index', compact('campaigns', 'categories'));
     }
