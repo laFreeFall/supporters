@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProfileRequest;
 use App\Profile;
-use App\User;
-use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -35,7 +33,7 @@ class ProfileController extends Controller
     /**
      * Store a newly created user`s profile in storage.
      *
-     * @param  StoreProfileRequest  $request
+     * @param  \App\Http\Requests\StoreProfileRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -62,14 +60,14 @@ class ProfileController extends Controller
         ]);
 
         return redirect(route('profiles.show', ['profile' => $profile]))->with(
-            'flash_body', 'Profile has been successfully created'
+            'flash_body', 'Profile has been created successfully!'
         );
     }
 
     /**
      * Display the specified user`s profile.
      *
-     * @param  Profile  $profile
+     * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
     public function show(Profile $profile)
@@ -82,7 +80,7 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the authenticated user`s profile.
      *
-     * @param  Profile  $profile
+     * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -96,8 +94,8 @@ class ProfileController extends Controller
     /**
      * Update the authenticated user`s profile in storage.
      *
-     * @param  Profile  $profile
-     * @param  StoreProfileRequest  $request
+     * @param  \App\Profile  $profile
+     * @param  \App\Http\Requests\StoreProfileRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -124,7 +122,7 @@ class ProfileController extends Controller
         ]);
 
         return redirect(route('profiles.show', ['profile' => $profile]))->with(
-            'flash_body', 'Profile has been successfully updated'
+            'flash_body', 'Profile has been updated successfully!'
         );
     }
 }

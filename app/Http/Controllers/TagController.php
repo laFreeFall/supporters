@@ -5,15 +5,22 @@ namespace App\Http\Controllers;
 use App\Campaign;
 use App\Tag;
 use App\Http\Requests\StoreTagRequest;
-use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
     /**
+     * Instantiate a new TagController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Store a newly created campaign`s tag in storage.
      *
-     * @param  Campaign  $campaign
-     * @param  StoreTagRequest  $request
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Http\Requests\StoreTagRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -24,15 +31,15 @@ class TagController extends Controller
         $campaign->tags()->create($request->validated());
 
         return redirect(route('campaigns.posts.index', ['campaign' => $campaign]))->with(
-            'flash_body', 'Tag successfully created'
+            'flash_body', 'Tag has been created successfully!'
         );
     }
 
     /**
      * Remove the specified campaign`s tag from storage.
      *
-     * @param  Campaign  $campaign
-     * @param  Tag  $tag
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
@@ -43,7 +50,7 @@ class TagController extends Controller
         $tag->delete();
 
         return redirect(route('campaigns.posts.index', ['campaign' => $campaign]))->with(
-            'flash_body', 'Tag successfully deleted'
+            'flash_body', 'Tag has been deleted successfully!'
         );
     }
 }

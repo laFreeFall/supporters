@@ -3,14 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
-use Illuminate\Http\Request;
 
 class CommentLikeController extends Controller
 {
     /**
+     * Instantiate a new CommentLikeController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Store a newly created comment like in storage.
      *
-     * @param  \App\Comment $comment
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -25,7 +32,7 @@ class CommentLikeController extends Controller
         return response([
             'amount' => $comment->likes()->count(),
             'value' => true,
-            'flash' => 'User successfully liked the comment'
+            'flash' => 'User has liked the comment successfully!'
         ], 200);
     }
 
@@ -45,7 +52,7 @@ class CommentLikeController extends Controller
         return response([
             'amount' => $comment->likes()->count(),
             'value' => false,
-            'flash' => 'User successfully unliked the comment'
+            'flash' => 'User has taken his like back successfully!'
         ], 200);
     }
 }

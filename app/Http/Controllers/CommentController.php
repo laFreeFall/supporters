@@ -6,16 +6,23 @@ use App\Campaign;
 use App\Post;
 use App\Comment;
 use App\Http\Requests\StoreCommentRequest;
-use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
     /**
+     * Instantiate a new CommentController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Store a newly created campaign`s post`s comment in storage.
      *
-     * @param  Campaign  $campaign
-     * @param  Post  $post
-     * @param  StoreCommentRequest  $request
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Post  $post
+     * @param  \App\Http\Requests\StoreCommentRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Campaign $campaign, Post $post, StoreCommentRequest $request)
@@ -25,15 +32,17 @@ class CommentController extends Controller
             'body' => $request->body
         ]);
 
-        return redirect(route('campaigns.posts.show', ['campaign' => $campaign, 'post' => $post]));
+        return redirect(route('campaigns.posts.show', ['campaign' => $campaign, 'post' => $post]))->with(
+            'flash_body', 'Comment has been created successfully!'
+        );
     }
 
     /**
      * Show the form for editing the specified campaign`s post` comment.
      *
-     * @param  Campaign  $campaign
-     * @param  Post  $post
-     * @param  Comment  $comment
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Post  $post
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -47,10 +56,10 @@ class CommentController extends Controller
     /**
      * Update the specified campaign`s post`s comment in storage.
      *
-     * @param  Campaign  $campaign
-     * @param  Post  $post
-     * @param  Comment  $comment
-     * @param  StoreCommentRequest  $request
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Post  $post
+     * @param  \App\Comment  $comment
+     * @param  \App\Http\Requests\StoreCommentRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -61,16 +70,16 @@ class CommentController extends Controller
         $comment->update($request->validated());
 
         return redirect(route('campaigns.posts.show', ['campaign' => $campaign, 'post' => $post]))->with(
-            'flash_body', 'Comment has been successfully created'
-        );;
+            'flash_body', 'Comment has been changed successfully!'
+        );
     }
 
     /**
      * Remove the specified campaign`s post`s comment from storage.
      *
-     * @param  Campaign  $campaign
-     * @param  Post  $post
-     * @param  Comment $comment
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Post  $post
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
@@ -81,7 +90,7 @@ class CommentController extends Controller
         $comment->delete();
 
         return redirect(route('campaigns.posts.show', ['campaign' => $campaign, 'post' => $post]))->with(
-            'flash_body', 'Comment has been successfully deleted'
+            'flash_body', 'Comment has been deleted successfully!'
         );
     }
 }

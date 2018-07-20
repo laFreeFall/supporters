@@ -47,7 +47,7 @@ class CampaignController extends Controller
     /**
      * Store a newly created campaign in storage.
      *
-     * @param  StoreCampaignRequest  $request
+     * @param  \App\Http\Requests\StoreCampaignRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCampaignRequest $request)
@@ -67,7 +67,7 @@ class CampaignController extends Controller
         ]);
 
         return redirect(route('campaigns.preview', $campaign))->with(
-            'flash_body', 'Preview of the campaign has been successfully created'
+            'flash_body', 'Preview of the campaign has been created successfully!'
         );
     }
 
@@ -105,7 +105,7 @@ class CampaignController extends Controller
      * Update the specified campaign in storage.
      *
      * @param  \App\Campaign  $campaign
-     * @param  StoreCampaignRequest  $request
+     * @param  \App\Http\Requests\StoreCampaignRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -128,7 +128,7 @@ class CampaignController extends Controller
         ]);
 
         return redirect(route('campaigns.show', ['campaign' => $campaign]))->with(
-            'flash_body', 'Campaign has been successfully updated'
+            'flash_body', 'Campaign has been updated successfully!'
         );
     }
 
@@ -146,7 +146,7 @@ class CampaignController extends Controller
         $campaign->delete();
 
         return redirect('campaigns.index')->with(
-            'flash_body', 'Campaign has been successfully deleted'
+            'flash_body', 'Campaign has been deleted successfully!'
         );
     }
 
@@ -165,14 +165,14 @@ class CampaignController extends Controller
         $campaign->save();
 
         return redirect(route('campaigns.show', $campaign))->with(
-            'flash_body', 'Campaign has been successfully archived'
+            'flash_body', 'Campaign has been successfully archived!'
         );
     }
 
     /**
      * Make the specified campaign active.
      *
-     * @param  \App\Campaign $campaign
+     * @param  \App\Campaign  $campaign
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -184,14 +184,14 @@ class CampaignController extends Controller
         $campaign->save();
 
         return redirect(route('campaigns.show', $campaign))->with(
-            'flash_body', 'Campaign has been successfully restored'
+            'flash_body', 'Campaign has been restored successfully!'
         );
     }
 
     /**
      * Show the preview of the specified campaign after its creating.
      *
-     * @param  \App\Campaign $campaign
+     * @param  \App\Campaign  $campaign
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

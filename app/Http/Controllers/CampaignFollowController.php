@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 
 use \App\Campaign;
 use \App\User;
-use Illuminate\Http\Request;
 
 class CampaignFollowController extends Controller
 {
     /**
+     * Instantiate a new CampaignFollowController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Store a newly created following relationship in storage.
      *
-     * @param  \App\Campaign $campaign
-     * @param  \App\User $user
+     * @param  \App\Campaign  $campaign
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -24,7 +31,7 @@ class CampaignFollowController extends Controller
 
         return response([
             'value' => true,
-            'flash' => 'User successfully followed the campaign'
+            'flash' => 'User has followed the campaign successfully!'
         ], 200);
     }
 
@@ -44,7 +51,7 @@ class CampaignFollowController extends Controller
 
         return response([
             'value' => false,
-            'flash' => 'User successfully unfollowed the campaign'
+            'flash' => 'User has unfollowed the campaign successfully!'
         ], 200);
     }
 }

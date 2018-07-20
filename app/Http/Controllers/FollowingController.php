@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Campaign;
 use App\User;
-use Illuminate\Http\Request;
 
 class FollowingController extends Controller
 {
+    /**
+     * Instantiate a new FollowingController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Store a newly created following relationship in storage.
      *
@@ -19,7 +26,10 @@ class FollowingController extends Controller
     {
         $campaign->followers()->attach($user);
 
-        return response('User successfully followed the campaign', 200);
+        return response([
+            'value' => true,
+            'flash' => 'User has followed the campaign successfully!'
+        ], 200);
     }
 
     /**
@@ -34,6 +44,9 @@ class FollowingController extends Controller
     {
         $campaign->followers()->detach($user);
 
-        return response('User successfully unfollowed the campaign', 200);
+        return response([
+            'value' => false,
+            'flash' => 'User has unfollowed the campaign successfully!'
+        ], 200);
     }
 }

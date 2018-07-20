@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePledgeRequest;
 use App\Campaign;
 use App\Pledge;
+use App\Http\Requests\StorePledgeRequest;
 
 class PledgeController extends Controller
 {
@@ -19,7 +19,7 @@ class PledgeController extends Controller
     /**
      * Display a listing of the campaign`s pledges.
      *
-     * @param  Campaign  $campaign
+     * @param  \App\Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
     public function index(Campaign $campaign)
@@ -32,7 +32,7 @@ class PledgeController extends Controller
     /**
      * Show the form for creating a new campaign`s pledge.
      *
-     * @param  Campaign  $campaign
+     * @param  \App\Campaign  $campaign
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -48,8 +48,8 @@ class PledgeController extends Controller
     /**
      * Store a newly created campaign`s pledge in storage.
      *
-     * @param  Campaign  $campaign
-     * @param  StorePledgeRequest $request
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Http\Requests\StorePledgeRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -60,15 +60,15 @@ class PledgeController extends Controller
         $campaign->pledges()->create($request->validated());
 
         return redirect(route('campaigns.pledges.index', ['campaign' => $campaign]))->with(
-            'flash_body', 'Goal has been successfully created'
+            'flash_body', 'Goal has been created successfully!'
         );
     }
 
     /**
      * Show the form for editing the specified campaign`s pledge.
      *
-     * @param  Campaign  $campaign
-     * @param  Pledge  $pledge
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Pledge  $pledge
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -82,9 +82,9 @@ class PledgeController extends Controller
     /**
      * Update the specified campaign`s pledge in storage.
      *
-     * @param  Campaign  $campaign
-     * @param  Pledge  $pledge
-     * @param  StorePledgeRequest  $request
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Pledge  $pledge
+     * @param  \App\Http\Requests\StorePledgeRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -95,15 +95,15 @@ class PledgeController extends Controller
         $pledge->update($request->validated());
 
         return redirect(route('campaigns.pledges.index', ['campaign' => $campaign]))->with(
-            'flash_body', 'Goal has been successfully updated'
+            'flash_body', 'Goal has been updated successfully!'
         );
     }
 
     /**
      * Remove the specified campaign`s pledge from storage.
      *
-     * @param  Campaign  $campaign
-     * @param  Pledge  $pledge
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Pledge  $pledge
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
@@ -114,7 +114,7 @@ class PledgeController extends Controller
         $pledge->delete();
 
         return redirect(route('campaigns.pledges.index', ['campaign' => $campaign]))->with(
-            'flash_body', 'Goal has been successfully deleted'
+            'flash_body', 'Goal has been deleted successfully!'
         );
     }
 }

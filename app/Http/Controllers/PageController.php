@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\User;
-use Illuminate\Http\Request;
-
 class PageController extends Controller
 {
     /**
@@ -20,12 +16,10 @@ class PageController extends Controller
     /**
      * Tests some stuff.
      *
+     * @return mixed
      */
     public function test()
     {
-        $post = Post::first();
-        $user = User::first();
-        $post->likes()->create(['user_id' => $user->id]);
         return 'test';
     }
 }

@@ -5,18 +5,26 @@ namespace App\Http\Controllers;
 use App\Campaign;
 use App\Comment;
 use App\Post;
-use App\Http\Requests\StorePostRequest;
 use App\PostPrivacy;
 use App\Tag;
+use App\Http\Requests\StorePostRequest;
 use App\Filters\PostFilters;
 
 class PostController extends Controller
 {
     /**
+     * Instantiate a new PostController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
+    /**
      * Display a listing of the campaign`s posts.
      *
-     * @param  Campaign $campaign
-     * @param  PostFilters $filters
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Filters\PostFilters  $filters
      * @return \Illuminate\Http\Response
      */
     public function index(Campaign $campaign, PostFilters $filters)
@@ -36,7 +44,7 @@ class PostController extends Controller
     /**
      * Show the form for creating a new campaign`s post.
      *
-     * @param  Campaign  $campaign
+     * @param  \App\Campaign  $campaign
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -54,8 +62,8 @@ class PostController extends Controller
     /**
      * Store a newly created campaign`s post in storage.
      *
-     * @param  Campaign  $campaign
-     * @param  StorePostRequest  $request
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Http\Requests\StorePostRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -72,14 +80,16 @@ class PostController extends Controller
 
         $post->tags()->attach($request->tags);
 
-        return redirect(route('campaigns.posts.index', ['campaign' => $campaign]));
+        return redirect(route('campaigns.posts.index', ['campaign' => $campaign]))->with(
+            'flash_body', 'Post has been created successfully!'
+        );
     }
 
     /**
      * Display the specified post.
      *
-     * @param  Campaign  $campaign
-     * @param  Post $post
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function show(Campaign $campaign, Post $post)
@@ -97,8 +107,8 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified campaign`s post.
      *
-     * @param  Campaign  $campaign
-     * @param  Post  $post
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -114,9 +124,9 @@ class PostController extends Controller
     /**
      * Update the specified campaign`s post in storage.
      *
-     * @param  Campaign  $campaign
-     * @param  Post  $post
-     * @param  StorePostRequest  $request
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Post  $post
+     * @param  \App\Http\Requests\StorePostRequest  $request
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -132,14 +142,16 @@ class PostController extends Controller
 
         $post->tags()->sync($request->tags);
 
-        return redirect(route('campaigns.posts.show', ['campaign' => $campaign, 'post' => $post]));
+        return redirect(route('campaigns.posts.show', ['campaign' => $campaign, 'post' => $post]))->with(
+            'flash_body', 'Post has been changed successfully!'
+        );
     }
 
     /**
      * Remove the specified campaign`s post from storage.
      *
-     * @param  Campaign $campaign
-     * @param  Post $post
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
@@ -149,6 +161,8 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect(route('campaigns.posts.index', ['campaign' => $campaign]));
+        return redirect(route('campaigns.posts.index', ['campaign' => $campaign]))->with(
+            'flash_body', 'Post has been deleted successfully!'
+        );
     }
 }

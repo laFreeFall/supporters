@@ -5,16 +5,23 @@ namespace App\Http\Controllers;
 use App\Campaign;
 use App\Post;
 use App\Tag;
-use Illuminate\Http\Request;
 
 class PostTagController extends Controller
 {
     /**
+     * Instantiate a new PostTagController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Store a record of attaching tag to the post in storage.
      *
-     * @param  Campaign  $campaign
-     * @param  Post  $post
-     * @param  Tag  $tag
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Post  $post
+     * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -25,16 +32,16 @@ class PostTagController extends Controller
         $post->tags()->attach($tag);
 
         return redirect(route('campaigns.posts.show', ['campaign' => $campaign, 'post' => $post]))->with(
-            'flash_body', 'Tag successfully attached'
+            'flash_body', 'Tag has been attached successfully!'
         );
     }
 
     /**
      * Remove the record of linked tag and post from storage.
      *
-     * @param  Campaign  $campaign
-     * @param  Post  $post
-     * @param  Tag  $tag
+     * @param  \App\Campaign  $campaign
+     * @param  \App\Post  $post
+     * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
@@ -45,7 +52,7 @@ class PostTagController extends Controller
         $post->tags()->detach($tag);
 
         return redirect(route('campaigns.posts.show', ['campaign' => $campaign, 'post' => $post]))->with(
-            'flash_body', 'Tag successfully detached'
+            'flash_body', 'Tag has been detached successfully!'
         );
     }
 }

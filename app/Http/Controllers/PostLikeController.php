@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Illuminate\Http\Request;
 
 class PostLikeController extends Controller
 {
+    /**
+     * Instantiate a new PostLikeController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Store a newly created post like in storage.
      *
@@ -25,7 +32,7 @@ class PostLikeController extends Controller
         return response([
             'amount' => $post->likes()->count(),
             'value' => true,
-            'flash' => 'User successfully liked the post'
+            'flash' => 'User has liked the post successfully!'
         ], 200);
     }
 
@@ -45,7 +52,7 @@ class PostLikeController extends Controller
         return response([
             'amount' => $post->likes()->count(),
             'value' => false,
-            'flash' => 'User successfully unliked the post'
+            'flash' => 'User has taken his like back successfully!'
         ], 200);
     }
 }
