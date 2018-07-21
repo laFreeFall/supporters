@@ -54,3 +54,31 @@ progress::-webkit-progress-value {
 .overflow-scroll {
   overflow-y: scroll;
 }
+
+@import "~bulma/sass/utilities/initial-variables";
+
+//@each $size in $sizes {
+//  $i: index($sizes, $size);
+//  h#{$i} {
+//    font-size: $size;
+//  }
+//}
+
+h1 {
+  font-size: $size-1;
+}
+h2 {
+  font-size: $size-2;
+}
+h3 {
+  font-size: $size-3;
+}
+h4 {
+  font-size: $size-4;
+}
+h5 {
+  font-size: $size-5;
+}
+h6 {
+  font-size: $size-6;
+}

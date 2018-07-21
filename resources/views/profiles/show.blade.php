@@ -32,9 +32,9 @@
                                 <p class="heading">
                                     {{ str_plural('Campaign', $profile->user->campaignsCount) }} run
                                 </p>
-                                <p class="title">
+                                <a href="{{ route('campaigns.index', ['by' => $profile->username]) }}" class="title">
                                     {{ $profile->user->campaignsCount }}
-                                </p>
+                                </a>
                             </div>
                         </div>
                         <div class="level-item is-narrow has-text-centered">

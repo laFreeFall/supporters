@@ -173,4 +173,12 @@ class Campaign extends Model
             ->get()
             ->toArray();
     }
+
+    /**
+     * Filter query by applying filtering params
+     */
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
 }
