@@ -27,4 +27,12 @@ class Pledge extends Model
     {
         return $this->belongsTo(Campaign::class);
     }
+
+    /**
+     * Get the supports records associated with the pledge.
+     */
+    public function supports()
+    {
+        return $this->hasMany(Support::class);
+    }
 }

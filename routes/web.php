@@ -44,3 +44,7 @@ Route::delete('comments/{comment}/like', 'CommentLikeController@destroy')->name(
 // Campaign Tags
 Route::post('campaign/{campaign}/tags', 'TagController@store')->name('campaigns.tags.store');
 Route::delete('campaign/{campaign}/tags/{tag}/', 'TagController@destroy')->name('campaigns.tags.destroy');
+
+// Campaigns Supports
+Route::post('pledges/{pledge}/user/{user}', 'SupportController@store')->name('pledges.users.store');
+Route::delete('pledges/{pledge}/user/{user}', 'SupportController@destroy')->name('pledges.users.destroy');

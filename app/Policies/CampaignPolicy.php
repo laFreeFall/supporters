@@ -69,4 +69,16 @@ class CampaignPolicy
     {
         return $campaign->followers()->where('user_id', $user->id)->exists();
     }
+
+    /**
+     * Determine whether the user can support the campaign.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Campaign  $campaign
+     * @return bool
+     */
+    public function support(User $user, Campaign $campaign)
+    {
+        return $user->id !== $campaign->user_id;
+    }
 }

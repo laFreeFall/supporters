@@ -55,8 +55,18 @@
                                             {{ csrf_field() }}
                                             {!! method_field('delete') !!}
                                         </form>
-                                    @else
-                                        <a href="#" class="card-footer-item">Support for ${{ $pledge->amount }}</a>
+                                    {{--@else--}}
+                                        <a
+                                            href="{{ route('pledges.users.store', ['pledge' => $pledge, 'user' => auth()->user()]) }}"
+                                            class="card-footer-item button {{ $campaign->colors->color_class }}"
+                                            {{ $currentSupport ? $currentSupport->amount >= $pledge->amount ? 'disabled' : '' : '' }}
+                                            onclick="event.preventDefault(); document.getElementById('support-pledge-{{ $pledge->id }}-form').submit();"
+                                        >
+                                            Support for ${{ $pledge->amount }}
+                                        </a>
+                                        <form id="support-pledge-{{ $pledge->id }}-form" action="{{ route('pledges.users.store', ['pledge' => $pledge, 'user' => auth()->user()]) }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
                                     @endcan
                                 </div>
                             </div>
