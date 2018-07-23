@@ -10,6 +10,12 @@
         </div>
     </div>
     <div class="card-footer">
-        <a href="{{ route('campaigns.pledges.index', ['campaign' => $campaign]) }}" class="card-footer-item {{ $colors->background_class }} {{ $colors->text_class }}">Support for ${{ $pledge->amount }}</a>
+        <a
+            href="{{ route('campaigns.pledges.index', ['campaign' => $campaign]) }}"
+            class="card-footer-item button {{ $colors->color_class }}"
+            {{ $currentSupport ? $currentSupport->amount >= $pledge->amount ? 'disabled' : '' : '' }}
+        >
+            Support for ${{ $pledge->amount }}
+        </a>
     </div>
 </div>

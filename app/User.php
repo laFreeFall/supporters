@@ -217,4 +217,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Activity::class);
     }
+
+    /**
+     * Get the campaigns supports records related to the user.
+     */
+    public function supports()
+    {
+        return $this->hasMany(Support::class);
+    }
 }
