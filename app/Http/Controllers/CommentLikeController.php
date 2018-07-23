@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Like;
 
 class CommentLikeController extends Controller
 {

@@ -73,8 +73,17 @@ class ProfileController extends Controller
     public function show(Profile $profile)
     {
         $profile->load('user.campaignsCount', 'user.followsCount', 'user.postsCount', 'user.commentsCount', 'user.likesCount');
+        $activities = $profile->user
+            ->activities()
+            ->latest()
+            ->with('subject')
+            ->take(10)
+            ->get();
+        $activities = $activities->groupBy(function($activity) {
+            return $activity->created_at->format('d M Y');
+        });
 
-        return view('profiles.show', compact('profile'));
+        return view('profiles.show', compact('profile', 'activities'));
     }
 
     /**

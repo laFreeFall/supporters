@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends Model
 {
+    use SoftDeletes, RecordsActivity;
+
     /**
      * The table associated with the model.
      *
@@ -21,7 +24,14 @@ class Comment extends Model
     protected $guarded = [];
 
     /**
-     * Get the campaign associated with the post.
+     * The relations that loads by default with the instance.
+     *
+     * @var array
+     */
+    protected $with = ['post'];
+
+    /**
+     * Get the post associated with the post.
      */
     public function post()
     {
@@ -29,8 +39,8 @@ class Comment extends Model
     }
 
     /**
-     * Get the author of the comment.
-     */
+ * Get the author of the comment.
+ */
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');

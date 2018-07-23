@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use SoftDeletes, RecordsActivity;
+
     /**
      * The table associated with the model.
      *
@@ -25,7 +28,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $with = ['privacy', 'tags'];
+    protected $with = ['privacy', 'tags', 'campaign'];
 
     /**
      * Get the campaign associated with the post.
