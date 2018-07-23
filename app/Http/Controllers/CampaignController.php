@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Campaign;
 use App\Category;
 use App\Color;
+use App\Filters\CampaignFilters;
 use App\Http\Requests\StoreCampaignRequest;
 
 class CampaignController extends Controller
@@ -20,12 +21,16 @@ class CampaignController extends Controller
     /**
      * Display a listing of the campaigns.
      *
+     * @param  \App\Filters\CampaignFilters $filters
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CampaignFilters $filters)
     {
-        $campaigns = Campaign::where('active', true)->withCount('followers', 'posts')->get();
-        $categories = Category::select('id', 'title')->paginate(9);
+        $campaigns = Campaign::where('active', true)
+            ->filter($filters)
+            ->withCount('followers', 'posts')
+            ->paginate(9);
+        $categories = Category::select('id', 'title')->get();
 
         return view('campaigns.index', compact('campaigns', 'categories'));
     }

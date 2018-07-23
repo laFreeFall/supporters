@@ -28,6 +28,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * The relations that loads by default with the instance.
+     *
+     * @var array
+     */
+    protected $with = ['profile'];
+
+    /**
      * Get the user profile.
      */
     public function profile()
@@ -201,5 +208,13 @@ class User extends Authenticatable
         $related = $this->getRelation('likesCount');
 
         return ($related) ? (int) $related->count : 0;
+    }
+
+    /**
+     * Get the activities records related to the user.
+     */
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
     }
 }

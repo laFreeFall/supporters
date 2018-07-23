@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use \App\Campaign;
+use App\Follow;
 use \App\User;
 
 class CampaignFollowController extends Controller
@@ -19,15 +20,21 @@ class CampaignFollowController extends Controller
      * Store a newly created following relationship in storage.
      *
      * @param  \App\Campaign  $campaign
-     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Campaign $campaign, User $user)
+    public function store(Campaign $campaign)
     {
         $this->authorize('follow', $campaign);
 
-        $campaign->followers()->attach($user);
+//        $campaign->followers()->attach(auth()->user());
+//        We have to use direct Follow::create()
+//        Because when using attach() it doesn't trigger pivot events like create
+//        https://laracasts.com/discuss/channels/eloquent/eloquent-attach-which-event-is-fired/replies/374914
+        Follow::create([
+            'campaign_id' => $campaign->id,
+            'user_id' => auth()->id()
+        ]);
 
         return response([
             'value' => true,
@@ -39,15 +46,18 @@ class CampaignFollowController extends Controller
      * Remove the specified following relationship from storage.
      *
      * @param  \App\Campaign  $campaign
-     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function destroy(Campaign $campaign, User $user)
+    public function destroy(Campaign $campaign)
     {
         $this->authorize('unfollow', $campaign);
 
-        $campaign->followers()->detach($user);
+//        $campaign->followers()->detach(auth()->user());
+//        We have to use direct Follow::delete()
+//        Because when using attach() it doesn't trigger pivot events like create
+//        https://laracasts.com/discuss/channels/eloquent/eloquent-attach-which-event-is-fired/replies/374914
+        Follow::where(['campaign_id' => $campaign->id, 'user_id' => auth()->id()])->first()->delete();
 
         return response([
             'value' => false,

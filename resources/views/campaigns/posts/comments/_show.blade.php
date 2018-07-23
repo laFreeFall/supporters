@@ -1,4 +1,4 @@
-<article class="media">
+<article class="media" id="comment-{{ $comment->id }}">
     <figure class="media-left">
         <p class="image is-64x64">
             <img src="{{ $comment->author->profile->avatar_path }}" alt="{{ $comment->author->profile->username }}" class="is-rounded">

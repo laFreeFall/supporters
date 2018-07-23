@@ -6,7 +6,7 @@
     @endif
     <div class="message-body">
         <section class="hero is-clipped {{ $campaign->colors->color_class }} is-bold">
-            <div class="hero-body">
+            <div class="hero-body {{ $full ? '' : 'p-t-lg p-b-md' }}">
                 <div class="container">
                     <div class="columns is-vcentered">
                         <div class="col">

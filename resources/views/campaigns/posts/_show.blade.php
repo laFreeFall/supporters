@@ -6,20 +6,7 @@
     </div>
     <div class="card-content">
         <div class="content">
-            @can('view', $post)
-                {!! Markdown::convertToHtml($post->body) !!}
-                <hr>
-                @if($post->tags->count())
-                    <strong>Tags</strong>:
-                    @foreach($post->tags as $tag)
-                        <span class="tag is-light">
-                            {{ $tag->name }}
-                        </span>
-                    @endforeach
-                @endif
-            @else
-                <div class="message is-warning">YOU ARE NOT ALLOWED TO READ THIS POST</div>
-            @endcan
+            @include('campaigns.posts._show_body', compact('post'))
         </div>
     </div>
     <div class="card-footer">

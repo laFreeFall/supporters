@@ -32,9 +32,9 @@
                                 <p class="heading">
                                     {{ str_plural('Campaign', $profile->user->campaignsCount) }} run
                                 </p>
-                                <p class="title">
+                                <a href="{{ route('campaigns.index', ['by' => $profile->username]) }}" class="title">
                                     {{ $profile->user->campaignsCount }}
-                                </p>
+                                </a>
                             </div>
                         </div>
                         <div class="level-item is-narrow has-text-centered">
@@ -84,6 +84,17 @@
                             </div>
                         </div>
                     </nav>
+                    <h3 class="title is-3 has-text-centered">Last activity</h3>
+                    @forelse($activities as $date => $activity)
+                        <h4 class="has-text-centered">{{ $date }}</h4>
+                        @foreach($activity as $record)
+                            @include('profiles.activities.' . $record->type, compact('record', 'profile'))
+                        @endforeach
+                    @empty
+                        <div class="notification has-text-centered">
+                            User has not made any public actions tracked by our platform at the moment.
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </div>
