@@ -21,13 +21,6 @@ class Message extends Model
     protected $guarded = [];
 
     /**
-     * The relations that loads by default with the instance.
-     *
-     * @var array
-     */
-    protected $with = [];
-
-    /**
      * Get the author of the message.
      */
     public function author()

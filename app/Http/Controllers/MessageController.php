@@ -27,8 +27,7 @@ class MessageController extends Controller
      */
     public function index(Campaign $campaign, Request $request)
     {
-        $campaign->load('messages');
-        $messages = $campaign->messages()->with('campaign', 'parent.author.profile', 'author.profile')->get();
+        $messages = $campaign->messages()->with('likes', 'author.profile', 'parent')->get();
         $grouppedMessages = $messages->map(function($message) use ($messages) {
             if($message->repliable_id) return null;
             $message->childs = $messages->where('repliable_id', $message->id)->map(function($message) {
