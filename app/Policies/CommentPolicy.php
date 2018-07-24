@@ -43,7 +43,7 @@ class CommentPolicy
      */
     public function like(User $user, Comment $comment)
     {
-        return !$comment->likes()->where('user_id', $user->id)->exists();
+        return !$comment->likes->where('user_id', $user->id)->count() > 0;
     }
 
     /**
@@ -55,6 +55,6 @@ class CommentPolicy
      */
     public function unlike(User $user, Comment $comment)
     {
-        return $comment->likes()->where('user_id', $user->id)->exists();
+        return $comment->likes->where('user_id', $user->id)->count() > 0;
     }
 }

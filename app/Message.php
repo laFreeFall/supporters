@@ -3,18 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Comment extends Model
+class Message extends Model
 {
-    use SoftDeletes, RecordsActivity;
-
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'campaigns_posts_comments';
+    protected $table = 'campaigns_messages';
 
     /**
      * The attributes that aren't mass assignable.
@@ -28,22 +25,22 @@ class Comment extends Model
      *
      * @var array
      */
-    protected $with = ['post', 'likes'];
+    protected $with = [];
 
     /**
-     * Get the post associated with the post.
+     * Get the author of the message.
      */
-    public function post()
-    {
-        return $this->belongsTo(Post::class);
-    }
-
-    /**
- * Get the author of the comment.
- */
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * Get the campaign of the message.
+     */
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
     }
 
     /**
@@ -57,8 +54,16 @@ class Comment extends Model
     /**
      * Get the result is comment liked by authenticated user or not.
      */
-    public function isLiked()
+    public function isLikedBy($id)
     {
-        return $this->likes->where('user_id', auth()->id())->count() > 0;
+        return !! $this->likes->where('user_id', $id)->count();
+    }
+
+    /**
+     * Get the parent message of the message.
+     */
+    public function parent()
+    {
+        return $this->belongsTo(Message::class, 'repliable_id');
     }
 }

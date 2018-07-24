@@ -181,4 +181,12 @@ class Campaign extends Model
     {
         return $filters->apply($query);
     }
+
+    /**
+     * Get the messages posted on the community tab of the campaign.
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class)->latest();
+    }
 }

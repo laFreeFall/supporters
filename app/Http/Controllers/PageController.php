@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Campaign;
+use App\Message;
+
 class PageController extends Controller
 {
     /**
@@ -20,6 +23,9 @@ class PageController extends Controller
      */
     public function test()
     {
-        return 'test';
+        $campaign = Campaign::first();
+//        return 'test';
+        return Message::first();
+        return $campaign->messages;
     }
 }
