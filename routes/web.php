@@ -48,3 +48,11 @@ Route::delete('campaign/{campaign}/tags/{tag}/', 'TagController@destroy')->name(
 // Campaigns Supports
 Route::post('pledges/{pledge}/user/{user}', 'SupportController@store')->name('pledges.users.store');
 Route::delete('pledges/{pledge}/user/{user}', 'SupportController@destroy')->name('pledges.users.destroy');
+
+// Campaigns Community
+Route::get('campaigns/{campaign}/community', 'MessageController@index')->name('campaigns.messages.index');
+Route::resource('campaigns.messages', 'MessageController')->except(['index']);
+
+// Messages Likes
+Route::post('messages/{message}/like', 'MessageLikeController@store')->name('messages.likes.store');
+Route::delete('messages/{message}/like', 'MessageLikeController@destroy')->name('messages.likes.destroy');

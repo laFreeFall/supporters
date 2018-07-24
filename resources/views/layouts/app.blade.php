@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @stack('scripts')
+
 </head>
 <body>
     <div id="app">
@@ -86,6 +88,5 @@
         <flash-notification type="{{ session('flash_type') }}" title="{{ session('flash_title') }}" body="{{ session('flash_body') }}"></flash-notification>
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
-    @stack('scripts')
 </body>
 </html>

@@ -2178,6 +2178,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/RepliableTextarea.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        content: {
+            type: String,
+            default: ''
+        },
+        validationError: {
+            type: String,
+            default: ''
+        }
+    },
+
+    data: function data() {
+        return {
+            currentContent: '',
+            repliableId: 0
+        };
+    },
+
+
+    methods: {
+        prefixUsername: function prefixUsername(username) {
+            return this.currentContent.startsWith('@') ? '@' + username + ', ' + this.currentContent.split(' ').pop() : '@' + username + ', ' + this.currentContent;
+        }
+    },
+
+    created: function created() {
+        this.currentContent = this.content;
+    },
+    mounted: function mounted() {
+        var self = this;
+        window.events.$on('replyTo', function (username, id) {
+            self.currentContent = self.prefixUsername(username);
+            self.$refs.textarea.focus();
+            self.repliableId = id;
+        });
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/is-buffer/index.js":
 /***/ (function(module, exports) {
 
@@ -21726,6 +21792,68 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-33f6f5b2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/RepliableTextarea.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.repliableId !== 0
+      ? _c("input", {
+          attrs: { type: "hidden", name: "repliable_id" },
+          domProps: { value: _vm.repliableId }
+        })
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "field" }, [
+      _c("div", { staticClass: "control" }, [
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.currentContent,
+              expression: "currentContent"
+            }
+          ],
+          ref: "textarea",
+          staticClass: "textarea",
+          class: { "is-danger": _vm.validationError },
+          attrs: { name: "body", placeholder: "Post your message..." },
+          domProps: { value: _vm.currentContent },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.currentContent = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _vm.validationError
+        ? _c("p", { staticClass: "help is-danger has-text-weight-bold" }, [
+            _vm._v(_vm._s(_vm.validationError))
+          ])
+        : _vm._e()
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-33f6f5b2", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4e9f145f\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ProfileFormAvatar.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34384,6 +34512,9 @@ window.events = new Vue();
 window.flash = function (type, body, title) {
     window.events.$emit('flash', type, body, title);
 };
+window.replyTo = function (username, id) {
+    window.events.$emit('replyTo', username, id);
+};
 
 
 Vue.component('input-tag', __WEBPACK_IMPORTED_MODULE_1_vue_input_tag___default.a);
@@ -34395,6 +34526,7 @@ Vue.component('flash-notification', __webpack_require__("./resources/assets/js/c
 Vue.component('like-comment-button', __webpack_require__("./resources/assets/js/components/LikeCommentButton.vue"));
 Vue.component('like-post-button', __webpack_require__("./resources/assets/js/components/LikePostButton.vue"));
 Vue.component('markdown-textarea', __webpack_require__("./resources/assets/js/components/MarkdownTextarea.vue"));
+Vue.component('repliable-textarea', __webpack_require__("./resources/assets/js/components/RepliableTextarea.vue"));
 
 Vue.filter('pluralize', function (word, amount) {
     return amount > 1 || amount === 0 ? word + 's' : word;
@@ -34763,6 +34895,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-4e9f145f", Component.options)
   } else {
     hotAPI.reload("data-v-4e9f145f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/RepliableTextarea.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/RepliableTextarea.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-33f6f5b2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/RepliableTextarea.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\RepliableTextarea.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-33f6f5b2", Component.options)
+  } else {
+    hotAPI.reload("data-v-33f6f5b2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

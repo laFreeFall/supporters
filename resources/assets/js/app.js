@@ -27,6 +27,9 @@ window.events = new Vue()
 window.flash = function(type, body, title) {
     window.events.$emit('flash', type, body, title)
 }
+window.replyTo = function(username, id) {
+    window.events.$emit('replyTo', username, id)
+}
 
 import InputTag from 'vue-input-tag'
 Vue.component('input-tag', InputTag)
@@ -38,6 +41,7 @@ Vue.component('flash-notification', require('./components/FlashNotification.vue'
 Vue.component('like-comment-button', require('./components/LikeCommentButton.vue'))
 Vue.component('like-post-button', require('./components/LikePostButton.vue'))
 Vue.component('markdown-textarea', require('./components/MarkdownTextarea.vue'))
+Vue.component('repliable-textarea', require('./components/RepliableTextarea.vue'))
 
 Vue.filter('pluralize', (word, amount) => (amount > 1 || amount === 0) ? `${word}s` : word)
 

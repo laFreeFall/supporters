@@ -33,7 +33,7 @@
         name="body"
         placeholder="Write thoughts you want to share with your audience here..."
         content="{{ old('body', $post->body?? '') }}"
-        errors="{{ $errors->has('body') ? $errors->first('body') : '' }}"
+        validation-error="{{ $errors->has('body') ? $errors->first('body') : '' }}"
     >
     </markdown-textarea>
 

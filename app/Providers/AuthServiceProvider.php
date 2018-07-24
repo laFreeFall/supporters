@@ -10,7 +10,8 @@ use App\Post;
 use App\Policies\PostPolicy;
 use App\Comment;
 use App\Policies\CommentPolicy;
-use Illuminate\Support\Facades\Gate;
+use App\Message;
+use App\Policies\MessagePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -24,7 +25,8 @@ class AuthServiceProvider extends ServiceProvider
         Campaign::class => CampaignPolicy::class,
         Profile::class => ProfilePolicy::class,
         Post::class => PostPolicy::class,
-        Comment::class => CommentPolicy::class
+        Comment::class => CommentPolicy::class,
+        Message::class => MessagePolicy::class
     ];
 
     /**
