@@ -57,7 +57,12 @@ class CampaignFollowController extends Controller
 //        We have to use direct Follow::delete()
 //        Because when using attach() it doesn't trigger pivot events like create
 //        https://laracasts.com/discuss/channels/eloquent/eloquent-attach-which-event-is-fired/replies/374914
-        Follow::where(['campaign_id' => $campaign->id, 'user_id' => auth()->id()])->first()->delete();
+        Follow::where([
+                'campaign_id' => $campaign->id,
+                'user_id' => auth()->id()
+            ])
+            ->first()
+            ->delete();
 
         return response([
             'value' => false,

@@ -13,14 +13,14 @@ class Like extends Model
     {
         parent::boot();
         static::deleting(function($like) {
-            $like->likeable->activities->where('type', 'created_' . strtolower(class_basename($like->likeable)) . '_like')->each->delete();
+            $like->likeable->activities->where('type', 'liked_' . strtolower(class_basename($like->likeable)))->each->delete();
         });
 
         static::created(function($like) {
             auth()->user()->activities()->create([
                 'subject_id' => $like->likeable->id,
                 'subject_type' => get_class($like->likeable),
-                'type' => 'created_' . strtolower(class_basename($like->likeable)) . '_like'
+                'type' => 'liked_' . strtolower(class_basename($like->likeable))
             ]);
         });
     }

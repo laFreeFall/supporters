@@ -22,7 +22,10 @@ class PostPolicy
         if($post->privacy->value === 'all') {
             return true;
         }
-        return true;
+        if($post->privacy->value === 'followers') {
+            return $user->isFollowingCampaign($post->campaign);
+        }
+        return false;
         // check for existing of a record in a followings table for value === 'followers'
     }
 

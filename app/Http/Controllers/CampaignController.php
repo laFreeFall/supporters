@@ -28,6 +28,7 @@ class CampaignController extends Controller
     {
         $campaigns = Campaign::where('active', true)
             ->filter($filters)
+            ->with('category', 'colors')
             ->withCount('followers', 'posts')
             ->paginate(9);
         $categories = Category::select('id', 'title')->get();
@@ -84,7 +85,7 @@ class CampaignController extends Controller
      */
     public function show(Campaign $campaign)
     {
-        $campaign->load('user.profile', 'goals.campaign', 'pledges', 'postsCount', 'followersCount');
+        $campaign->load('category', 'colors', 'user.profile', 'goals.campaign', 'pledges', 'postsCount', 'followersCount');
         $currentSupport = auth()->user()
             ->supports
             ->whereIn('pledge_id', $campaign->pledges->pluck('id'));
@@ -207,6 +208,8 @@ class CampaignController extends Controller
     public function preview(Campaign $campaign)
     {
         $this->authorize('preview', $campaign);
+
+        $campaign->load('category', 'colors');
 
         return view('campaigns.preview', compact('campaign'));
     }

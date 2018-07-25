@@ -2,12 +2,12 @@
     @slot('title')
         <strong>{{ '@'.$profile->username }}</strong>&nbsp;
         has followed new campaign&nbsp;
-        @if(! $record->subject->campaign->active)
-            <strong>"{{ $record->subject->campaign->title }}"</strong>&nbsp;
+        @if(! $record->subject->active)
+            <strong>"{{ $record->subject->title }}"</strong>&nbsp;
         @else
             <strong>
-                "<a href="{{ route('campaigns.show', ['campaign' => $record->subject->campaign]) }}">
-                    {{ $record->subject->campaign->title }}
+                "<a href="{{ route('campaigns.show', ['campaign' => $record->subject]) }}">
+                    {{ $record->subject->title }}
                 </a>"
             </strong>
             &nbsp;
@@ -16,10 +16,10 @@
     @endslot
 
     @slot('content')
-        @if($record->subject->trashed())
+        @if(! $record->subject->active)
             <div class="notification">Campaign has been closed and is not available more...</div>
         @else
-            @include('campaigns._preview', ['campaign' => $record->subject->campaign, 'full' => false])
+            @include('campaigns._preview', ['campaign' => $record->subject, 'full' => false])
         @endif
     @endslot
 @endcomponent

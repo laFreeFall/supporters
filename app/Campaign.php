@@ -3,9 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Campaign extends Model
 {
+    use SoftDeletes;
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'campaigns';
+
     /**
      * The attributes that aren't mass assignable.
      *
@@ -18,7 +27,7 @@ class Campaign extends Model
      *
      * @var array
      */
-    protected $with = ['category', 'colors'];
+//    protected $with = ['category', 'colors'];
 
     /**
      * Get the route key for the model.
@@ -93,7 +102,7 @@ class Campaign extends Model
      */
     public function postsCount()
     {
-        return $this->hasOne(Post::class)
+        return $this->hasOne(Post::class, 'campaign_id')
             ->selectRaw('campaign_id, count(*) as count')
             ->groupBy('campaign_id');
     }
@@ -126,7 +135,7 @@ class Campaign extends Model
      */
     public function followersCount()
     {
-        return $this->hasOne(Follow::class)
+        return $this->hasOne(Follow::class, 'campaign_id')
             ->selectRaw('campaign_id, count(*) as count')
             ->groupBy('campaign_id');
     }

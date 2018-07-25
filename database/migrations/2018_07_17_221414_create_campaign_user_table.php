@@ -18,7 +18,6 @@ class CreateCampaignUserTable extends Migration
             $table->unsignedInteger('campaign_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -32,7 +32,7 @@ class PostController extends Controller
         $posts = Post::latest()
             ->where('campaign_id', $campaign->id)
             ->filter($filters)
-            ->with('likes')
+            ->with('likes', 'privacy', 'tags')
             ->withCount('comments')
             ->paginate(10);
 
@@ -95,7 +95,7 @@ class PostController extends Controller
     public function show(Campaign $campaign, Post $post)
     {
         $comments = $post->comments()
-            ->with('author.profile', 'likes')
+            ->with('author.profile', 'likes', 'privacy', 'tags')
             ->latest()
             ->paginate(10);
 

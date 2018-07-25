@@ -3,17 +3,26 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Follow extends Model
 {
-    use SoftDeletes, RecordsActivity;
-
     protected static function boot()
     {
         parent::boot();
+        static::created(function($follow) {
+            auth()->user()->activities()->create([
+                'subject_id' => $follow->campaign->id,
+                'subject_type' => get_class($follow->campaign),
+                'type' => 'followed_' . strtolower(class_basename($follow->campaign))
+            ]);
+        });
         static::deleting(function($follow) {
-            $follow->activities->each->delete();
+//            $follow->activities->each->delete();
+            auth()->user()->activities()->create([
+                'subject_id' => $follow->campaign->id,
+                'subject_type' => get_class($follow->campaign),
+                'type' => 'unfollowed_' . strtolower(class_basename($follow->campaign))
+            ]);
         });
     }
 

@@ -28,7 +28,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $with = ['privacy', 'tags'];
+//    protected $with = ['privacy', 'tags'];
 
     /**
      * Get the campaign associated with the post.

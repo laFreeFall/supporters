@@ -27,6 +27,7 @@ class CreateCampaignsTable extends Migration
             $table->boolean('active')->default(true);
             $table->unsignedInteger('earnings')->default(0);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('campaigns_categories')->onDelete('cascade');
