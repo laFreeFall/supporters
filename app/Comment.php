@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends Model
 {
-    use SoftDeletes, RecordsActivity;
+    use SoftDeletes, RecordsActivity, Likeable;
 
     /**
      * The table associated with the model.
@@ -22,13 +22,6 @@ class Comment extends Model
      * @var array
      */
     protected $guarded = [];
-
-    /**
-     * The relations that loads by default with the instance.
-     *
-     * @var array
-     */
-    protected $with = ['post', 'likes'];
 
     /**
      * Get the post associated with the post.
@@ -47,18 +40,10 @@ class Comment extends Model
     }
 
     /**
-     * Get all of the post's likes.
+     * Get the activities records associated with the comment.
      */
-    public function likes()
+    public function activities()
     {
-        return $this->morphMany('App\Like', 'likeable');
-    }
-
-    /**
-     * Get the result is comment liked by authenticated user or not.
-     */
-    public function isLiked()
-    {
-        return $this->likes->where('user_id', auth()->id())->count() > 0;
+        return $this->morphMany(Activity::class, 'subject');
     }
 }

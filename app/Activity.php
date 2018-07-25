@@ -18,6 +18,13 @@ class Activity extends Model
      */
     public function subject()
     {
-        return $this->morphTo()->withTrashed();
+        return $this->morphTo();
+    }
+
+    public function getSubjectTypeAttribute($value)
+    {
+//        dd($value);
+        if (is_null($value)) return ($value);
+        return ($value . 'WithEntity');
     }
 }

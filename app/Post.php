@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use SoftDeletes, RecordsActivity;
+    use SoftDeletes, RecordsActivity, Likeable;
 
     /**
      * The table associated with the model.
@@ -28,7 +28,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $with = ['privacy', 'tags', 'campaign'];
+    protected $with = ['privacy', 'tags'];
 
     /**
      * Get the campaign associated with the post.
@@ -55,27 +55,11 @@ class Post extends Model
     }
 
     /**
-     * Get all of the post's likes.
-     */
-    public function likes()
-    {
-        return $this->morphMany('App\Like', 'likeable');
-    }
-
-    /**
-     * Get the result is post liked by authenticated user or not.
-     */
-    public function isLiked()
-    {
-        return $this->likes->where('user_id', auth()->id())->count() > 0;
-    }
-
-    /**
      * Get the tags attached to the post.
      */
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'post_tag', 'post_id', 'tag_id');
     }
 
     /**
@@ -84,5 +68,13 @@ class Post extends Model
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);
+    }
+
+    /**
+     * Get the activities records associated with the post.
+     */
+    public function activities()
+    {
+        return $this->morphMany(Activity::class, 'subject');
     }
 }

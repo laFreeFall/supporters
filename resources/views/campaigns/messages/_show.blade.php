@@ -20,7 +20,7 @@
         <nav class="level is-mobile">
             <div class="level-left">
                 <like-comment-button
-                    :like="{{ json_encode($message->isLikedBy(auth()->id())) }}"
+                    :like="{{ json_encode($message->isLiked()) }}"
                     :amount="{{ json_encode($message->likes->count()) }}"
                     :request-url="{{ json_encode(route('messages.likes.store', compact('message')))  }}"
                 >

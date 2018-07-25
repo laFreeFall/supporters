@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
+    use Likeable;
+
     /**
      * The table associated with the model.
      *
@@ -34,22 +36,6 @@ class Message extends Model
     public function campaign()
     {
         return $this->belongsTo(Campaign::class);
-    }
-
-    /**
-     * Get all of the post's likes.
-     */
-    public function likes()
-    {
-        return $this->morphMany('App\Like', 'likeable');
-    }
-
-    /**
-     * Get the result is comment liked by authenticated user or not.
-     */
-    public function isLikedBy($id)
-    {
-        return !! $this->likes->where('user_id', $id)->count();
     }
 
     /**

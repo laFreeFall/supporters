@@ -1,7 +1,7 @@
 @component('profiles.activities.activity')
     @slot('title')
         <strong>{{ '@' . $profile->username }}</strong>&nbsp;
-        has posted new&nbsp;
+        posted new&nbsp;
         <a href="{{ route('campaigns.posts.show', ['campaign' => $record->subject->post->campaign, 'post' => $record->subject->post]) . '#comments' }}">
             comment
         </a>
