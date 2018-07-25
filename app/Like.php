@@ -7,13 +7,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Like extends Model
 {
-    use SoftDeletes, RecordsActivity;
+    use SoftDeletes;
 
     protected static function boot()
     {
         parent::boot();
         static::deleting(function($like) {
-            $like->activities->each->delete();
+            $like->likeable->activities->where('type', 'created_' . strtolower(class_basename($like->likeable)) . '_like')->each->delete();
+        });
+
+        static::created(function($like) {
+            auth()->user()->activities()->create([
+                'subject_id' => $like->likeable->id,
+                'subject_type' => get_class($like->likeable),
+                'type' => 'created_' . strtolower(class_basename($like->likeable)) . '_like'
+            ]);
         });
     }
 
@@ -37,13 +45,5 @@ class Like extends Model
     public function likeable()
     {
         return $this->morphTo();
-    }
-
-    /**
-     * Get the activities records associated with the like.
-     */
-    public function activities()
-    {
-        return $this->morphMany(Activity::class, 'subject');
     }
 }

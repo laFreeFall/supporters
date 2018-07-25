@@ -72,11 +72,12 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
+//        return $profile->user->activities()->with('subject')->get();
+
         $profile->load('user.campaignsCount', 'user.followsCount', 'user.postsCount', 'user.commentsCount', 'user.likesCount');
-        $activities = $profile->user
-            ->activities()
-            ->latest()
+        $activities = $profile->user->activities()
             ->with('subject')
+            ->latest()
             ->take(10)
             ->get();
         $activities = $activities->groupBy(function($activity) {

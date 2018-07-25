@@ -94,9 +94,9 @@ class PostController extends Controller
      */
     public function show(Campaign $campaign, Post $post)
     {
-        $comments = Comment::latest()
-            ->where('post_id', $post->id)
+        $comments = $post->comments()
             ->with('author.profile', 'likes')
+            ->latest()
             ->paginate(10);
 
         $emptyComment = new Comment();

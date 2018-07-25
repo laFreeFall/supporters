@@ -1,7 +1,7 @@
 @component('profiles.activities.activity')
     @slot('title')
         <strong>{{ '@' . $profile->username }}</strong>&nbsp;
-        has liked post&nbsp;
+        created post&nbsp;
         @if($record->subject->trashed())
             <strong>"{{ $record->subject->title }}"</strong>
         @else
