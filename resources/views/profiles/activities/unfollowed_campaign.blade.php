@@ -1,7 +1,7 @@
 @component('profiles.activities.activity')
     @slot('title')
         <strong>{{ '@'.$profile->username }}</strong>&nbsp;
-        has unfollowed new campaign&nbsp;
+        has unfollowed campaign&nbsp;
         @if(! $record->subject->active)
             <strong>"{{ $record->subject->title }}"</strong>&nbsp;
         @else

@@ -12,8 +12,20 @@ class Support extends Model
     protected static function boot()
     {
         parent::boot();
-        static::deleting(function($follow) {
-            $follow->activities->each->delete();
+        static::created(function($support) {
+            auth()->user()->activities()->create([
+                'subject_id' => $support->pledge->id,
+                'subject_type' => get_class($support->pledge),
+                'type' => 'supported_' . strtolower(class_basename($support->pledge))
+            ]);
+        });
+        static::updated(function($support) {
+//            $follow->activities->each->delete();
+            auth()->user()->activities()->create([
+                'subject_id' => $support->pledge->id,
+                'subject_type' => get_class($support->pledge),
+                'type' => 'supported' . strtolower(class_basename($support->pledge))
+            ]);
         });
     }
 

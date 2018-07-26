@@ -19,6 +19,6 @@ class PostWithEntity extends Post
      *
      * @var array
      */
-    protected $with = ['campaign', 'likes', 'privacy', 'tags'];
+    protected $with = ['campaign', 'pledge', 'likes', 'privacy', 'tags'];
 
 }
