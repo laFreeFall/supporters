@@ -1780,8 +1780,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     mounted: function mounted() {
         if (this.body) {
-            var type = type ? type : 'success';
-            this.$snotify[type](this.body);
+            console.log('type:' + this.type);
+            console.log('body:' + this.body);
+            var mode = this.type ? this.type : 'success';
+            this.$snotify[mode](this.body);
         }
         window.events.$on('flash', function (body) {
             var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';

@@ -85,7 +85,11 @@
             </div>
         </nav>
         @yield('content')
-        <flash-notification type="{{ session('flash_type') }}" title="{{ session('flash_title') }}" body="{{ session('flash_body') }}"></flash-notification>
+        <flash-notification
+            body="{{ session('flash_body') }}"
+            type="{{ session('flash_type') }}"
+            title="{{ session('flash_title') }}"
+        ></flash-notification>
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>

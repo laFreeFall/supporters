@@ -8,8 +8,10 @@
 
         mounted () {
             if (this.body) {
-                const type = type ? type : 'success'
-                this.$snotify[type](this.body)
+                console.log('type:' + this.type)
+                console.log('body:' + this.body)
+                const mode = this.type ? this.type : 'success'
+                this.$snotify[mode](this.body)
             }
             window.events.$on('flash', function(body, type = 'success') {
                 this.$snotify[type](body)

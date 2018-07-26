@@ -50,7 +50,10 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if($exception instanceof AuthorizationException) {
-            return redirect(route('home'))->withErrors(['message' => 'You\'re not authorized to perform this action']);
+            return redirect()
+                ->back()
+                ->withErrors(['message' => 'You\'re not authorized to perform this action!'])
+                ->with(['flash_body' => 'You\'re not authorized to perform this action!', 'flash_type' => 'error']);
         }
         return parent::render($request, $exception);
     }
