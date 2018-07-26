@@ -138,7 +138,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get count of the campaigns posts created  by the user.
+     * Get count of the campaigns posts created by the user.
      *
      * @return int
      */
@@ -226,9 +226,67 @@ class User extends Authenticatable
         return $this->hasMany(Support::class);
     }
 
+    /**
+     * Get count of the campaigns followed by the user.
+     */
+    public function supportsCount()
+    {
+        return $this->hasOne(Support::class)
+            ->selectRaw('user_id, count(*) as count')
+            ->groupBy('user_id');
+    }
+
+    /**
+     * Get count of the campaigns followed by the user.
+     *
+     * @return int
+     */
+    public function getSupportsCountAttribute()
+    {
+        if ( ! array_key_exists('supportsCount', $this->relations))
+            $this->load('supportsCount');
+
+        $related = $this->getRelation('supportsCount');
+
+        return ($related) ? (int) $related->count : 0;
+    }
+
     public function supportAmount($campaign)
     {
         $supports = $this->supports->whereIn('pledge_id', $campaign->pledges->pluck('id'));
         return $supports->count() ? $supports->first()->pledge->amount : 0;
+    }
+
+    /**
+     * Get the campaigns messages posted by user.
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    /**
+     * Get count of the campaigns messages posted by the user.
+     */
+    public function messagesCount()
+    {
+        return $this->hasOne(Message::class)
+            ->selectRaw('user_id, count(*) as count')
+            ->groupBy('user_id');
+    }
+
+    /**
+     * Get count of the campaigns messages posted by the user.
+     *
+     * @return int
+     */
+    public function getMessagesCountAttribute()
+    {
+        if ( ! array_key_exists('messagesCount', $this->relations))
+            $this->load('messagesCount');
+
+        $related = $this->getRelation('messagesCount');
+
+        return ($related) ? (int) $related->count : 0;
     }
 }

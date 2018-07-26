@@ -198,4 +198,12 @@ class Campaign extends Model
     {
         return $this->hasMany(Message::class)->latest();
     }
+
+    /**
+     * Get the amount of users that are supporting the campaign.
+     */
+    public function getSupportersCountAttribute()
+    {
+        return Support::whereIn('pledge_id', $this->pledges->pluck('id'))->count();
+    }
 }

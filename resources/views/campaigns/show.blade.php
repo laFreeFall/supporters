@@ -74,7 +74,9 @@
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Supporters</p>
-                            <p class="title">0</p>
+                            <p class="title">
+                                {{ $campaign->supportersCount }}
+                            </p>
                         </div>
                     </div>
                     <div class="level-item has-text-centered">

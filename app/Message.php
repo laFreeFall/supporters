@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Message extends Model
 {
-    use Likeable;
+    use SoftDeletes, RecordsActivity, Likeable;
 
     /**
      * The table associated with the model.

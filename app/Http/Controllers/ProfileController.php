@@ -74,7 +74,7 @@ class ProfileController extends Controller
     {
 //        return $profile->user->activities()->with('subject')->get();
 
-        $profile->load('user.campaignsCount', 'user.followsCount', 'user.postsCount', 'user.commentsCount', 'user.likesCount');
+        $profile->load('user.campaignsCount', 'user.followsCount', 'user.supportsCount', 'user.postsCount', 'user.commentsCount', 'user.messagesCount', 'user.likesCount');
         $activities = $profile->user->activities()
             ->with('subject')
             ->latest()

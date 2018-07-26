@@ -49,8 +49,12 @@
                         </div>
                         <div class="level-item is-narrow has-text-centered">
                             <div>
-                                <p class="heading">Campaigns supported</p>
-                                <p class="title">0</p>
+                                <p class="heading">
+                                    {{ str_plural('Campaign', $profile->user->supportsCount) }} supported
+                                </p>
+                                <p class="title">
+                                    {{ $profile->user->supportsCount }}
+                                </p>
                             </div>
                         </div>
                         <div class="level-item is-narrow has-text-centered">
@@ -70,6 +74,16 @@
                                 </p>
                                 <p class="title">
                                     {{ $profile->user->commentsCount }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="level-item is-narrow has-text-centered">
+                            <div>
+                                <p class="heading">
+                                    {{ str_plural('Message', $profile->user->messagesCount) }} wrote
+                                </p>
+                                <p class="title">
+                                    {{ $profile->user->messagesCount }}
                                 </p>
                             </div>
                         </div>

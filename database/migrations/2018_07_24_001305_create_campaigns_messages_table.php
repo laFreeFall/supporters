@@ -21,6 +21,7 @@ class CreateCampaignsMessagesTable extends Migration
             $table->unsignedInteger('parent_id')->nullable();
             $table->text('body');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
