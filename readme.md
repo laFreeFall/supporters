@@ -3,9 +3,10 @@
 - [Laravel 5.6](https://github.com/laravel/laravel)
  
 **Frontend**
-- [Vue.js 2.5](https://github.com/vuejs/vue)
-- [axios 0.17](https://github.com/axios/axios)
-- [Bulma 0.7](https://github.com/jgthms/bulma)
+- [Vue.js 2.5](https://github.com/vuejs/vue) *(for tiny page components requiring some kind of interaction)*
+- [axios 0.17](https://github.com/axios/axios) *(for handling ajax requests)*
+- [Bulma 0.7](https://github.com/jgthms/bulma) *(for fast and beauty design prototyping)*
+- [vue-snotify](https://github.com/artemsky/vue-snotify) *(for toasts/notifications)*
 
 ## Installation
 Download the project
