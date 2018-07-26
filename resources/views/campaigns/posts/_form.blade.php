@@ -32,7 +32,7 @@
         label="Body"
         name="body"
         placeholder="Write thoughts you want to share with your audience here..."
-        content="{{ old('body', $post->body?? '') }}"
+        content="{{ old('body', $post->body ?? '') }}"
         validation-error="{{ $errors->has('body') ? $errors->first('body') : '' }}"
     >
     </markdown-textarea>
@@ -68,35 +68,17 @@
         </div>
     </div>
 
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label" for="privacy_id">Post Privacy</label>
-        </div>
-        <div class="field-body">
-            <div class="field">
-                <div class="control has-icons-left">
-                    <div class="select is-fullwidth {{ $errors->has('privacy_id') ? ' is-danger' : '' }}">
-                        <select name="privacy_id" id="privacy_id" required>
-                            <option value="" selected disabled>Choose Post Privacy Level</option>
-                            @foreach($privacies as $privacy)
-                                <option value="{{ $privacy->id }}" {{ $privacy->id === old('privacy_id', $post->privacy_id ?? null) ? 'selected' : '' }}>
-                                    {{ $privacy->title }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="icon is-small is-left">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                </div>
-                @if ($errors->has('privacy_id'))
-                    <p class="help is-danger has-text-weight-bold">{{ $errors->first('privacy_id') }}</p>
-                @endif
-            </div>
-        </div>
-    </div>
+    <post-privacy-select
+        :initial-privacies="{{ json_encode($privacies) }}"
+        :initial-privacy="{{ json_encode(intval(old('privacy_id', $post->privacy_id ?? 0))) }}"
+        :privacy-error="{{ json_encode($errors->has('privacy_id') ? $errors->first('privacy_id') : '') }}"
 
-    <div class="field is-horizontal is-grouped">
+        :initial-pledges="{{ json_encode($pledges) }}"
+        :initial-pledge="{{ json_encode(intval(old('pledge_id', $post->pledge_id ?? 0))) }}"
+        :pledge-error="{{ json_encode($errors->has('pledge_id') ? $errors->first('pledge_id') : '') }}"
+    ></post-privacy-select>
+
+    <div class="field is-horizontal is-grouped m-t-md">
         <div class="field-label"></div>
         <div class="field-body">
             <div class="control">

@@ -27,6 +27,7 @@ class StorePostRequest extends FormRequest
             'title' => 'required|string|min:2',
             'tags' => 'nullable',
             'privacy_id' => 'required|integer',
+            'pledge_id' => 'nullable|integer',
             'body' => 'required|string|min:9'
         ];
     }

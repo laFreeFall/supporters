@@ -59,7 +59,7 @@
                                         <a
                                             href="{{ route('pledges.users.store', ['pledge' => $pledge, 'user' => auth()->user()]) }}"
                                             class="card-footer-item button {{ $campaign->colors->color_class }}"
-                                            {{ $currentSupport ? $currentSupport->amount >= $pledge->amount ? 'disabled' : '' : '' }}
+                                            {{ $supportAmount >= $pledge->amount ? 'disabled' : '' }}
                                             onclick="event.preventDefault(); document.getElementById('support-pledge-{{ $pledge->id }}-form').submit();"
                                         >
                                             Support for ${{ $pledge->amount }}

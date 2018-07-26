@@ -32,7 +32,7 @@ class PostController extends Controller
         $posts = Post::latest()
             ->where('campaign_id', $campaign->id)
             ->filter($filters)
-            ->with('likes', 'privacy', 'tags')
+            ->with('campaign', 'pledge', 'likes', 'privacy', 'tags')
             ->withCount('comments')
             ->paginate(10);
 
@@ -53,10 +53,18 @@ class PostController extends Controller
         $this->authorize('update', $campaign);
 
         $post = new Post();
-        $privacies = PostPrivacy::select('id', 'title')->get();
+        $pledges = $campaign->pledges;
+
+        $privacies = PostPrivacy::all();
+        if(! $pledges->count()) {
+            $privacies = $privacies->filter(function($privacy) {
+                return $privacy->value !== 'supporters';
+            });
+        }
+
         $tags = Tag::select('id', 'name')->get();
 
-        return view('campaigns.posts.create', compact('campaign', 'post', 'privacies', 'tags'));
+        return view('campaigns.posts.create', compact('campaign', 'post', 'privacies', 'pledges', 'tags'));
     }
 
     /**
@@ -74,6 +82,7 @@ class PostController extends Controller
         $post = $campaign->posts()->create([
             'user_id' => auth()->id(),
             'privacy_id' => $request->privacy_id,
+            'pledge_id' => $request->pledge_id,
             'title' => $request->title,
             'body' => $request->body
         ]);
@@ -95,7 +104,7 @@ class PostController extends Controller
     public function show(Campaign $campaign, Post $post)
     {
         $comments = $post->comments()
-            ->with('author.profile', 'likes', 'privacy', 'tags')
+            ->with('campaign', 'pledge', 'author.profile', 'likes', 'privacy', 'tags')
             ->latest()
             ->paginate(10);
 
@@ -115,10 +124,12 @@ class PostController extends Controller
     public function edit(Campaign $campaign, Post $post)
     {
         $this->authorize('update', $campaign);
-        $privacies = PostPrivacy::select('id', 'title')->get();
+
+        $privacies = PostPrivacy::all();
+        $pledges = $campaign->pledges;
         $tags = Tag::select('id', 'name')->get();
 
-        return view('campaigns.posts.edit', compact('campaign', 'post', 'privacies', 'tags'));
+        return view('campaigns.posts.edit', compact('campaign', 'post', 'privacies', 'pledges', 'tags'));
     }
 
     /**
@@ -136,6 +147,7 @@ class PostController extends Controller
 
         $post->update([
             'privacy_id' => $request->privacy_id,
+            'pledge_id' => $request->pledge_id,
             'title' => $request->title,
             'body' => $request->body
         ]);

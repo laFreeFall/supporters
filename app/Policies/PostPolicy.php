@@ -19,13 +19,19 @@ class PostPolicy
      */
     public function view(User $user, Post $post)
     {
-        if($post->privacy->value === 'all') {
-            return true;
+        switch($post->privacy->value) {
+            case 'all':
+                return true;
+                break;
+            case 'followers':
+                return $user->isFollowingCampaign($post->campaign);
+                break;
+            case 'supporters':
+                return $user->supportAmount($post->campaign) >= $post->pledge->amount;
+                break;
+            default:
+                return false;
         }
-        if($post->privacy->value === 'followers') {
-            return $user->isFollowingCampaign($post->campaign);
-        }
-        return false;
         // check for existing of a record in a followings table for value === 'followers'
     }
 

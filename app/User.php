@@ -225,4 +225,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Support::class);
     }
+
+    public function supportAmount($campaign)
+    {
+        $supports = $this->supports->whereIn('pledge_id', $campaign->pledges->pluck('id'));
+        return $supports->count() ? $supports->first()->pledge->amount : 0;
+    }
 }

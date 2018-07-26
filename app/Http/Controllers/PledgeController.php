@@ -25,12 +25,9 @@ class PledgeController extends Controller
     public function index(Campaign $campaign)
     {
         $campaign->load('pledges');
-        $currentSupport = auth()->user()
-            ->supports
-            ->whereIn('pledge_id', $campaign->pledges->pluck('id'));
-        $currentSupport = $currentSupport->count() ? $currentSupport->first()->pledge : null;
+        $supportAmount = auth()->user()->supportAmount($campaign);
 
-        return view('campaigns.pledges.index', compact('campaign', 'currentSupport'));
+        return view('campaigns.pledges.index', compact('campaign', 'supportAmount'));
     }
 
     /**

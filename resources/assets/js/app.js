@@ -42,6 +42,7 @@ Vue.component('like-comment-button', require('./components/LikeCommentButton.vue
 Vue.component('like-post-button', require('./components/LikePostButton.vue'))
 Vue.component('markdown-textarea', require('./components/MarkdownTextarea.vue'))
 Vue.component('repliable-textarea', require('./components/RepliableTextarea.vue'))
+Vue.component('post-privacy-select', require('./components/PostPrivacySelect.vue'))
 
 Vue.filter('pluralize', (word, amount) => (amount > 1 || amount === 0) ? `${word}s` : word)
 

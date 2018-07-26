@@ -13,7 +13,7 @@
         <a
             href="{{ route('campaigns.pledges.index', ['campaign' => $campaign]) }}"
             class="card-footer-item button {{ $colors->color_class }}"
-            {{ $currentSupport ? $currentSupport->amount >= $pledge->amount ? 'disabled' : '' : '' }}
+            {{ $supportAmount >= $pledge->amount ? 'disabled' : '' }}
         >
             Support for ${{ $pledge->amount }}
         </a>

@@ -106,7 +106,7 @@
                     <a href="{{ route('campaigns.pledges.index', ['campaign' => $campaign]) }}" class="is-size-4">Pledges</a>
                 </p>
                 @forelse($campaign->pledges as $pledge)
-                    @include('campaigns.pledges._show', ['pledge' => $pledge, 'campaign' => $campaign, 'colors' => $campaign->colors, 'currentSupport' => $currentSupport])
+                    @include('campaigns.pledges._show', ['pledge' => $pledge, 'campaign' => $campaign, 'colors' => $campaign->colors, 'supportAmount' => $supportAmount])
                 @empty
                     <div class="notification">
                         <p class="m-b-md">There are no pledges at the moment</p>

@@ -77,4 +77,12 @@ class Post extends Model
     {
         return $this->morphMany(Activity::class, 'subject');
     }
+
+    /**
+     * Get the privacy pledge level of the post.
+     */
+    public function pledge()
+    {
+        return $this->belongsTo(Pledge::class);
+    }
 }

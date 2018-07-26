@@ -79,6 +79,7 @@ class CampaignPolicy
      */
     public function support(User $user, Campaign $campaign)
     {
-        return $user->id !== $campaign->user_id;
+        return true;
+//        return $user->id !== $campaign->user_id;
     }
 }
