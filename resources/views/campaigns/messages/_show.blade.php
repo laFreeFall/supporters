@@ -7,7 +7,7 @@
     <div class="media-content">
         <div class="content">
             <p>
-                <strong>{{ $message->author->profile->full_name }}</strong>
+                <span class="{{ $message->user_id === $campaign->user_id ? 'has-text-weight-bold' : '' }}">{{ $message->author->profile->full_name }}</span>
                 <small>{{ '@' . $message->author->profile->username }}</small>
                 @if($message->repliable_id)
                     <small>replied to {{ '@' . $message->parent->author->profile->username }} ({{ '#' . $message->repliable_id }})</small>

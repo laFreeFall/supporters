@@ -27,12 +27,14 @@
                     </div>
                 </div>
 
-                @include('campaigns.posts.comments._form', [
-                    'action' => route('campaigns.posts.comments.store', ['campaign' => $campaign, 'post' => $post]),
-                    'method' => 'post',
-                    'button' => 'Post',
-                    'comment' => $emptyComment,
-                ])
+                @auth
+                    @include('campaigns.posts.comments._form', [
+                        'action' => route('campaigns.posts.comments.store', ['campaign' => $campaign, 'post' => $post]),
+                        'method' => 'post',
+                        'button' => 'Post',
+                        'comment' => $emptyComment,
+                    ])
+                @endauth
             </div>
         </div>
     </div>

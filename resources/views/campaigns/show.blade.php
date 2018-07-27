@@ -29,7 +29,7 @@
         </div>
         <div class="columns is-centered">
             <div class="column is-2">
-                <a href="#" class="button is-rounded is-medium is-fullwidth {{ $campaign->colors->color_class }} m-b-lg">
+                <a href="{{ route('campaigns.pledges.index', compact('campaign')) }}" class="button is-rounded is-medium is-fullwidth {{ $campaign->colors->color_class }} m-b-lg">
                     <span class="icon">
                         <i class="fas fa-hands-helping"></i>
                     </span>
@@ -86,6 +86,16 @@
                             </p>
                             <p class="title">
                                 {{ $campaign->posts_count }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">
+                                {{ str_plural('Message', $campaign->messagesCount) }}
+                            </p>
+                            <p class="title">
+                                {{ $campaign->messagesCount }}
                             </p>
                         </div>
                     </div>

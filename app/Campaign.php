@@ -200,6 +200,31 @@ class Campaign extends Model
     }
 
     /**
+     * Get count of the messages posted on the campaign`s community.
+     */
+    public function messagesCount()
+    {
+        return $this->hasOne(Message::class, 'campaign_id')
+            ->selectRaw('campaign_id, count(*) as count')
+            ->groupBy('campaign_id');
+    }
+
+    /**
+     * Get count of messages posted on the campaign`s community.
+     *
+     * @return int
+     */
+    public function getMessagesCountAttribute()
+    {
+        if ( ! array_key_exists('messagesCount', $this->relations))
+            $this->load('messagesCount');
+
+        $related = $this->getRelation('messagesCount');
+
+        return ($related) ? (int) $related->count : 0;
+    }
+
+    /**
      * Get the amount of users that are supporting the campaign.
      */
     public function getSupportersCountAttribute()

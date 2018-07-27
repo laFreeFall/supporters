@@ -85,8 +85,8 @@ class CampaignController extends Controller
      */
     public function show(Campaign $campaign)
     {
-        $campaign->load('category', 'colors', 'user.profile', 'goals.campaign', 'pledges', 'postsCount', 'followersCount');
-        $supportAmount = auth()->user()->supportAmount($campaign);
+        $campaign->load('category', 'colors', 'user.profile', 'goals.campaign', 'pledges', 'postsCount', 'messagesCount', 'followersCount');
+        $supportAmount = auth()->check() ? auth()->user()->supportAmount($campaign) : 0;
 
         return view('campaigns.show', compact('campaign', 'supportAmount'));
     }

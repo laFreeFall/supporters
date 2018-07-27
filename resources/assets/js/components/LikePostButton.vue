@@ -44,6 +44,7 @@
                     })
                     .catch(error => {
                         console.log(error)
+                        flash(error.response.data.message, 'warning')
                     })
             }
         },

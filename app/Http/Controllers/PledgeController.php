@@ -25,7 +25,7 @@ class PledgeController extends Controller
     public function index(Campaign $campaign)
     {
         $campaign->load('pledges');
-        $supportAmount = auth()->user()->supportAmount($campaign);
+        $supportAmount = auth()->check() ? auth()->user()->supportAmount($campaign) : 0;
 
         return view('campaigns.pledges.index', compact('campaign', 'supportAmount'));
     }

@@ -35,8 +35,11 @@
                                     <div class="content">
                                         <p>${{ $pledge->amount }} <span>per month</span></p>
                                         <p>{{ $pledge->description }}</p>
+                                        <hr>
+                                        <p>{{ $pledge->privileges }}</p>
                                     </div>
                                 </div>
+                                @auth
                                 <div class="card-footer">
                                     @can('update', $campaign)
                                         <a href="{{ route('campaigns.pledges.edit', ['campaign' => $campaign, 'pledge' => $pledge]) }}" class="card-footer-item">
@@ -55,7 +58,7 @@
                                             {{ csrf_field() }}
                                             {!! method_field('delete') !!}
                                         </form>
-                                    {{--@else--}}
+                                    @else
                                         <a
                                             href="{{ route('pledges.users.store', ['pledge' => $pledge, 'user' => auth()->user()]) }}"
                                             class="card-footer-item button {{ $campaign->colors->color_class }}"
@@ -69,6 +72,13 @@
                                         </form>
                                     @endcan
                                 </div>
+                                @else
+                                    <div class="card-footer">
+                                        <div class="card-footer-item">
+                                            <a href="{{ route('login') }}">Login</a>&nbsp; to support the campaign!
+                                        </div>
+                                    </div>
+                                @endauth
                             </div>
 
                         </div>

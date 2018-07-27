@@ -103,8 +103,9 @@ class PostController extends Controller
      */
     public function show(Campaign $campaign, Post $post)
     {
+        $post->load('campaign', 'pledge', 'likes', 'privacy', 'tags');
         $comments = $post->comments()
-            ->with('campaign', 'pledge', 'author.profile', 'likes', 'privacy', 'tags')
+            ->with('author.profile', 'likes')
             ->latest()
             ->paginate(10);
 

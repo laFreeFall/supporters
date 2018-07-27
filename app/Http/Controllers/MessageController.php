@@ -28,6 +28,7 @@ class MessageController extends Controller
     public function index(Campaign $campaign, Request $request)
     {
         $messages = $campaign->messages()->with('likes', 'author.profile', 'parent')->get();
+        $messagesCount = $messages->count();
         $grouppedMessages = $messages->map(function($message) use ($messages) {
             if($message->repliable_id) return null;
             $message->childs = $messages->where('repliable_id', $message->id)->map(function($message) {
@@ -38,10 +39,10 @@ class MessageController extends Controller
         })->filter(function($message) {
             return $message;
         });
-        $messages = new LengthAwarePaginator($grouppedMessages, $grouppedMessages->count(), 5, $request->has('page') ? $request->page : 1);
+        $messages = new LengthAwarePaginator($grouppedMessages, $grouppedMessages->count(), 10, $request->has('page') ? $request->page : 1);
         $emptyMessage = new Message();
 
-        return view('campaigns.messages.index', compact('campaign', 'messages', 'emptyMessage'));
+        return view('campaigns.messages.index', compact('campaign', 'messages', 'messagesCount', 'emptyMessage'));
     }
 
     /**

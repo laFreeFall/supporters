@@ -1904,6 +1904,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.likesAmount = response.data.amount;
             }).catch(function (error) {
                 console.log(error);
+                flash(error.response.data.message, 'warning');
             });
         }
     },
@@ -1968,6 +1969,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.likesAmount = response.data.amount;
             }).catch(function (error) {
                 console.log(error);
+                flash(error.response.data.message, 'warning');
             });
         }
     },

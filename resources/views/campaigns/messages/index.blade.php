@@ -16,7 +16,7 @@
                     <h2 class="is-size-3 m-b-md">
                         Community messages
                         <span class="tag is-medium">
-                            {{ $messages->total() }}
+                            {{ $messagesCount }}
                         </span>
                     </h2>
                     {{--@can('update', $campaign)--}}
