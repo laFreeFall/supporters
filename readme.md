@@ -55,6 +55,7 @@ Download the project
  - Every campaign has ability to create posts which may be accessible to all (or only to the followers) or only to the supporterse (and even choose which support level (pledge) it should be).
  - Markdown is available in Campaign posts and Campaign descriptions.
  
+ > If you want don't want to encounter with longreads below, follow the [link](https://imgur.com/a/Q1BKTvq) and watch an [album of screenshots on imgur](https://imgur.com/a/Q1BKTvq) without huge amount of text.
  ### Campaign's Front Page
  ![Campaign front page](https://i.imgur.com/cvTvTYj.png)
  Front page of the Campaign where main information is displayed:
@@ -93,3 +94,5 @@ Download the project
    ### User Profile Page
  ![User Profile Page](https://i.imgur.com/K0DLaS7.png)
  Most of your stats and digital footprints are stored and displayed on your profile page. Here you may see some brief statistics and detailed last activity below. Almost each public actions performed by a user is tracked by implemented RecordsActivity system and displays in this activity feed with individual template for each one.
+
+> If you want to see more - watch the [full screenshots album on imgur](https://imgur.com/a/Q1BKTvq).
