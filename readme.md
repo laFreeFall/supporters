@@ -1,3 +1,7 @@
+# Supporters
+#### It's a platform that unites creators and its audience. People who creates something material or not run campaign on this service, set campaign goals, its pledges and deliver unique content to its audience, that in turn support them. 
+![Campaign front page](https://i.imgur.com/cvTvTYj.png)
+
 ## What project uses
 **Backend**
 - [Laravel 5.6](https://github.com/laravel/laravel)
